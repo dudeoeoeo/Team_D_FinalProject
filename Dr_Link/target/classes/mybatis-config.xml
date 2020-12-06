@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+	<!-- Alias 설정 -->
+	<!--  
+	<typeAliases>
+		<typeAlias alias="main" type="com.Dr_Link.MainVO" />
+		<typeAlias alias="doctor" type="com.Dr_Link.DoctorVO" />
+		<typeAlias alias="patient" type="com.Dr_Link.PatientVO" />
+		<typeAlias alias="admin" type="com.Dr_Link.AdminVO" />	
+	</typeAliases>
+	-->
+    <!-- Mapper 등록 : spring 설정파일에 지정하여 여기엔 필요 없음 -->
+
+</configuration>
+
