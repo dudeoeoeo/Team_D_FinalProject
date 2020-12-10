@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="board">
+  
+  <insert id="add" parameterType="h_boardDTO">
+  	insert into member_aop values(MEMBER_AOP_SEQ.nextval, #{id}, #{pwd}, #{name}, sysdate)
+  </insert>
+  
+  <select id="boardDetail" parameterType="String" resultType="h_boardDTO">
+  	select * from hospital_board where hospital_board_num=#{h_b_num}
+  </select>
+  
+  <select id="boardList" resultType="h_boardDTO">
+  	SELECT ROW_NUMBER() over (order by h.hospital_board_num) row_num, h.* 
+  	from hospital_board h where rownum between 1 and 10 order by h.hospital_board_num
+  </select>
+  
+  <select id="boardListPage" parameterType="int" resultType="h_boardDTO">
+  select hh.* from
+(SELECT h.*, ROWNUM as rnum FROM ( SELECT * from hospital_board ORDER BY hospital_board_num) h) hh 
+WHERE rnum between #{start} and #{end}
+
+  </select>
+  
+  <update id="plusCnt" parameterType="String">
+  	update hospital_board set h_watched = h_watched+1 where hospital_board_num=#{h_b_num}   
+  </update>
+  
+  
+    <select id="getCnt" resultType="int">
+        select count(*) from hospital_board
+    </select>
+  
+  <!-- select count(*) cnt, id, name from member_aop where id=#{id} group by name -->
+  </mapper>
+  
+  <!--  
+  	SELECT ROW_NUMBER() OVER(ORDER BY h.hospital_board_num) row_num
+     , h.*
+	  FROM hospital_board h
+	  where rownum between #{start} and #{end}
+	 ORDER BY h.hospital_board_num
+	 -->
