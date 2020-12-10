@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="patientDAO">
+
+	  <!--  
+	<insert id="insertCart" parameterType="cart">
+		<![CDATA[
+		INSERT INTO CART (g_id, category_name, item_num, item_name, item_price, have_items_num)
+		VALUES (#{g_id},#{category_name},#{item_num},#{item_name},#{item_price},#{have_items_num})
+		]]>
+	</insert>
+	
+	<update id="updateCart" parameterType="cart">
+		<![CDATA[
+ 		UPDATE CART SET 
+ 		have_items_num = have_items_num - #{have_items_num},
+ 		WHERE item_num = #{item_num}
+ 		]]> 
+	</update>
+	
+	<update id="updateCartList" parameterType="cart">
+		<![CDATA[
+ 		UPDATE CART SET have_items_num = have_items_num + #{have_items_num} WHERE item_num = #{item_num} and g_id=#{g_id}
+ 		]]> 
+	</update>
+	
+	<delete id="deleteCart" parameterType="cart">
+		<![CDATA[
+ 		DELETE CART
+ 		WHERE g_id = #{g_id} 		
+ 		]]> 
+	</delete>
+	
+		<select id="getCart" parameterType="cart" resultType="cart"> 
+		<![CDATA[
+		SELECT *
+		FROM CART 
+ 		WHERE g_id = #{g_id} and item_num=#{item_num}
+ 		]]> 
+	</select>
+	
+	<select id="getCartList" resultType="cart">
+		<![CDATA[
+ 		SELECT *
+ 		FROM CART   
+ 		where g_id=#{g_id} order by item_num 
+ 		]]> 
+	</select>
+	-->
+</mapper>
