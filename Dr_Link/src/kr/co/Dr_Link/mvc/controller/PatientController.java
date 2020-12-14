@@ -27,7 +27,8 @@ public class PatientController {
 		System.out.println("patients 컨트롤러");
 		return "/patients/"+step;
 	}
-	
+	/* 김다유 : patient_dashboard 페이지로 이동 - 처방기록리스트 */
+	/* patient_dashboard에서 진료기록, 결제기록, 예약기록 담당하시는 분들 여기서 값 세팅해주세요 */
 	@RequestMapping(value = "patient_dashboard")
 	public String treatmentRecord(TreatmentRecordDTO vo, Model model) {
 		List<TreatmentRecordDTO> treatmentRecord = pat_dao.treatmentRecord(vo);
@@ -35,6 +36,7 @@ public class PatientController {
 		return "/patients/patient_dashboard";
 	}
 	
+	/* 김다유 : 처방기록 상세 페이지로 이동 */
 	@RequestMapping(value = "/detail_prescription") 
 	public String end_prescription(PrescriptionDTO vo,Model model) {
 		List<PrescriptionDTO> precescription = pre_dao.detail_prescription(vo); 

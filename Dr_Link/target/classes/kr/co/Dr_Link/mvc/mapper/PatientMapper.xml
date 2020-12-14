@@ -11,26 +11,6 @@
   </select>
   
   
-  
-    <!-- 
-create table dl_user (      
-    patient_num number(10) constraint dl_patient_num_pk primary key,
-    p_id varchar2(20) null,
-    p_pwd varchar2(20) null,
-    p_name varchar2(10) null,
-	p_birth varchar2(20) null,
-    p_phone char(13) null,
-    p_zipcode VARCHAR2(20) null,
-	p_address1 varchar2(200) null,
-	p_address2 varchar2(20) null,
-    p_email varchar2(30) null,
-    p_blood varchar2(10) null
-);
-
-create sequence dl_patient_num_pk increment by 1 start with 1;
- -->
- 
- 
   	<!-- 회원가입 -->
 	<insert id="add" parameterType="patientDTO">
 		insert into dl_user values(dl_patient_num_pk.nextval, #{p_id}, #{p_pwd}, #{p_name}, #{p_birth}, #{p_phone}, #{p_zipcode}, #{p_address1}, #{p_address2}, #{p_email}, #{p_blood})

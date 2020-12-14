@@ -55,9 +55,12 @@ public class DoctorController {
 		return "login";
 	}
 
+	/* 김다유 : add_prescription 페이지로 이동 */
 	@RequestMapping(value = "/add_prescription") 
 	public String add_prescription(DrLinkDTO drLinkVo, PatientDTO patientVo,DoctorDTO doctorVo, MedicineDTO mediVo, Model model, HttpSession session) {
 		System.out.println("처방입력 페이지로 이동");
+		
+		/* 로그인해서 session에 값이 있다고 가정하고 테스트 */
 		session.setAttribute("d_name", "의사1");
 
 		/* 로그인 한 의사의 아이디를 받아서 vo로 넘기기 */
@@ -75,7 +78,7 @@ public class DoctorController {
 		return "/doctor/add_prescription";
 	}
 	
-	
+	/* 김다유 : end_prescription 페이지로 이동 */
 	@RequestMapping(value = "/end_prescription", method = RequestMethod.POST) 
 	public String end_prescription(PrescriptionDTO pre_vo, DrLinkDTO drLinkVo, PatientDTO patientVo,DoctorDTO doctorVo, MedicineDTO mediVo, Model model, HttpSession session) {
 		System.out.println("vo로 뽑은 값: " + pre_vo.getQuantity());
@@ -118,7 +121,7 @@ public class DoctorController {
 		
 	}
 
-	
+	/* 김다유 : 의사 프로필세팅 완료 후 페이지 이동 */
 	@RequestMapping(value = "/setting_ok" )
 	public String setting_ok(DoctorDTO vo, HttpServletRequest req, HttpServletResponse resp){
 		System.out.println("*****setting_ok 실행*****");
