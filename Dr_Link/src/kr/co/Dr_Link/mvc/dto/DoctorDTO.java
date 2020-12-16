@@ -23,7 +23,9 @@ public class DoctorDTO {
 	}
 
 	/*
-	 * public String getD_school() { return d_school; } public void
+	 * public String getD_school() { 
+	 * return d_school; 
+	 * } public void
 	 * setD_school(String d_school) { //System.out.println("else문 안의 d_school : " +
 	 * d_school); this.d_school = d_school; } public String getD_whengrad() { return
 	 * d_whengrad; } public void setD_whengrad(String d_whengrad) {
