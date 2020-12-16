@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="doctor">
+  
+  <insert id="add" parameterType="doctorDTO">
+  	insert into member_aop values(MEMBER_AOP_SEQ.nextval, #{id}, #{pwd}, #{name}, sysdate)
+  </insert>
+  
+  <select id="idChk" parameterType="String" resultType="int">
+  	select count(*) cnt from member_aop where id=#{id}
+  </select>
+  
+  <!-- login -->
+  <select id="loginchk" parameterType="doctorDTO" resultType="doctorDTO">
+  	select id, name from member_aop where id=#{id} and pwd=#{pwd}
+  </select>
+  
+  
+  <select id="getDoctor" parameterType="doctorDTO" resultType="doctorDTO">
+  	select id, name from member_aop where id=#{did} and pwd=#{dpwd}
+  </select>
+  
+  <!-- select count(*) cnt, id, name from member_aop where id=#{id} group by name -->
+  
+  
+ 
+  <!-- 의사프로필 -->
+  <select id="doctor_profile" parameterType="doctorDTO" resultType="doctorDTO">
+  	select * from dl_doctor where doctor_num=1
+  </select>
+  
+  <update id="doctor_profile_update" parameterType="doctorDTO" >
+  insert into dl_doctor values (doctor_num.nextval, 'doctor_test3', '1111', '의사3', '1234561234567', '01000001111', '서울시금천구가산동', 'asd123@naver.com', #{d_graduation},'경력','전공의','',sysdate,'20');
+  </update>
+    
+  
+  
+  
+  </mapper>
