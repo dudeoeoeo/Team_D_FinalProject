@@ -142,25 +142,25 @@
 			}); */
 			
 			$(function(){ 
-			$("#p_id").keyup(function() {
-				$.ajax({
-					url : "check_id.do",
-					type : "POST",
-					data : {
-						id : $("#p_id").val()
-					},
-					success : function(result) {
-						if (result == 1) {
-							$("#id_check").html("중복된 아이디가 있습니다.");
-							$('#id_check').css('color', 'red');
-							$("#submit-btn").attr("disabled", "disabled");
-						} else {
-							$("#id_check").html("");
-							$("#submit-btn").removeAttr("disabled");
-						}
-					},
-				})
-			});
+				$("#p_id").keyup(function() {
+					$.ajax({
+						url : "check_id.do",
+						type : "POST",
+						data : {
+							p_id : $("#p_id").val()
+						},
+						success : function(result) {
+							if (result == 1) {
+								$("#id_check").html("중복된 아이디가 있습니다.");
+								$('#id_check').css('color', 'red');
+								$("#submit-btn").attr("disabled", "disabled");
+							} else {
+								$("#id_check").html("");
+								$("#submit-btn").removeAttr("disabled");
+							}
+						},
+					})
+				});
 			});
 			
 			
@@ -202,7 +202,7 @@
 			
 			$(function(){
 				$("#submit-btn").hover(function(){
-					if($("#p_name").val()=='' || $("#p_birth").val()=='' || $("#p_id").val()=='' || $("#p_pwd").val()=='' || $("#p_pwd2").val()=='' || $("#p_email1").val()=='' || $("#p_zipcode").val()=='' || $("#p_address1").val()=='' || $("#p_address2").val()=='' || $("#p_phone").val()==''){
+					if($("#p_name").val()=='' || $("#p_birth").val()=='' || $("#p_id").val()=='' || $("#p_pwd").val()=='' || $("#p_pwd2").val()=='' || $("#p_email").val()=='' || $("#p_zipcode").val()=='' || $("#p_address1").val()=='' || $("#p_address2").val()=='' || $("#p_phone").val()==''){
 						$("#submit-btn").attr("disabled", "disabled");
 					}else{
 						$("#submit-btn").removeAttr("disabled");
@@ -328,7 +328,7 @@ label{
 											<div class="col-12 form-horizontal">
 												<div class="form-group">
 													<label>이메일<span class="text-danger">*</span></label>
-													<input id="p_email1" name="p_email1" class="form-control" size="40" value="" type="text" maxlength="50">
+													<input id="p_email" name="p_email" class="form-control" size="40" value="" type="text" maxlength="50">
 												</div>
 											</div>
 											<div class="col-12 col-md-6">
