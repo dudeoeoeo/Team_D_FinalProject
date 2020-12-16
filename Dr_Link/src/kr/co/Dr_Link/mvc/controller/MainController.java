@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.co.Dr_Link.mvc.dao.DoctorDaoImp;
+import kr.co.Dr_Link.mvc.dao.PatientDaoImp;
 import kr.co.Dr_Link.mvc.dto.DoctorDTO;
 import kr.co.Dr_Link.mvc.dto.PatientDTO;
 import kr.co.Dr_Link.mvc.dto.PrescriptionDTO;
@@ -25,6 +26,7 @@ public class MainController {
 
 	@Autowired	
 	private DoctorDaoImp doctor_dao;
+	private PatientDaoImp patient_dao;
 	
 	@RequestMapping(value = "/Dr_LinkMainPage")
 	public String login() {
@@ -66,7 +68,7 @@ public class MainController {
 	@RequestMapping(value = "userInsert")
 	public String userInsert(PatientDTO dto) {
 		System.out.println("===> dao로 가자!");
-		PDaoInter.insertPatient(dto);
+		patient_dao.insertPatient(dto);
 		System.out.println("===> Mybatis add() 실행 성공인가?");
 		return "login";
 	}
@@ -74,8 +76,8 @@ public class MainController {
 	@RequestMapping(value = "loginCheck")
 	public String loginCheck(PatientDTO dto, HttpSession session) {
 		System.out.println("===> dao로 가자!");
-		PDaoInter.loginCheckPatient(dto);
-		PatientDTO result = PDaoInter.loginCheckPatient(dto);
+		patient_dao.loginCheckPatient(dto);
+		PatientDTO result = patient_dao.loginCheckPatient(dto);
 		if (result == null) {
 			return "login";
 		} else {
