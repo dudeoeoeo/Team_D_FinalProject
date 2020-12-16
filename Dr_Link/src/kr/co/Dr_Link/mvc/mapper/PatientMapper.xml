@@ -5,22 +5,9 @@
   
   <mapper namespace="patient">
   
-  <insert id="add" parameterType="patientDTO">
-  	insert into member_aop values(MEMBER_AOP_SEQ.nextval, #{id}, #{pwd}, #{name}, sysdate);
-  </insert>
-   
-  <select id="idChk" parameterType="String" resultType="int">
-  	select count(*) cnt from member_aop where id=#{id}
-  </select>
-  
-  <!-- login -->
-  <select id="loginchk" parameterType="patientDTO" resultType="patientDTO">
-  	select id, name from member_aop where id=#{id} and pwd=#{pwd}
-  </select>
-  
-  <!-- 처방기록 -->
+  <!-- 김다유 : 처방기록 -->
   <select id="treatmentRecord" parameterType="treatmentRecordDTO" resultType="treatmentRecordDTO">
   select * from treatment_record where patient_num='3'
   </select>
-  <!-- select count(*) cnt, id, name from member_aop where id=#{id} group by name -->
+  
   </mapper>
