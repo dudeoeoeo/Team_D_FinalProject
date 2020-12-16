@@ -20,8 +20,67 @@ public class PatientDTO {
 	
 	private String patient_num, p_id, p_pwd, p_name, p_jumin_num,p_phone_num,p_address,bloodtype,allergy, p_email,height,weight,p_photo ;
 
+    private String p_birth  ,p_blood ,p_zipcode ,p_address1 ,p_address2 ,p_phone;
+	private String  p_regdate;
+
 	
 	
+	public String getP_birth() {
+		return p_birth;
+	}
+
+	public void setP_birth(String p_birth) {
+		this.p_birth = p_birth;
+	}
+
+	public String getP_blood() {
+		return p_blood;
+	}
+
+	public void setP_blood(String p_blood) {
+		this.p_blood = p_blood;
+	}
+
+	public String getP_zipcode() {
+		return p_zipcode;
+	}
+
+	public void setP_zipcode(String p_zipcode) {
+		this.p_zipcode = p_zipcode;
+	}
+
+	public String getP_address1() {
+		return p_address1;
+	}
+
+	public void setP_address1(String p_address1) {
+		this.p_address1 = p_address1;
+	}
+
+	public String getP_address2() {
+		return p_address2;
+	}
+
+	public void setP_address2(String p_address2) {
+		this.p_address2 = p_address2;
+	}
+
+	public String getP_phone() {
+		return p_phone;
+	}
+
+	public void setP_phone(String p_phone) {
+		this.p_phone = p_phone;
+	}
+
+	public String getP_regdate() {
+		return p_regdate;
+	}
+
+	public void setP_regdate(String p_regdate) {
+		this.p_regdate = p_regdate;
+	}
+
 	public String getPatient_num() {
 		return patient_num;
 	}

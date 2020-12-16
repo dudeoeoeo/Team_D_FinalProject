@@ -13,11 +13,16 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.Dr_Link.mvc.dao.DoctorDaoImp;
+import kr.co.Dr_Link.mvc.dao.PatientDaoImp;
+import kr.co.Dr_Link.mvc.dao.PatientDaoInter;
 import kr.co.Dr_Link.mvc.dto.DoctorDTO;
 import kr.co.Dr_Link.mvc.dto.PatientDTO;
 import kr.co.Dr_Link.mvc.dto.PrescriptionDTO;
+import kr.co.Dr_Link.mvc.dto.SearchDTO;
+import kr.co.Dr_Link.mvc.service.PatientServiceImpl;
 
 @Controller
 public class MainController {
@@ -25,6 +30,13 @@ public class MainController {
 
 	@Autowired	
 	private DoctorDaoImp doctor_dao;
+	private PatientDaoImp patient_dao;
+	
+	@Autowired
+	private PatientDaoInter PDaoInter;
+	
+	@Autowired
+	private PatientServiceImpl service;
 	
 	@RequestMapping(value = "/Dr_LinkMainPage")
 	public String login() {
@@ -103,18 +115,26 @@ public class MainController {
 	
 	
 	// id 중복 체크 컨트롤러
-//	@RequestMapping(value = "idCheck.do", method = RequestMethod.GET)
-//	@ResponseBody
-//	public int idCheck(@RequestParam("p_id") String p_id) {
-//		System.out.println("===> Mybatis idCheck() 실행 성공인가?");
-//		return PDaoInter.idCheck(p_id);
-//	}
-//	
+	@RequestMapping(value = "idCheck.do", method = RequestMethod.GET)
+	@ResponseBody
+	public int idCheck(@RequestParam("p_id") String p_id) {
+		System.out.println("===> Mybatis idCheck() 실행 성공인가?");
+		return PDaoInter.idCheck(p_id);
+	}
+	
 	// 비밀번호 찾기
 	@RequestMapping(value = "find_pw.do", method = RequestMethod.POST)
 	public void find_pw(@ModelAttribute PatientDTO dto, HttpServletResponse response) throws Exception{
 		System.out.println("===> Mybatis 비밀번호 찾기 실행 성공인가?");
 		service.find_pw(response, dto);
 	}
+	
+	// 의료진소개
+	@RequestMapping("/search")
+	public String view(SearchDTO vo, Model model) {
+		List<SearchDTO> getSearch = doctor_dao.getSearch();
+		model.addAttribute("getSearch", getSearch);
+		return "search"; 
+		}
 	
 }

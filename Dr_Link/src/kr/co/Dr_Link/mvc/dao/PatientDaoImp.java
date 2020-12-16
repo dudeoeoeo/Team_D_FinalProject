@@ -17,13 +17,13 @@ public class PatientDaoImp implements PatientDaoInter{
 	@Autowired
 	private SqlSessionTemplate ss;
 
+	/* 김다유 처방기록 select */
 	@Override
 	public List<TreatmentRecordDTO> treatmentRecord(TreatmentRecordDTO vo) {
 		System.out.println("===> Mybatis treatmentRecord() 실행");
 		return ss.selectList("patient.treatmentRecord");
 	}
 	
-	/* 리스트 처리 해야 함 ... */
 	@Override
 	public void insertPatient(PatientDTO dto) {
 		System.out.println("===> imple에서 Mybatis mapper add()로 실행");
@@ -39,7 +39,7 @@ public class PatientDaoImp implements PatientDaoInter{
 
 	//아이디 중복검사
 	@Override
-	public int idCheck(String p_id) throws Exception{
+	public int idCheck(String p_id) {
 		return ss.selectOne("patient.idCheck",p_id);
 	}
 

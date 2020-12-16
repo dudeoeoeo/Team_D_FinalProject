@@ -13,7 +13,7 @@ public interface PatientDaoInter {
 	
 	public PatientDTO loginCheckPatient(PatientDTO dto);
 	
-	public int idCheck(String p_id) throws Exception;
+	public int idCheck(String p_id);
 	
 	public int check_id(String p_id) throws Exception;
 	
@@ -25,5 +25,4 @@ public interface PatientDaoInter {
 	
 //	// 비밀번호 변경
 //	public int updatePw(PatientDTO dto) throws Exception;
-
 }
