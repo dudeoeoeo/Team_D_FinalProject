@@ -24,11 +24,10 @@ public class PatientDaoImp implements PatientDaoInter{
 		return ss.selectList("patient.treatmentRecord");
 	}
 	
-	/* 리스트 처리 해야 함 ... */
 	@Override
 	public void insertPatient(PatientDTO dto) {
 		System.out.println("===> imple에서 Mybatis mapper add()로 실행");
-		System.out.println(dto.getPatient_num()+","+dto.getP_name());
+		System.out.println(dto.getP_num()+","+dto.getP_name());
 		ss.insert("patient.add",dto);
 	}
 	
@@ -40,7 +39,7 @@ public class PatientDaoImp implements PatientDaoInter{
 
 	//아이디 중복검사
 	@Override
-	public int idCheck(String p_id) throws Exception{
+	public int idCheck(String p_id) {
 		return ss.selectOne("patient.idCheck",p_id);
 	}
 

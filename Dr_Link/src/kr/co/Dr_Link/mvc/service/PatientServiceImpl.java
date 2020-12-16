@@ -74,7 +74,7 @@ public class PatientServiceImpl implements PatientServiceInter{
 			msg += "<div style='font-size: 130%'>";
 			msg += "하단의 인증 버튼 클릭 시 정상적으로 회원가입이 완료됩니다.</div><br/>";
 			msg += "<form method='post' action='http://localhost:8081/homepage/member/approval_member.do'>";
-			msg += "<input type='hidden' name='email' value='" + dto.getP_email1() + "'>";
+			msg += "<input type='hidden' name='email' value='" + dto.getP_email() + "'>";
 //			msg += "<input type='hidden' name='approval_key' value='" + dto.getApproval_key() + "'>";
 			msg += "<input type='submit' value='인증'></form><br/></div>";
 		}else if(div.equals("find_pw")) {
@@ -86,7 +86,7 @@ public class PatientServiceImpl implements PatientServiceInter{
 			msg += dto.getP_pwd() + "</p></div>";
 		}
 		// 받는 사람 E-Mail 주소
-		String mail = dto.getP_email1();
+		String mail = dto.getP_email();
 		try {
 			HtmlEmail email = new HtmlEmail();
 			email.setDebug(true);
@@ -121,7 +121,7 @@ public class PatientServiceImpl implements PatientServiceInter{
 			System.out.println("find_pw 서비스 임플까지옴 2/4");
 		}
 		// 가입에 사용한 이메일이 아니면
-		else if(!dto.getP_email1().equals(patientDaoImpl.emailCheck(dto.getP_id()).getP_email1())) {
+		else if(!dto.getP_email().equals(patientDaoImpl.emailCheck(dto.getP_id()).getP_email())) {
 			out.print("잘못된 이메일 입니다.");
 			out.close();
 			System.out.println("find_pw 서비스 임플까지옴 3/4");
