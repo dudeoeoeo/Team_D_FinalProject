@@ -18,6 +18,7 @@ import kr.co.Dr_Link.mvc.dao.DoctorDaoImp;
 import kr.co.Dr_Link.mvc.dto.DoctorDTO;
 import kr.co.Dr_Link.mvc.dto.PatientDTO;
 import kr.co.Dr_Link.mvc.dto.PrescriptionDTO;
+import kr.co.Dr_Link.mvc.dto.SearchDTO;
 
 @Controller
 public class MainController {
@@ -116,5 +117,13 @@ public class MainController {
 		System.out.println("===> Mybatis 비밀번호 찾기 실행 성공인가?");
 		service.find_pw(response, dto);
 	}
+	
+	// 의료진소개
+	@RequestMapping("/search")
+	public String view(SearchDTO vo, Model model) {
+		List<SearchDTO> getSearch = doctor_dao.getSearch();
+		model.addAttribute("getSearch", getSearch);
+		return "search"; 
+		}
 	
 }
