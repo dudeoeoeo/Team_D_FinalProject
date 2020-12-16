@@ -16,6 +16,9 @@
   </update>
     
   
-  
+   <!-- 의료진소개 -->
+    <select id="getSearch" resultType="SearchDTO">
+		SELECT * FROM SEARCH
+	</select>
   
   </mapper>
