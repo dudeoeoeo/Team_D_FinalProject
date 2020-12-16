@@ -10,43 +10,44 @@
   select * from treatment_record where patient_num='3'
   </select>
   
+  
   	<!-- 회원가입 -->
 	<insert id="add" parameterType="patientDTO">
-		insert into p_user values(p_num_sqeunce.nextval, #{p_name}, #{p_birth}, #{p_id}, #{p_pwd}, #{p_email1}, #{p_blood}, #{p_zipcode}, #{p_address1}, #{p_address2}, #{p_phone})
+		insert into dl_user values(dl_patient_num_pk.nextval, #{p_id}, #{p_pwd}, #{p_name}, #{p_birth}, #{p_phone}, #{p_zipcode}, #{p_address1}, #{p_address2}, #{p_email}, #{p_blood})
 	</insert>
 	
 	<!-- 로그인 -->
 	<select id="loginchk" parameterType="patientDTO" resultType="patientDTO">
-		select p_id, p_pwd from p_user where p_id=#{p_id} and p_pwd=#{p_pwd}
+		select p_id, p_pwd from dl_user where p_id=#{p_id} and p_pwd=#{p_pwd}
 	</select>
 
   
 	<!-- 아이디 중복 검사 -->
 	<select id="idCheck" parameterType="String" resultType="int">
-		select count(*) from p_user where p_id = #{p_id}
+		select count(*) from dl_user where p_id = #{p_id}
 	</select>
 
   
 	<!-- 아이디 중복 검사 -->
 	<select id="check_id" parameterType="String" resultType="int">
-		select count(*) from p_user where p_id = #{p_id}
+		select count(*) from dl_user where p_id = #{p_id}
 	</select>
 	
 	
 	<!-- 아이디 찾기 -->
 	<select id="find_id" parameterType="String" resultType="String">
-		select p_id from p_user where p_email1 = #{email}
+		select p_id from dl_user where p_email = #{email}
 	</select>
 
 
 	<!-- 비밀번호 변경 -->
 	<update id="update_pw" parameterType="patientDTO">
-		update p_user set p_pwd = #{pw} where p_id = #{id}
+		update dl_user set p_pwd = #{pw} where p_id = #{id}
 	</update>
 
 	<!-- 이메일 매칭용 -->
 	<select id="emailCheck" parameterType="String" resultType="patientDTO">
-		select * from p_user where p_id = #{id}
+		select * from dl_user where p_id = #{id}
 	</select>
 	
   </mapper>

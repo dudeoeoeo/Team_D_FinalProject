@@ -11,11 +11,10 @@
   	select * from dl_doctor where doctor_num=1
   </select>
   
-  <update id="doctor_profile_update" parameterType="doctorDTO" >
-  insert into dl_doctor values (doctor_num.nextval, 'doctor_test3', '1111', '의사3', '1234561234567', '01000001111', '서울시금천구가산동', 'asd123@naver.com', #{d_graduation},'경력','전공의','',sysdate,'20');
-  </update>
-    
   
-  
+   <!-- 의료진소개 -->
+    <select id="getSearch" resultType="SearchDTO">
+		SELECT * FROM SEARCH
+	</select>
   
   </mapper>

@@ -27,7 +27,7 @@ public class PatientDaoImp implements PatientDaoInter{
 	@Override
 	public void insertPatient(PatientDTO dto) {
 		System.out.println("===> imple에서 Mybatis mapper add()로 실행");
-		System.out.println(dto.getP_num()+","+dto.getP_name());
+		System.out.println(dto.getPatient_num()+","+dto.getP_name());
 		ss.insert("patient.add",dto);
 	}
 	
