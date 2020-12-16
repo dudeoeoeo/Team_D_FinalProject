@@ -58,9 +58,16 @@ Version      : 1.3
 		$('#chars').text(length);
 	});
 	
-	
+	/*
 	$('#select2').select2();
-	
+	       			
+	 function(e) = event관련 object를 받는 argument 
+	$('#select2').on("select2:select", function (e) {
+	    var select_val = $('#select2').select2().val();
+	    alert(select_val); 
+	    $(".prescription-info").append('<input type="hidden" name="medicine_num" id="medicine_num" value="'+select_val+'">');
+	}); 
+	*/
 	// Date Time Picker
 	
 	if($('.datetimepicker').length > 0) {

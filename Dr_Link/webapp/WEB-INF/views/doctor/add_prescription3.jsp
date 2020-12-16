@@ -181,13 +181,14 @@ body {
 									</div>
 									<!-- /Prescription Item -->
 													
-											<div class="text-center" style="margin:10px !important;">		<!--  formaction="end_prescription"-->
-												<button type="submit" class="btn btn-info submit-btn send_btn" >입력 완료</button>
+											<div class="text-center" style="margin:10px !important;">		
+												<button type="submit" class="btn btn-info submit-btn send_btn" formaction="end_prescription">입력 완료</button>
 												<button type="submit" class="btn btn-info submit-btn" formaction="#">취소</button>
 											</div>	
 										</form>
 									</div>
 								</div>
+								
 							</div>
 						</div>
 					</div>
@@ -265,7 +266,7 @@ $(function(){
 						pk_num.push(i);
 						alert("현재 i: " + i) 
 					}
-				}			
+				}				
 			}) // each
 		}) // click
 });
