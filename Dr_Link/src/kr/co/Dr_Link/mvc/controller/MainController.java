@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.Dr_Link.mvc.dao.DoctorDaoImp;
+import kr.co.Dr_Link.mvc.dao.DoctorDaoInter;
 import kr.co.Dr_Link.mvc.dao.PatientDaoImp;
 import kr.co.Dr_Link.mvc.dao.PatientDaoInter;
 import kr.co.Dr_Link.mvc.dto.DoctorDTO;
@@ -29,11 +30,10 @@ public class MainController {
 	
 
 	@Autowired	
-	private DoctorDaoImp doctor_dao;
-	private PatientDaoImp patient_dao;
+	private DoctorDaoInter doctor_dao;
 	
 	@Autowired
-	private PatientDaoInter PDaoInter;
+	private PatientDaoInter patient_dao;
 	
 	@Autowired
 	private PatientServiceImpl service;
@@ -78,7 +78,7 @@ public class MainController {
 	@RequestMapping(value = "userInsert")
 	public String userInsert(PatientDTO dto) {
 		System.out.println("===> dao로 가자!");
-		PDaoInter.insertPatient(dto);
+		patient_dao.insertPatient(dto);
 		System.out.println("===> Mybatis add() 실행 성공인가?");
 		return "login";
 	}
@@ -86,8 +86,8 @@ public class MainController {
 	@RequestMapping(value = "loginCheck")
 	public String loginCheck(PatientDTO dto, HttpSession session) {
 		System.out.println("===> dao로 가자!");
-		PDaoInter.loginCheckPatient(dto);
-		PatientDTO result = PDaoInter.loginCheckPatient(dto);
+		patient_dao.loginCheckPatient(dto);
+		PatientDTO result = patient_dao.loginCheckPatient(dto);
 		if (result == null) {
 			return "login";
 		} else {
@@ -119,7 +119,7 @@ public class MainController {
 	@ResponseBody
 	public int idCheck(@RequestParam("p_id") String p_id) {
 		System.out.println("===> Mybatis idCheck() 실행 성공인가?");
-		return PDaoInter.idCheck(p_id);
+		return patient_dao.idCheck(p_id);
 	}
 	
 	// 비밀번호 찾기

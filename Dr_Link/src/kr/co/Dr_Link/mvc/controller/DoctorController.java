@@ -29,6 +29,7 @@ public class DoctorController {
 
 	@Autowired	
 	private PrescriptionDaoInter pre_dao;
+	@Autowired	
 	private DoctorDaoInter doc_dao;
 	
 	@RequestMapping(value = "{step}")
