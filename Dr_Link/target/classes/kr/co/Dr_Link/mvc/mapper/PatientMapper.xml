@@ -13,7 +13,7 @@
   
   	<!-- 회원가입 -->
 	<insert id="add" parameterType="patientDTO">
-		insert into dl_user values(dl_patient_num_pk.nextval, #{p_id}, #{p_pwd}, #{p_name}, #{p_birth}, #{p_phone}, #{p_zipcode}, #{p_address1}, #{p_address2}, #{p_email}, #{p_blood})
+		insert into dl_user(patient_num, p_id, p_pwd, p_name, p_birth, p_phone_num, p_address, p_email, bloodtype) values(dl_patient_num_pk.nextval, #{p_id}, #{p_pwd}, #{p_name}, #{p_birth}, #{p_phone}, #{p_zipcode}, #{p_email}, #{bloodtype})
 	</insert>
 	
 	<!-- 로그인 -->

@@ -143,6 +143,7 @@ body {
 									<div class="card card-table">
 										<div class="card-body">
 											<div class="table-responsive">
+											 <input type="hidden" id="medicine_num" name="medicine_num"/>
 												<table class="table table-hover table-center text-center">
 												<thead>
 													<tr>
@@ -182,7 +183,7 @@ body {
 									<!-- /Prescription Item -->
 													
 											<div class="text-center" style="margin:10px !important;">		<!--  formaction="end_prescription"-->
-												<button type="submit" class="btn btn-info submit-btn send_btn" >입력 완료</button>
+												<button type="submit" class="btn btn-info submit-btn send_btn"  formaction="end_prescription">입력 완료</button>
 												<button type="submit" class="btn btn-info submit-btn" formaction="#">취소</button>
 											</div>	
 										</form>
@@ -251,13 +252,30 @@ $(function(){
 				'</td>'+
 				'</tr>');
 	       		$('select.select2').last().select2();
-	       			/* function(e) = event관련 object를 받는 argument */
-	       		
-	       		alert($("span.select2-selection").text());
+	       		/* alert($("span.select2-selection").text()); */
 			 return false;
 		   }); // click
 		$(".select2").select2();
-		var pk_num = []
+		   
+		$('.select2').on('change', function() {
+			var data = $(".select2 option:selected").val();
+		    $("input#medicine_num").val(data);
+		    alert(data);
+	    })
+	    
+	    
+ 		$('.select2').change(function(){
+            var o=document.getElementById('select2').getElementsByTagName('option');
+            var all="";
+            for(var i=0;i<o.length;i++){
+                if(o[i].selected){
+                    all+=o[i].value+",";
+                }   
+            }
+		    alert(all);
+ 		});
+		   
+		/*var pk_num = []
 		$('.send_btn').click(function(){
 			$("span.select2-selection").each(function(idx){
 				for(var i=0; i<$('select.select2 option').length; i++) {
@@ -267,14 +285,11 @@ $(function(){
 					}
 				}			
 			}) // each
-		}) // click
+		}) // click */
 });
 
-/* 
-(function($){
-})(jQuery);
-*/
 
-</script>
+
+		</script>
 	</body>
 </html>
