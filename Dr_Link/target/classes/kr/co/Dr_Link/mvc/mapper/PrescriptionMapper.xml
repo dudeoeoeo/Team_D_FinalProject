@@ -5,7 +5,7 @@
   
   <mapper namespace="prescription">
   
-   <!-- 김다유 : 처방전 -->
+   <!-- 김다유 : 처방전 의사정보 resultMap -->
    	<resultMap type="departmentDTO" id="departmentDTO">
 		<result column="dep_num" property="dep_num"/>
 		<result column="dep_name" property="dep_name"/>
@@ -46,10 +46,23 @@
   	select * from drlink 
   </select>
   
-  <!-- 약품정보 -->
+  <!-- 김다유 : 약품정보 -->
   <select id="medicine_info" resultType="medicineDTO">
   	select * from medicine
   </select>
   
+  <!-- 김다유 : 처방전 상세 정보 -->
+  <!-- 테스트 중이라 향후에 patient_num=#{patient_num}으로 수정해야함  -->
+  <select id="detail_prescription" parameterType="int" resultType="prescriptionDTO">
+	select * 
+	from 
+		prescription p, treatment_record t, dl_user u, dl_doctor d, medicine m 
+	where 
+		p.patient_num=44 
+	and p.patient_num=u.patient_num 
+	and p.doctor_num = d.doctor_num 
+	and p.medicine_num = m.medicine_num 
+	and p.treatment_num=t.treatment_num;
+  </select>
   
   </mapper>

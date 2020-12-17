@@ -42,8 +42,9 @@ public class PatientController {
 	/* 김다유 : 처방기록 상세 페이지로 이동 */
 	@RequestMapping(value = "/detail_prescription") 
 	public String end_prescription(PrescriptionDTO vo,Model model) {
-		List<PrescriptionDTO> precescription = pre_dao.detail_prescription(vo); 
-		model.addAttribute("precescription",precescription);
+		List<PrescriptionDTO> prescription = pre_dao.detail_prescription(vo); 
+		System.out.println("처방내역 : " +prescription.get(0));
+		model.addAttribute("prescription",prescription);
 		System.out.println("controller detail_prescription 실행 완료");	    
 		return "/patients/detail_prescription";
 	}
