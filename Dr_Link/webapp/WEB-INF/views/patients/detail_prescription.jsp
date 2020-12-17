@@ -132,8 +132,7 @@ body {
 															</thead>
 															<tbody>
 																<tr>
-																	<td>시간
-																	<span class="d-block text-info">시간</span></td>
+																	<td>시간<span class="d-block text-info">시간</span></td>
 																	<td>제 <span> 15489 </span> 호</td>
 																	<td>홍길동</td>
 																	<td class="text-left">
@@ -182,22 +181,22 @@ body {
 													</tr>
 												</thead>
 												<tbody>
-													<c:forEach var="list" items="${prescription}">
 													<tr>
 														<td>
-															<input class="form-control" value="${list.dosage}" type="text" readonly="readonly">
+														${prescription.prescription_date}
+														${prescription.patient_name}
+															<input class="form-control" value="${prescription.treatment_num}" type="text" readonly="readonly">
 														</td>
 														<td>
-															<input class="form-control" value="${list.quantity}" type="text" readonly="readonly">
+															<input class="form-control" value="${prescription.dosage}" type="text" readonly="readonly">
 														</td>
 														<td>
-															<input class="form-control" value="${list.taking_date}" type="text" readonly="readonly">
+															<input class="form-control" value="${prescription.quantity}" type="text" readonly="readonly">
 														</td>
 														<td>
-															<input class="form-control" value="${list.treatment_num}" type="text" readonly="readonly">
+															<input class="form-control" value="${prescription.taking_date}" type="text" readonly="readonly">
 														</td>
 													</tr>
-													</c:forEach>
 												</tbody>
 												</table>
 											</div>

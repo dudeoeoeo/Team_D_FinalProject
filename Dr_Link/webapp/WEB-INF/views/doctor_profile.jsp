@@ -296,7 +296,7 @@ body {
 												</div>
 												
 												<!-- Comment Reply -->
-												<!-- <ul class="comments-reply">
+												<ul class="comments-reply">
 													<li>
 														<div class="comment">
 															<img class="avatar avatar-sm rounded-circle" alt="User Image" src="${pageContext.request.contextPath}/resources/img/patients/patient1.jpg">
@@ -335,7 +335,7 @@ body {
 															</div>
 														</div>
 													</li>
-												</ul> -->
+												</ul>
 												<!-- /Comment Reply -->
 												
 											</li>

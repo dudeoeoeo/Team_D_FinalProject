@@ -84,9 +84,6 @@ public class DoctorController {
 	@RequestMapping(value = "/end_prescription", method = RequestMethod.POST) 
 	public String end_prescription(PrescriptionDTO pre_vo, DrLinkDTO drLinkVo, PatientDTO patientVo,DoctorDTO doctorVo, MedicineDTO mediVo, Model model, HttpSession session) {
 
-		for(int a : pre_vo.getMedicine_num()) {
-			System.out.println("가져온 번호: "+ a);
-		}  
 		/*
 		System.out.println("vo로 뽑은 투여량값: " + pre_vo.getDosage());
 		System.out.println("vo로 뽑은 횟수값: " + pre_vo.getQuantity());

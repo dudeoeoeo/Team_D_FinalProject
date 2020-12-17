@@ -11,6 +11,23 @@
 		<result column="dep_name" property="dep_name"/>
 	</resultMap>
 	
+   	<resultMap type="medicineDTO" id="medicineDTO">
+		<result column="medicine_num" property="medicine_num"/>
+		<result column="medicine_name" property="medicine_name"/>
+		<result column="medicine_detail" property="medicine_detail"/>
+		<result column="medicine_taking" property="medicine_taking"/>
+		<result column="medicine_warning" property="medicine_warning"/>
+	</resultMap>
+	
+   	<resultMap type="treatmentRecordDTO" id="treatmentRecordDTO">
+		<result column="treatment_num" property="treatment_num"/>
+		<result column="patient_num" property="patient_num"/>
+		<result column="doctor_num" property="doctor_num"/>
+		<result column="dep_num" property="dep_num"/>
+		<result column="monitoring_time" property="monitoring_time"/>
+		<result column="start_treatment_time" property="start_treatment_time"/>
+	</resultMap>
+	
 	<resultMap type="doctorDTO" id="doctorMap">
 		<result column="dep_num" property="dep_num" />
 		<result column="d_id" property="d_id" />
@@ -29,6 +46,47 @@
 		<result column="d_whengrad" property="d_whengrad" />
 		<collection property="departmentDTO" resultMap="departmentDTO"/>
 	</resultMap>
+
+	<resultMap type="patientDTO" id="patientDTO">
+		<result column="patient_num" property="patient_num" />
+		<result column="p_id" property="p_id" />
+		<result column="p_pwd" property="p_pwd" />
+		<result column="p_name" property="p_name" />
+		<result column="p_jumin_num" property="p_jumin_num" />
+		<result column="p_phone_num" property="p_phone_num" />
+		<result column="p_address" property="p_address" />
+		<result column="bloodtype" property="bloodtype" />
+		<result column="allergy" property="allergy" />
+		<result column="p_email" property="p_email" />
+		<result column="height" property="height" />
+		<result column="weight" property="weight" />
+		<result column="p_photo" property="p_photo" />
+		<result column="p_birth" property="p_birth" />
+		<result column="p_zipcode" property="p_zipcode" />
+		<result column="p_address1" property="p_address1" />
+		<result column="p_address2" property="p_address2" />
+		<result column="p_phone" property="p_phone" />
+		<result column="p_regdate" property="p_regdate" />
+	</resultMap>
+	
+	
+	<resultMap type="prescriptionDTO" id="prescriptionDTO">
+		<result column="patient_num" property="patient_num" />
+		<result column="doctor_num" property="doctor_num" />
+		<result column="dep_num" property="dep_num" />
+		<result column="treatment_num" property="treatment_num" />
+		<result column="payment_check" property="payment_check" />
+		<result column="dosage" property="dosage" />
+		<result column="quantity" property="quantity" />
+		<result column="taking_date" property="taking_date" />
+		<result column="prescription_date" property="prescription_date" />
+		<result column="medicine_num" property="medicine_num" />
+		<collection property="treatmentRecordDTO" resultMap="treatmentRecordDTO"/>
+		<collection property="doctorDTO" resultMap="doctorDTO"/>
+		<collection property="patientDTO" resultMap="patientDTO"/>
+		<collection property="medicineDTO" resultMap="medicineDTO"/>
+	</resultMap>
+	
 
    
    <!-- 김다유 : 처방전 환자 정보 -->
@@ -53,16 +111,16 @@
   
   <!-- 김다유 : 처방전 상세 정보 -->
   <!-- 테스트 중이라 향후에 patient_num=#{patient_num}으로 수정해야함  -->
-  <select id="detail_prescription" parameterType="int" resultType="prescriptionDTO">
+  <select id="detail_prescription" parameterType="int" resultMap="prescriptionDTO">
 	select * 
 	from 
 		prescription p, treatment_record t, dl_user u, dl_doctor d, medicine m 
 	where 
-		p.patient_num=44 
-	and p.patient_num=u.patient_num 
+		p.patient_num=46 
+	and p.patient_num = u.patient_num 
 	and p.doctor_num = d.doctor_num 
 	and p.medicine_num = m.medicine_num 
-	and p.treatment_num=t.treatment_num;
+	and p.treatment_num=t.treatment_num
   </select>
   
   </mapper>

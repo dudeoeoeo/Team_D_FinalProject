@@ -17,15 +17,22 @@ import java.util.List;
 */
 public class PrescriptionDTO {
 	
-	private int patient_num,doctor_num,dep_num,treatment_num;
+	private int prescription_num, patient_num,doctor_num,treatment_num;
 	private String payment_check,dosage,quantity,taking_date,prescription_date;
-	private List<Integer> medicine_num;
+	private String medicine_num;
 	
 	
-	public void setMedicine_num(List<Integer> medicine_num) {
+	
+	public int getPrescription_num() {
+		return prescription_num;
+	}
+	public void setPrescription_num(int prescription_num) {
+		this.prescription_num = prescription_num;
+	}
+	public void setMedicine_num(String medicine_num) {
 		this.medicine_num = medicine_num;
 	}
-	public List<Integer> getMedicine_num() {
+	public String getMedicine_num() {
 		return medicine_num;
 	}
 	public int getPatient_num() {
@@ -39,12 +46,6 @@ public class PrescriptionDTO {
 	}
 	public void setDoctor_num(int doctor_num) {
 		this.doctor_num = doctor_num;
-	}
-	public int getDep_num() {
-		return dep_num;
-	}
-	public void setDep_num(int dep_num) {
-		this.dep_num = dep_num;
 	}
 	/*
 	public int getMedicine_num() {
