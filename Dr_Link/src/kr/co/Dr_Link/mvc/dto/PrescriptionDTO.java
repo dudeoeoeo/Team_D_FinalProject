@@ -1,5 +1,7 @@
 package kr.co.Dr_Link.mvc.dto;
 
+import java.util.List;
+
 /*
   prescription_num number(4) CONSTRAINT prescription_num_pk primary key,
     patient_num number,
@@ -15,9 +17,17 @@ package kr.co.Dr_Link.mvc.dto;
 */
 public class PrescriptionDTO {
 	
-	private int patient_num,doctor_num,dep_num,medicine_num,treatment_num;
+	private int patient_num,doctor_num,dep_num,treatment_num;
 	private String payment_check,dosage,quantity,taking_date,prescription_date;
+	private List<Integer> medicine_num;
 	
+	
+	public void setMedicine_num(List<Integer> medicine_num) {
+		this.medicine_num = medicine_num;
+	}
+	public List<Integer> getMedicine_num() {
+		return medicine_num;
+	}
 	public int getPatient_num() {
 		return patient_num;
 	}
@@ -36,12 +46,14 @@ public class PrescriptionDTO {
 	public void setDep_num(int dep_num) {
 		this.dep_num = dep_num;
 	}
+	/*
 	public int getMedicine_num() {
 		return medicine_num;
 	}
 	public void setMedicine_num(int medicine_num) {
 		this.medicine_num = medicine_num;
 	}
+	*/
 	public int getTreatment_num() {
 		return treatment_num;
 	}
