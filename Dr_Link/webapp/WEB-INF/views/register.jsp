@@ -334,7 +334,7 @@ label{
 											<div class="col-12 col-md-6">
 												<div class="form-group">
 													<label>혈액형</label>
-													<select class="form-control select" name="p_blood">
+													<select class="form-control select" name="bloodtype">
 														<option value="" selected="selected">- 혈액형 선택 -</option>
 														<option>A-</option>
 														<option>A+</option>

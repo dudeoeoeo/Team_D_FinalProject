@@ -14,9 +14,10 @@ import kr.co.Dr_Link.mvc.dto.PatientDTO;
 @Service("patientServiceInter")
 public class PatientServiceImpl implements PatientServiceInter{
 	
+	/* 김성민 */
 	@Autowired private PatientDaoImp patientDaoImpl;
 	
-	
+	/* 김성민 */
 	// 아이디 중복 검사(AJAX)
 	@Override
 	public void check_id(String p_id, HttpServletResponse response) throws Exception {

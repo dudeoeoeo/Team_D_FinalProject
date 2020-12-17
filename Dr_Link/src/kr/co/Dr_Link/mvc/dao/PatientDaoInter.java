@@ -9,6 +9,7 @@ public interface PatientDaoInter {
 	/* public DoctorDTO detail_prescription(DoctorDTO vo); */
 	public List<TreatmentRecordDTO> treatmentRecord (TreatmentRecordDTO vo);
 	
+	/* 김성민 */
 	public void insertPatient(PatientDTO dto);
 	
 	public PatientDTO loginCheckPatient(PatientDTO dto);
