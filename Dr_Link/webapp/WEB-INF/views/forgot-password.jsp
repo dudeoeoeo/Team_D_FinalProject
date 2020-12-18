@@ -30,13 +30,12 @@
 			if($("#p_id").val()=='' || $("#p_email").val()==''){
 				alert('아이디와 이메일을 모두 입력해주세요.')
 			}else{
-			alert("이메일을 확인해주세요.");
 			$.ajax({
 				url : "find_pw.do",
 				type : "POST",
 				data : {
-					id : $("#p_id").val(),
-					email : $("#p_email").val()
+					p_id : $("#p_id").val(),
+					p_email : $("#p_email").val()
 				},
 				success : function(result) {
 					alert(result);
