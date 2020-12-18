@@ -6,7 +6,6 @@ import java.util.List;
   prescription_num number(4) CONSTRAINT prescription_num_pk primary key,
     patient_num number,
     doctor_num number,
-    dep_num number,
     medicine_num number, -- REFERENCES treatment_record (start_treatment_time)
     payment_check char(2),
     treatment_num number,
@@ -18,11 +17,38 @@ import java.util.List;
 public class PrescriptionDTO {
 	
 	private int prescription_num, patient_num,doctor_num,treatment_num;
-	private String payment_check,dosage,quantity,taking_date,prescription_date;
-	private String medicine_num;
+	private String payment_check,prescription_date;
+	private String [] medicine_num,dosage,quantity,taking_date;
+	private List<TreatmentRecordDTO> treatmentRecordDTO;
+	private List<MedicineDTO> medicineDTO;
+	private List<DoctorDTO> doctorDTO;
+	private List<PatientDTO> patientDTO;
+
 	
-	
-	
+	public List<TreatmentRecordDTO> getTreatmentRecordDTO() {
+		return treatmentRecordDTO;
+	}
+	public void setTreatmentRecordDTO(List<TreatmentRecordDTO> treatmentRecordDTO) {
+		this.treatmentRecordDTO = treatmentRecordDTO;
+	}
+	public List<MedicineDTO> getMedicineDTO() {
+		return medicineDTO;
+	}
+	public void setMedicineDTO(List<MedicineDTO> medicineDTO) {
+		this.medicineDTO = medicineDTO;
+	}
+	public List<DoctorDTO> getDoctorDTO() {
+		return doctorDTO;
+	}
+	public void setDoctorDTO(List<DoctorDTO> doctorDTO) {
+		this.doctorDTO = doctorDTO;
+	}
+	public List<PatientDTO> getPatientDTO() {
+		return patientDTO;
+	}
+	public void setPatientDTO(List<PatientDTO> patientDTO) {
+		this.patientDTO = patientDTO;
+	}
 	public int getPrescription_num() {
 		return prescription_num;
 	}
@@ -30,11 +56,16 @@ public class PrescriptionDTO {
 		this.prescription_num = prescription_num;
 	}
 	public void setMedicine_num(String medicine_num) {
-		this.medicine_num = medicine_num;
+		System.out.println("medi"+ medicine_num);
+		String[] medicine_num_arr = medicine_num.split(",");
+		for (String s : medicine_num_arr) { System.out.println("약번호배열 : " + s); }
+		this.medicine_num = medicine_num.split(",");
 	}
-	public String getMedicine_num() {
+	
+	public String[] getMedicine_num() {
 		return medicine_num;
 	}
+	
 	public int getPatient_num() {
 		return patient_num;
 	}
@@ -67,23 +98,29 @@ public class PrescriptionDTO {
 	public void setPayment_check(String payment_check) {
 		this.payment_check = payment_check;
 	}
-	public String getDosage() {
+	public void setDosage(String dosage) {
+		String[] dosage_arr = dosage.split(",");
+		for (String s : dosage_arr) { System.out.println("약투여량 배열 : " + s); }
+		this.dosage = dosage.split(",");
+	}
+	public String[] getDosage() {
 		return dosage;
 	}
-	public void setDosage(String dosage) {
-		this.dosage = dosage;
-	}
-	public String getQuantity() {
+	public void setQuantity(String quantity) {
+		String[] quantity_arr = quantity.split(",");
+		for (String s : quantity_arr) { System.out.println("약횟수 배열 : " + s); }
+		this.quantity = quantity.split(",");
+	} 
+	public String[] getQuantity() {
 		return quantity;
 	}
-	public void setQuantity(String quantity) {
-		this.quantity = quantity;
-	}
-	public String getTaking_date() {
-		return taking_date;
-	}
 	public void setTaking_date(String taking_date) {
-		this.taking_date = taking_date;
+		String[] taking_date_arr = taking_date.split(",");
+		for (String s : taking_date_arr) { System.out.println("약처방 배열 : " + s); }
+		this.taking_date = taking_date.split(",");
+	}
+	public String[] getTaking_date() {
+		return taking_date;
 	}
 	public String getPrescription_date() {
 		return prescription_date;
@@ -91,7 +128,6 @@ public class PrescriptionDTO {
 	public void setPrescription_date(String prescription_date) {
 		this.prescription_date = prescription_date;
 	}
-	
 	
 	
 

@@ -252,18 +252,23 @@ $(function(){
 				'</td>'+
 				'</tr>');
 	       		$('select.select2').last().select2();
-	       		/* alert($("span.select2-selection").text()); */
+	       		$('.select2').on('change', function() {
+	    			var data = $(".select2 option:selected").val();
+	    		    $("input#medicine_num").val(data);
+	    		    alert('약품번호 '+data);
+	    	    })
 			 return false;
 		   }); // click
+		   
 		$(".select2").select2();
 		   
 		$('.select2').on('change', function() {
 			var data = $(".select2 option:selected").val();
 		    $("input#medicine_num").val(data);
-		    alert(data);
+		    alert('약품번호 '+data);
 	    })
 	    
-	    
+	    /* 
  		$('.select2').change(function(){
             var o=document.getElementById('select2').getElementsByTagName('option');
             var all="";
@@ -273,7 +278,7 @@ $(function(){
                 }   
             }
 		    alert(all);
- 		});
+ 		}); */
 		   
 		/*var pk_num = []
 		$('.send_btn').click(function(){

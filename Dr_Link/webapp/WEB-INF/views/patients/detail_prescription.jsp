@@ -76,8 +76,7 @@ body {
 											<div class="profile-det-info">
 												<h3><a href="patient-profile">Richard Wilson</a></h3>
 												<div class="patient-details">
-													<h5><b>Patient ID :</b> PT0016</h5>
-													<h5 class="mb-0"><i class="fas fa-map-marker-alt"></i> Newyork, USA</h5>
+													<h5><b>Patient ID :</b> PT00/prescription.patientDTO.patient_num/}</h5>
 												</div>
 											</div>
 										</div>
@@ -108,7 +107,7 @@ body {
 										<div class="col-sm-6">
 											<div class="biller-info">
 												<h4 class="d-block">홍길동 님</h4>
-												<span class="d-block text-sm text-muted">외과 진료</span>
+												<span class="d-block text-sm text-muted">'진료과목' 진료</span>
 											</div>
 										</div>
 										<div class="col-sm-6 text-sm-right">
@@ -133,11 +132,11 @@ body {
 															<tbody>
 																<tr>
 																	<td>시간<span class="d-block text-info">시간</span></td>
-																	<td>제 <span> 15489 </span> 호</td>
-																	<td>홍길동</td>
+																	<td>제 <span> 15${prescription.prescription_num} </span> 호</td>
+																	<td>환자명</td>
 																	<td class="text-left">
 																		<h2 class="table-avatar">
-																			<a href="doctor-profile">김**<span>외과</span></a>
+																			<a href="doctor-profile">의사명</a>
 																		</h2>
 																	</td>
 																	<td>전문의</td>
@@ -156,9 +155,9 @@ body {
 															</thead>
 															<tbody>
 																<tr>
-																	<td>Dr.Link</td>
-																	<td>02-2025-4119</td>
-																	<td>02-2025-4120</td>
+																	<td>${drLinkinfo.dl_name}</td>
+																	<td>${drLinkinfo.dl_tel}</td>
+																	<td>${drLinkinfo.dl_faxtel}</td>
 																	<td>김** 서명 사진 들어갈 예정</td>
 																</tr>
 															</tbody>
@@ -181,22 +180,23 @@ body {
 													</tr>
 												</thead>
 												<tbody>
+												
+												<c:forEach var="a" items="${prescription}" begin="0" varStatus="status">
 													<tr>
 														<td>
-														${prescription.prescription_date}
-														${prescription.patient_name}
-															<input class="form-control" value="${prescription.treatment_num}" type="text" readonly="readonly">
+															<input class="form-control" value="${a.medicine_num}" type="text" readonly="readonly">
 														</td>
 														<td>
-															<input class="form-control" value="${prescription.dosage}" type="text" readonly="readonly">
+															<input class="form-control" value="${a.dosage}" type="text" readonly="readonly">
 														</td>
 														<td>
-															<input class="form-control" value="${prescription.quantity}" type="text" readonly="readonly">
+															<input class="form-control" value="${a.quantity}" type="text" readonly="readonly">
 														</td>
 														<td>
-															<input class="form-control" value="${prescription.taking_date}" type="text" readonly="readonly">
+															<input class="form-control" value="${a.taking_date}" type="text" readonly="readonly">
 														</td>
 													</tr>
+												</c:forEach>
 												</tbody>
 												</table>
 											</div>

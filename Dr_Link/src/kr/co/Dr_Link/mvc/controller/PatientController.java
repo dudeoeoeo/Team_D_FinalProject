@@ -13,6 +13,7 @@ import kr.co.Dr_Link.mvc.dao.PatientDaoImp;
 import kr.co.Dr_Link.mvc.dao.PatientDaoInter;
 import kr.co.Dr_Link.mvc.dao.PrescriptionDaoImp;
 import kr.co.Dr_Link.mvc.dao.PrescriptionDaoInter;
+import kr.co.Dr_Link.mvc.dto.DrLinkDTO;
 import kr.co.Dr_Link.mvc.dto.PrescriptionDTO;
 import kr.co.Dr_Link.mvc.dto.TreatmentRecordDTO;
 
@@ -41,11 +42,24 @@ public class PatientController {
 	
 	/* 김다유 : 처방기록 상세 페이지로 이동 */
 	@RequestMapping(value = "/detail_prescription") 
-	public String end_prescription(PrescriptionDTO vo,Model model) {
-		PrescriptionDTO prescription = pre_dao.detail_prescription(vo); 
-		System.out.println("처방내역 : " +prescription.getDoctor_num()); 
+	public String end_prescription(PrescriptionDTO vo,Model model, DrLinkDTO drLinkVo) {
+
+		PrescriptionDTO prescription = pre_dao.detail_prescription(vo);
+		DrLinkDTO drLinkinfo = pre_dao.prescription_info(drLinkVo);
+		
+		String[] dosage = prescription.getDosage();
+		String[] quantity = prescription.getQuantity();
+		String[] taking_Date = prescription.getTaking_date();
+		String[] medicine_num = prescription.getMedicine_num(); 
+		System.out.println("배열길이: "+ medicine_num.length);
+		for (int i = 0 ; i < medicine_num.length; i++) {
+			System.out.println("약번호 : "+medicine_num[i]+"/"+taking_Date[i]+"일/"+dosage[i]+"알/"+quantity[i]+"회");
+		}
+
 		model.addAttribute("prescription",prescription);
-		System.out.println("controller detail_prescription 실행 완료");	    
+		model.addAttribute("drLinkinfo",drLinkinfo);
+		System.out.println("controller detail_prescription 실행 완료");
+		    
 		return "/patients/detail_prescription";
 	}
 
