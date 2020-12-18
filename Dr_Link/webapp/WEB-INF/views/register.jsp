@@ -75,75 +75,20 @@
 
 
 		
-/* 		$("#p_id").keyup(function() {
-			$.ajax({
-				url : "../patient/check_id",
-				type : "POST",
-				data : {
-					id : $("#p_id").val()
-				},
-				success : function(result) {
-					if (result == 1) {
-						$("#id_check").html("중복된 아이디가 있습니다.");
-						$("#submit-btn").attr("disabled", "disabled");
-					} else {
-						$("#id_check").html("사용가능한 아이디입니다.");
-						$("#submit-btn").removeAttr("disabled");
-					}
-				},
-			})
-		}); */
-		
-		
-		
-		
 
-/* 
-		// 아이디 유효성 검사(1 = 중복 / 0 != 중복)
-		$("#p_id").keyup(function() {
-			// id = "id_reg" / name = "userId"
-			var user_id = $('#p_id').val();
-			$.ajax({
-				url : '${pageContext.request.contextPath}/idCheck.do?p_id='+ p_id,
-				type : 'get',
-				success : function(data) {
-					console.log("1 = 중복o / 0 = 중복x : "+ data);							
-					
-					if (data == 1) {
-							// 1 : 아이디가 중복되는 문구
-							$("#id_check").text("사용중인 아이디입니다 :p");
-							$("#id_check").css("color", "red");
-							$("#submit-btn").attr("disabled", true);
-						} else {
-							
-							if(idJ.test(user_id)){
-								// 0 : 아이디 길이 / 문자열 검사
-								$("#id_check").text("");
-								$("#submit-btn").attr("disabled", false);
-					
-							} else if(user_id == ""){
-								
-								$('#id_check').text('아이디를 입력해주세요 :)');
-								$('#id_check').css('color', 'red');
-								$("#submit-btn").attr("disabled", true);				
-								
-							} else {
-								
-								$('#id_check').text("아이디는 소문자와 숫자 4~12자리만 가능합니다 :) :)");
-								$('#id_check').css('color', 'red');
-								$("#submit-btn").attr("disabled", true);
-							}
-							
-						}
-					}, error : function() {
-							console.log("실패");
-					}
-				});
-			}); */
-			
+			//아이디 유효성
 			$(function(){ 
-				$("#p_id").keyup(function() {
-					$.ajax({
+				$("#p_id").blur(function() {
+			      var getCheck= RegExp(/^[A-Za-z0-9_]+[A-Za-z0-9]$/);
+			      if(!getCheck.test($("#p_id").val())){
+					$("#id_check").html("알파벳과 숫자만 사용해주세요.");
+					$('#id_check').css('color', 'red');
+					$("#submit-btn").attr("disabled", "disabled");
+			        $("#p_id").val("");
+			        $("#p_id").focus();
+			        return false;
+			      }else{					
+			    	  $.ajax({
 						url : "check_id.do",
 						type : "POST",
 						data : {
@@ -159,16 +104,66 @@
 								$("#submit-btn").removeAttr("disabled");
 							}
 						},
-					})
+					})}
+
 				});
 			});
 			
-			
-			
-			
+
+			//이메일 유효성
 			$(function(){ 
-				//비밀번호 확인
+				$("#p_email").blur(function() {
+					var getMail = RegExp(/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[a-z\-]+/);
+				    if(!getMail.test($("#p_email").val())){
+						$("#email_check").html("이메일형식에 맞게 입력해주세요.");
+						$('#email_check').css('color', 'red');
+						$("#submit-btn").attr("disabled", "disabled");
+				        $("#p_email").val("");
+				        $("#p_email").focus();
+				        return false;
+				      } else {
+							$("#email_check").html("");
+							$("#submit-btn").removeAttr("disabled");
+						}
+				
+					
+				});
+			});
+					
+					
+			
+			
+			//비밀번호 유효성 및 중복확인
+			$(function(){ 
 				$('#p_pwd2').blur(function(){
+					var getPwd = RegExp(/^[a-zA-z0-9]{4,12}$/);
+					if(!getPwd.test($("#p_pwd2").val())){
+						$("#pwd_check").html("영문 대소문자와 숫자 4~12자리로 입력해야합니다.");
+						$('#pwd_check').css('color', 'red');
+						$("#submit-btn").attr("disabled", "disabled");
+				        $("#p_pwd").val("");
+				        $("#p_pwd2").val("");
+				        $("#p_pwd").focus();
+				        return false;
+				      } else {
+				   if($('#p_pwd').val() != $('#p_pwd2').val()){
+				    	if($('#p_pwd2').val()!=''){
+							$("#pwd_check").text("비밀번호가 일치하지 않습니다.");
+							$('#pwd_check').css('color', 'red');
+							$("#submit-btn").attr("disabled", true);
+				    	    $('#p_pwd2').val('');
+				         	$('#p_pwd2').focus();
+				      	}
+				   }else{
+						$("#pwd_check").text("비밀번호가 일치합니다.");
+						$('#pwd_check').css('color', 'green');
+				   }
+
+					}	
+				});
+
+				
+				$('#p_pwd').blur(function(){
 				   if($('#p_pwd').val() != $('#p_pwd2').val()){
 				    	if($('#p_pwd2').val()!=''){
 							$("#pwd_check").text("비밀번호가 일치하지 않습니다.");
@@ -182,33 +177,113 @@
 						$('#pwd_check').css('color', 'green');
 				   }
 				});
-				
-				$('#p_pwd').blur(function(){
-					   if($('#p_pwd').val() != $('#p_pwd2').val()){
-					    	if($('#p_pwd2').val()!=''){
-								$("#pwd_check").text("비밀번호가 일치하지 않습니다.");
-								$('#pwd_check').css('color', 'red');
-								$("#submit-btn").attr("disabled", true);
-					    	    $('#p_pwd2').val('');
-					         	$('#p_pwd2').focus();
-					      	}
-					   }else{
-							$("#pwd_check").text("비밀번호가 일치합니다.");
-							$('#pwd_check').css('color', 'green');
-					   }
-					});
 			}); 	
 			
 			
 			$(function(){
 				$("#submit-btn").hover(function(){
-					if($("#p_name").val()=='' || $("#p_birth").val()=='' || $("#p_id").val()=='' || $("#p_pwd").val()=='' || $("#p_pwd2").val()=='' || $("#p_email").val()=='' || $("#p_zipcode").val()=='' || $("#p_address1").val()=='' || $("#p_address2").val()=='' || $("#p_phone").val()==''){
+					if($("#p_name").val()=='' || $("#p_jumin_num").val()=='' || $("#p_id").val()=='' || $("#p_pwd").val()=='' || $("#p_pwd2").val()=='' || $("#p_email").val()=='' || $("#p_zipcode").val()=='' || $("#p_address1").val()=='' || $("#p_address2").val()=='' || $("#p_phone").val()==''){
 						$("#submit-btn").attr("disabled", "disabled");
 					}else{
 						$("#submit-btn").removeAttr("disabled");
 					}
 				});
 			}); 
+			
+			
+			
+			//주민번호 유효성
+			$(function(){ 
+				$('#p_jumin_num').blur(function(){
+				    var jumins3 = $("#p_jumin_num").val();
+				      //주민등록번호 생년월일 전달
+				          
+				      var fmt = RegExp(/^\d{6}[1234]\d{6}$/)  //포멧 설정
+				      var buf = new Array(13);
+				 
+				      //주민번호 유효성 검사
+				      if (!fmt.test(jumins3)) {
+						$("#jumin_check").text("주민등록번호 형식에 맞게 입력해주세요.");
+						$('#jumin_check').css('color', 'red');
+				        $("#p_jumin_num").focus();
+				        return false;
+				      }else{
+							$("#jumin_check").text("주민번호가 일치합니다.");
+							$('#jumin_check').css('color', 'green');
+					   }
+				 
+				      //주민번호 존재 검사
+				      for (var i = 0; i < buf.length; i++){
+				        buf[i] = parseInt(jumins3.charAt(i));
+				      }
+				 
+				      var multipliers = [2,3,4,5,6,7,8,9,2,3,4,5];// 밑에 더해주는 12자리 숫자들 
+				      var sum = 0;
+				 
+				      for (var i = 0; i < 12; i++){
+				      sum += (buf[i] *= multipliers[i]);// 배열끼리12번 돌면서 
+				    }
+				 
+				    if ((11 - (sum % 11)) % 10 != buf[12]) {
+						$("#jumin_check").text("잘못된 주민등록번호 입니다.");
+						$('#jumin_check').css('color', 'red');
+				        $("#p_jumin_num").focus();
+				      return false;
+				    }else{
+						$("#jumin_check").text("주민번호가 알맞습니다.");
+						$('#jumin_check').css('color', 'green');
+				   }
+				 
+				    var birthYear = (jumins3.charAt(6) <= "2") ? "19" : "20";
+				    birthYear += $("#pnum").val().substr(0, 2);
+				    var birthMonth = $("#pnum").val().substr(2, 2);
+				    var birthDate = $("#pnum").val().substr(4, 2);
+				    var birth = new Date(birthYear, birthMonth, birthDate);
+				                              
+				             
+				    $("#year").val(birthYear);
+				    $("#month").val(birthMonth);
+				    $("#day").val(birthDate);
+				});
+				
+			}); 
+			
+
+			//휴대폰 유효성
+			$(function(){ 
+				$('#p_phone').blur(function(){
+					var regPhone = RegExp(/^((01[1|6|7|8|9])[1-9]+[0-9]{6,7})|(010[1-9][0-9]{7})$/);
+					if(!regPhone.test($("#p_phone").val())){
+						$("#phone_check").text("휴대폰번호를 정확히 입력해 주세요.");
+						$('#phone_check').css('color', 'red');
+				        $("#p_phone").focus();
+					}
+					else if ($("#p_phone").val() == "" || $("#p_phone").val().length != 11 || isNaN($("#p_phone").val())) {
+						$("#phone_check").text("휴대폰번호를 정확히 입력해 주세요.");
+						$('#phone_check').css('color', 'red');
+				        $("#p_phone").focus();
+					     return;
+					}
+					else if (isNaN($("#p_phone").val())) {
+						$("#phone_check").text("휴대폰번호를 숫자로만 입력해 주세요.");
+						$('#phone_check').css('color', 'red');
+				        $("#p_phone").focus();
+					     return;
+					}else{
+						$("#phone_check").text("");
+					}
+					for (var i=0; i<$("#p_phone").val().length; i++)  {
+					     var chk = $("#p_phone").val().substring(i,i+1);
+					     if(chk == " "){
+							$("#phone_check").text("휴대폰번호를 정확히 입력해주세요.");
+							$('#phone_check').css('color', 'red');
+					        $("#p_phone").focus();
+					          return;
+					     }
+					}
+				});
+			}); 
+			
 		</script>
 	
 		<!-- 구글폰트 -->
@@ -301,8 +376,9 @@ label{
 											</div>
 											<div class="col-12 col-md-6">
 												<div class="form-group">
-													<label>생년월일<span class="text-danger">*</span></label>
-													<input type="date" class="form-control datetimepicker" value="" name="p_birth" id="p_birth">
+													<label>주민번호<span class="text-danger">*</span></label>
+													<input type="text" class="form-control" value="" name="p_jumin_num" id="p_jumin_num"  maxlength="13" placeholder="'-' 없이 번호만 입력해주세요." required />
+													<div class="check_font" id="jumin_check"></div>
 												</div>
 											</div>
 											<div class="col-6">
@@ -312,26 +388,34 @@ label{
 													<div class="check_font" id="id_check"></div>
 												</div>
 											</div>
-											<div class="col-12 col-md-6">
+											<div class="col-6">
 												<div class="form-group">
-													<label>비밀번호<span class="text-danger">*</span></label>
-													<input type="password" class="form-control" value="" maxlength="20" name="p_pwd" id="p_pwd" required />
+													<label>이메일<span class="text-danger">*</span></label>
+													<input id="p_email" name="p_email" class="form-control" size="40" value="" type="text" maxlength="50" required/>
+													<div class="check_font" id="email_check"></div>
 												</div>
 											</div>
-											<div class="col-12 col-md-6">
+											<div class="col-6">
+												<div class="form-group">
+													<label>비밀번호<span class="text-danger">*</span></label>
+													<input type="password" class="form-control" value="" maxlength="20" name="p_pwd" id="p_pwd" placeholder="영문 대소문자와 숫자 4~12자리로 입력해야합니다." required />
+												</div>
+											</div>
+											<div class="col-6">
 												<div class="form-group">
 													<label>비밀번호 확인<span class="text-danger">*</span></label>
 													<input type="password" class="form-control" value="" maxlength="20" name="p_pwd2" id="p_pwd2" required />
 													<div class="check_font" id="pwd_check"></div>
 												</div>
 											</div>
-											<div class="col-12 form-horizontal">
+											<div class="col-6">
 												<div class="form-group">
-													<label>이메일<span class="text-danger">*</span></label>
-													<input id="p_email" name="p_email" class="form-control" size="40" value="" type="text" maxlength="50">
-												</div>
+												<label class="">휴대전화<span class="text-danger">*</span></label>
+												<input id="p_phone" name="p_phone" class="form-control" maxlength="11" size="40" value="" type="text" placeholder="'-' 없이 번호만 입력해주세요.">
+												<div class="check_font" id="phone_check"></div>
 											</div>
-											<div class="col-12 col-md-6">
+											</div>
+											<div class="col-6">
 												<div class="form-group">
 													<label>혈액형</label>
 													<select class="form-control select" name="bloodtype">
@@ -362,12 +446,7 @@ label{
 													<input type="text" id="p_address2" name="p_address2" class="addr2 form-control" size="40" placeholder="상세주소">
 												</div>
 											</div>
-											<div class="col-12">
-												<div class="form-inline">
-												<label class="">휴대전화<span class="text-danger">*</span></label>
-												<input id="p_phone" name="p_phone" class="form-control" maxlength="11" size="40" value="" type="text" placeholder="'-' 없이 번호만 입력해주세요.">
-												</div>
-											</div>
+
 												
 											
 										<div class="submit-section" style="margin-top:20px;">

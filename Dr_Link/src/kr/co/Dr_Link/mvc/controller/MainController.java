@@ -1,7 +1,9 @@
 package kr.co.Dr_Link.mvc.controller;
 
-import java.util.List;
+import java.io.File;
+import java.io.IOException;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -13,16 +15,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
-import kr.co.Dr_Link.mvc.dao.DoctorDaoImp;
 import kr.co.Dr_Link.mvc.dao.DoctorDaoInter;
-import kr.co.Dr_Link.mvc.dao.PatientDaoImp;
 import kr.co.Dr_Link.mvc.dao.PatientDaoInter;
 import kr.co.Dr_Link.mvc.dto.DoctorDTO;
 import kr.co.Dr_Link.mvc.dto.PatientDTO;
-import kr.co.Dr_Link.mvc.dto.PrescriptionDTO;
-import kr.co.Dr_Link.mvc.dto.SearchDTO;
 import kr.co.Dr_Link.mvc.service.PatientServiceImpl;
 
 @Controller
@@ -74,13 +73,10 @@ public class MainController {
 		return "doctor_profile";
 	}
 	
-
-	@RequestMapping(value = "userInsert")
-	public String userInsert(PatientDTO dto) {
-		System.out.println("===> dao로 가자!");
-		patient_dao.insertPatient(dto);
-		System.out.println("===> Mybatis add() 실행 성공인가?");
-		return "login";
+	/* 김성민 */
+	@RequestMapping(value = { "index", "/" })
+	public String goMain() {
+		return "main";
 	}
 
 	@RequestMapping(value = "loginCheck")
@@ -114,13 +110,13 @@ public class MainController {
 	}
 	
 	
-	// id 중복 체크 컨트롤러
-	@RequestMapping(value = "idCheck.do", method = RequestMethod.GET)
-	@ResponseBody
-	public int idCheck(@RequestParam("p_id") String p_id) {
-		System.out.println("===> Mybatis idCheck() 실행 성공인가?");
-		return patient_dao.idCheck(p_id);
-	}
+	// id 중복 체크 컨트롤러 필요없을 듯 하다
+//	@RequestMapping(value = "idCheck.do", method = RequestMethod.GET)
+//	@ResponseBody
+//	public int idCheck(@RequestParam("p_id") String p_id) {
+//		System.out.println("===> Mybatis idCheck() 실행 성공인가?");
+//		return PDaoInter.idCheck(p_id);
+//	}
 	
 	// 비밀번호 찾기
 	@RequestMapping(value = "find_pw.do", method = RequestMethod.POST)
@@ -129,12 +125,67 @@ public class MainController {
 		service.find_pw(response, dto);
 	}
 	
-	// 의료진소개
-	@RequestMapping("/search")
-	public String view(SearchDTO vo, Model model) {
-		List<SearchDTO> getSearch = doctor_dao.getSearch();
-		model.addAttribute("getSearch", getSearch);
-		return "search"; 
-		}
+
 	
-}
+//	@RequestMapping(value = "userInsert")
+//	public String userInsert(PatientDTO dto) {
+//		System.out.println("===> dao로 가자!");
+//		PDaoInter.insertPatient(dto);
+//		System.out.println("===> Mybatis add() 실행 성공인가?");
+//		return "login";
+//	}
+
+	@RequestMapping(value = "userInsert", method = RequestMethod.POST)
+	public ModelAndView userInsert(PatientDTO dto, HttpServletRequest request) {
+		System.out.println("userinsert 요청");
+		ModelAndView mav = new ModelAndView("redirect:login");
+		
+		HttpSession session = request.getSession();
+		String r_path = session.getServletContext().getRealPath("/");
+		System.out.println("r_path :"+r_path);
+		String img_path ="C:\\SungminKim\\GoogleDrive\\spring\\basic\\Dr_Link\\webapp\\resources\\img\\profileImage\\";
+		System.out.println("img_path :"+img_path);
+		StringBuffer path = new StringBuffer();
+		path.append(r_path).append(img_path);
+		MultipartFile p_photo =dto.getP_photo();
+		String oriFn = dto.getP_id() + p_photo.getOriginalFilename(); // 여기에 회원 아이디와 동일 파일 이름으로 저장하자
+		
+		path.append(oriFn);
+		dto.setP_imgfile(oriFn);
+		System.out.println("path = r_path + img_path:"+path);
+		
+		//위에 3줄 이상해서 내가 추가해본다.
+
+		StringBuffer newpath = new StringBuffer();
+		newpath.append(img_path);
+		newpath.append(oriFn);
+		
+		File f = new File(newpath.toString()); // ���� �̹����� ����� ���
+		try {
+			p_photo.transferTo(f); // �������� transferTo�� ȣ���ؼ� �̹����� ������ҿ� ���� 
+		} catch (IllegalStateException | IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		mav.addObject("imgName",oriFn);
+		
+//		File f = new File(path.toString()); // ���� �̹����� ����� ���
+//		try {
+//			p_photo.transferTo(f); // �������� transferTo�� ȣ���ؼ� �̹����� ������ҿ� ���� 
+//		} catch (IllegalStateException | IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		mav.addObject("imgName",oriFn);
+		
+//		PDaoInter.addTvo(dto);
+
+		System.out.println("===> dao로 가자!");
+		patient_dao.insertPatient(dto);
+		System.out.println("===> Mybatis add() 실행 성공인가?");
+		return mav;
+		
+//		return "login";
+	}
+
+} 

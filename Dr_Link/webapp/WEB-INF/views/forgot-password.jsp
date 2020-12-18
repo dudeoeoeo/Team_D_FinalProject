@@ -27,7 +27,7 @@
 <script>
 	$(function(){
 		$("#findBtn").click(function(){
-			if($("#p_id").val()=='' || $("#p_email1").val()==''){
+			if($("#p_id").val()=='' || $("#p_email").val()==''){
 				alert('아이디와 이메일을 모두 입력해주세요.')
 			}else{
 			alert("이메일을 확인해주세요.");
@@ -36,7 +36,7 @@
 				type : "POST",
 				data : {
 					id : $("#p_id").val(),
-					email : $("#p_email1").val()
+					email : $("#p_email").val()
 				},
 				success : function(result) {
 					alert(result);
@@ -103,7 +103,7 @@ body {
 										<input type="text" class="form-control" value="" maxlength="20" id="p_id" name="p_id" placeholder="아이디를 입력하세요." required>
 									</div>
 									<div class="form-group">
-										<input class="form-control" type="text" id="p_email1" name="p_email1" placeholder="가입에 사용한 이메일을 입력하세요." required>
+										<input class="form-control" type="text" id="p_email" name="p_email" placeholder="가입에 사용한 이메일을 입력하세요." required>
 									</div>
 									<div class="form-group mb-0">
 										<button class="btn btn-primary btn-block" type="button" id="findBtn" >임시비밀번호 발급받기</button>

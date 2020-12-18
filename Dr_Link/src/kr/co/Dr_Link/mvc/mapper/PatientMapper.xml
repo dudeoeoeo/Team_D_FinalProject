@@ -11,10 +11,12 @@
   </select>
   
   
+  	<!-- 김성민 -->
   	<!-- 회원가입 -->
 	<insert id="add" parameterType="patientDTO">
-		insert into dl_user(patient_num, p_id, p_pwd, p_name, p_birth, p_phone_num, p_address, p_email, bloodtype) values(dl_patient_num_pk.nextval, #{p_id}, #{p_pwd}, #{p_name}, #{p_birth}, #{p_phone}, #{p_zipcode}, #{p_email}, #{bloodtype})
+		insert into dl_user(patient_num, p_id, p_pwd, p_name, p_gender, p_jumin_num, p_phone_num, p_address, p_email, bloodtype, p_imgfile, height, weight, allergy) values(dl_patient_num_pk.nextval,#{p_id}, #{p_pwd}, #{p_name}, #{p_gender}, #{p_jumin_num}, #{p_phone_num}, #{p_zipcode}, #{p_email}, #{bloodtype}, #{p_imgfile}, #{height}, #{weight}, #{allergy})
 	</insert>
+	
 	
 	<!-- 로그인 -->
 	<select id="loginchk" parameterType="patientDTO" resultType="patientDTO">
@@ -42,12 +44,13 @@
 
 	<!-- 비밀번호 변경 -->
 	<update id="update_pw" parameterType="patientDTO">
-		update dl_user set p_pwd = #{pw} where p_id = #{id}
+		update dl_user set p_pwd = #{p_pwd} where p_id = #{p_id}
 	</update>
 
 	<!-- 이메일 매칭용 -->
 	<select id="emailCheck" parameterType="String" resultType="patientDTO">
 		select * from dl_user where p_id = #{id}
 	</select>
+	
 	
   </mapper>

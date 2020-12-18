@@ -38,13 +38,13 @@ public class PatientDaoImp implements PatientDaoInter{
 		return ss.selectOne("patient.loginchk",dto);
 	}
 
-	//아이디 중복검사
+	//아이디 중복검사(비번발급용)
 	@Override
-	public int idCheck(String p_id) {
+	public int idCheck(String p_id) throws Exception{
 		return ss.selectOne("patient.idCheck",p_id);
 	}
 
-	//아이디 중복검사
+	//아이디 중복검사(회원가입용)
 	@Override
 	public int check_id(String p_id) throws Exception{
 		return ss.selectOne("patient.idCheck",p_id);
