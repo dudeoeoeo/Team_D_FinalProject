@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html> 
 <html lang="en">
 	<head>
@@ -76,7 +77,7 @@ body {
 											<div class="profile-det-info">
 												<h3><a href="patient-profile">Richard Wilson</a></h3>
 												<div class="patient-details">
-													<h5><b>Patient ID :</b> PT00/prescription.patientDTO.patient_num/}</h5>
+													<h5><b>Patient ID :</b> PT00${prescription.patient_num}</h5>
 												</div>
 											</div>
 										</div>
@@ -106,13 +107,13 @@ body {
 									<div class="row">
 										<div class="col-sm-6">
 											<div class="biller-info">
-												<h4 class="d-block">홍길동 님</h4>
+												<h4 class="d-block"><%-- ${prescription.patientDTO.p_name} --%> 님</h4>
 												<span class="d-block text-sm text-muted">'진료과목' 진료</span>
 											</div>
 										</div>
 										<div class="col-sm-6 text-sm-right">
 											<div class="billing-info">
-												<h4 class="d-block">2020년 11월 2일</h4>
+												<h4 class="d-block">${prescription.prescription_date}</h4>
 											</div>
 										</div>
 									</div>
@@ -132,7 +133,7 @@ body {
 															<tbody>
 																<tr>
 																	<td>시간<span class="d-block text-info">시간</span></td>
-																	<td>제 <span> 15${prescription.prescription_num} </span> 호</td>
+																	<td>제 <span> 15prescription_num </span> 호</td>
 																	<td>환자명</td>
 																	<td class="text-left">
 																		<h2 class="table-avatar">
@@ -180,23 +181,23 @@ body {
 													</tr>
 												</thead>
 												<tbody>
-												
-												<c:forEach var="a" items="${prescription}" begin="0" varStatus="status">
+												<c:set var="len" value="${fn:length(prescription.medicine_num)}"/> 
+												<c:forEach begin="0" end="${len-1}" varStatus="status">
 													<tr>
 														<td>
-															<input class="form-control" value="${a.medicine_num}" type="text" readonly="readonly">
+															<input class="form-control" value="${prescription.medicine_num[status.index]}" type="text" readonly="readonly">
 														</td>
 														<td>
-															<input class="form-control" value="${a.dosage}" type="text" readonly="readonly">
+															<input class="form-control" value="${prescription.dosage[status.index]}" type="text" readonly="readonly">
 														</td>
 														<td>
-															<input class="form-control" value="${a.quantity}" type="text" readonly="readonly">
+															<input class="form-control" value="${prescription.quantity[status.index]}" type="text" readonly="readonly">
 														</td>
 														<td>
-															<input class="form-control" value="${a.taking_date}" type="text" readonly="readonly">
+															<input class="form-control" value="${prescription.taking_date[status.index]}" type="text" readonly="readonly">
 														</td>
 													</tr>
-												</c:forEach>
+												</c:forEach> 
 												</tbody>
 												</table>
 											</div>

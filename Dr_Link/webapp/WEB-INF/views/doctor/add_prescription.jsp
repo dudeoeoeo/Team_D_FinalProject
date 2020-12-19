@@ -252,7 +252,7 @@ $(function(){
 				'</td>'+
 				'</tr>');
 	       		$('select.select2').last().select2();
-	       		$('.select2').on('change', function() {
+	       		$('select.select2').on('change', function() {
 	    			var data = $(".select2 option:selected").val();
 	    		    $("input#medicine_num").val(data);
 	    		    alert('약품번호 '+data);
