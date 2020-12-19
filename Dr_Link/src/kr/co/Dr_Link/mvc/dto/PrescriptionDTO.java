@@ -56,9 +56,6 @@ public class PrescriptionDTO {
 		this.prescription_num = prescription_num;
 	}
 	public void setMedicine_num(String medicine_num) {
-		System.out.println("medi"+ medicine_num);
-		String[] medicine_num_arr = medicine_num.split(",");
-		for (String s : medicine_num_arr) { System.out.println("약번호배열 : " + s); }
 		this.medicine_num = medicine_num.split(",");
 	}
 	
@@ -99,24 +96,18 @@ public class PrescriptionDTO {
 		this.payment_check = payment_check;
 	}
 	public void setDosage(String dosage) {
-		String[] dosage_arr = dosage.split(",");
-		for (String s : dosage_arr) { System.out.println("약투여량 배열 : " + s); }
 		this.dosage = dosage.split(",");
 	}
 	public String[] getDosage() {
 		return dosage;
 	}
 	public void setQuantity(String quantity) {
-		String[] quantity_arr = quantity.split(",");
-		for (String s : quantity_arr) { System.out.println("약횟수 배열 : " + s); }
 		this.quantity = quantity.split(",");
 	} 
 	public String[] getQuantity() {
 		return quantity;
 	}
 	public void setTaking_date(String taking_date) {
-		String[] taking_date_arr = taking_date.split(",");
-		for (String s : taking_date_arr) { System.out.println("약처방 배열 : " + s); }
 		this.taking_date = taking_date.split(",");
 	}
 	public String[] getTaking_date() {
@@ -126,6 +117,11 @@ public class PrescriptionDTO {
 		return prescription_date;
 	}
 	public void setPrescription_date(String prescription_date) {
+		StringBuffer str = new StringBuffer(prescription_date);
+		str = str.insert(4, "년 ");
+		str = str.insert(8, "월 ");
+		str = str.insert(12, "일 ");
+		prescription_date = str.toString();
 		this.prescription_date = prescription_date;
 	}
 	
