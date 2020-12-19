@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html> 
 <html lang="en">
 	<head>
@@ -191,10 +192,12 @@ body {
 													                
 															<div class="experience-content">
 																<div class="timeline-content">
-																<c:forEach var="a" items="${doctor_graduation}" begin="0" varStatus="status">
-																	<a href="#/" class="name">${doctor_graduation[status.index][0]}</a>
-																	<div>${doctor_graduation[status.index][1]}</div>
-																	<span class="time">1998 - 2003</span>
+																<c:set var="len" value="${fn:length(doctor_profile.d_graduation[0])}"/> 
+																<c:forEach begin="0" end="${len-1}" varStatus="status">
+																	<a href="#/" class="name">${doctor_profile.d_graduation[status.index][0]}</a>
+																	<div>${doctor_profile.d_graduation[status.index][1]}</div>
+																	<br/>
+																	<!-- <span class="time">1998 - 2003</span> -->
 																</c:forEach>
 																</div>
 															</div>
@@ -222,8 +225,12 @@ body {
 															</div>
 															<div class="experience-content">
 																<div class="timeline-content">
-																	<a href="#/" class="name">${doctor_profile.d_career}</a>
-																	<span class="time">2010 - Present (5 years)</span>
+																<c:set var="len" value="${fn:length(doctor_profile.d_career[0])}"/> 
+																<c:forEach begin="0" end="${len-1}" varStatus="status">
+																	<a href="#/" class="name">${doctor_profile.d_career[status.index][0]}</a>
+																	<div>${doctor_profile.d_career[status.index][1]}</div>
+																	<br/>
+																</c:forEach>
 																</div>
 															</div>
 														</li>												

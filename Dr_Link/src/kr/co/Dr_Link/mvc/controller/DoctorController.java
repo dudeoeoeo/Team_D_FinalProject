@@ -84,16 +84,15 @@ public class DoctorController {
 	@RequestMapping(value = "/end_prescription", method = RequestMethod.POST) 
 	public String end_prescription(PrescriptionDTO pre_vo, DrLinkDTO drLinkVo, PatientDTO patientVo,DoctorDTO doctorVo, MedicineDTO mediVo, Model model, HttpSession session) {
 
-		/*
+		
 		System.out.println("vo로 뽑은 투여량값: " + pre_vo.getDosage());
 		System.out.println("vo로 뽑은 횟수값: " + pre_vo.getQuantity());
 		System.out.println("vo로 뽑은 복용일값: " + pre_vo.getTaking_date());
 		System.out.println("vo로 뽑은 약번호값: " + pre_vo.getMedicine_num());
 		System.out.println("vo에 담긴 시간: " + pre_vo.getPrescription_date());
-		System.out.println("vo에 담긴 과목번호: " + pre_vo.getDep_num());
 		System.out.println("vo에 담긴 의사번호: " + pre_vo.getDoctor_num());
 		System.out.println("vo에 담긴 환자번호: " + pre_vo.getPatient_num());
-		*/
+		
 		//pre_dao.insertPrescription(vo);
 		
 		return "/doctor/end_prescription";
