@@ -78,6 +78,9 @@
 		<result column="taking_date" property="taking_date" />
 		<result column="prescription_date" property="prescription_date" />
 		<result column="medicine_num" property="medicine_num" />
+		<result column="patient_num" property="patient_num" />
+		<result column="doctor_num" property="doctor_num" />
+		<result column="treatment_num" property="treatment_num" />
 		<collection property="treatmentRecordDTO" resultMap="treatmentRecordMap"/>
 		<collection property="doctorDTO" resultMap="doctorMap"/>
 		<collection property="patientDTO" resultMap="patientMap"/>
@@ -103,6 +106,15 @@
   	select * from medicine
   </select>
   
+  <!-- 김다유 : 처방전 저장 -->
+  <!-- <insert id="insertPrescription">
+  insert into prescription(prescription_num, patient_num,doctor_num,medicine_num,payment_check,treatment_num,dosage,quantity,taking_date,prescription_date) 
+  values (prescription_num.nextval, 
+  (select patient_num from treatment_record where treatment_num = #{treatment_num}),
+  (select doctor_num from treatment_record where treatment_num = #{treatment_num}),
+  #{medicine_num}, default ,#{treatment_num} ,#{dosage} ,#{quantity} ,#{taking_date}, #{prescription_date} )
+  </insert> -->
+  
   <!-- 김다유 : 처방전 상세 정보 -->
   <!-- 테스트 중이라 향후에 patient_num=#{patient_num}으로 수정해야함  -->
   <select id="detail_prescription" parameterType="int" resultMap="prescriptionMap">
@@ -112,7 +124,16 @@
         join dl_user u on p.patient_num = u.patient_num
         join dl_doctor d on p.doctor_num = d.doctor_num 
 	where 
-		p.patient_num=46
+		p.patient_num=46 and p.prescription_num=160
+  </select>
+  
+  <!-- 김다유 : 처방기록 -->
+  <select id="prescriptionRecord" parameterType="prescriptionDTO" resultMap="prescriptionMap">
+  SELECT * FROM prescription a 
+  JOIN dl_doctor b ON a.doctor_num = b.doctor_num 
+  JOIN department c ON b.dep_num=c.dep_num 
+  WHERE patient_num='46'
+  order by a.prescription_num desc
   </select>
   
   </mapper>
