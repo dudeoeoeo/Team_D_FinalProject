@@ -8,7 +8,7 @@
  
   <!-- 김다유 : 의사프로필 -->
   <select id="doctor_profile" parameterType="doctorDTO" resultType="doctorDTO">
-  	select * from dl_doctor where doctor_num=1
+  	select * from dl_doctor where doctor_num=26
   </select>
   
   
