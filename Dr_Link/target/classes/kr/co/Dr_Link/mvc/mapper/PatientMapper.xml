@@ -5,10 +5,7 @@
   
   <mapper namespace="patient">
   
-  <!-- 김다유 : 처방기록 -->
-  <select id="treatmentRecord" parameterType="treatmentRecordDTO" resultType="treatmentRecordDTO">
-  select * from treatment_record where patient_num='3'
-  </select>
+  
   
   
   	<!-- 김성민 -->
