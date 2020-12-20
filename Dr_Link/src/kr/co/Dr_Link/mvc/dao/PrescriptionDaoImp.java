@@ -21,8 +21,8 @@ public class PrescriptionDaoImp implements PrescriptionDaoInter {
 	/* 리스트 처리 해야 함 ... */
 	@Override
 	public void insertPrescription(PrescriptionDTO vo) {
-		System.out.println("===> Mybatis addPrescription() 실행");
-		ss.insert("prescription.addPrescription",vo);
+		System.out.println("===> Mybatis insertPrescription() 실행");
+		ss.insert("prescription.insertPrescription",vo);
 	}
 
 	@Override
