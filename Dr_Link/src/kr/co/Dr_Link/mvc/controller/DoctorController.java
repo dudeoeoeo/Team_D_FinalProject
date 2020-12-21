@@ -62,13 +62,13 @@ public class DoctorController {
 		System.out.println("처방입력 페이지로 이동");
 		
 		/* 로그인해서 session에 값이 있다고 가정하고 테스트 */
-		session.setAttribute("d_name", "의사1");
+		session.setAttribute("doctor_num", 2);
 
 		/* 로그인 한 의사의 아이디를 받아서 vo로 넘기기 */
-		String d_name = (String)session.getAttribute("d_name");
-		
-		PatientDTO patientinfo = pre_dao.prescription_info(patientVo);
-		DoctorDTO doctorinfo = pre_dao.prescription_info(d_name);
+		int doctor_num = (int)session.getAttribute("doctor_num");
+		int patient_num = 2;
+		PatientDTO patientinfo = pre_dao.patient_info(patient_num);
+		DoctorDTO doctorinfo = pre_dao.doctor_info(doctor_num);
 		List<MedicineDTO> medicine_info = pre_dao.medicine_info(mediVo);
 		
 		model.addAttribute("patientinfo",patientinfo);
@@ -80,24 +80,35 @@ public class DoctorController {
 	
 	/* 김다유 : end_prescription 페이지로 이동 */
 	@RequestMapping(value = "/end_prescription", method = RequestMethod.POST) 
-	public String end_prescription(HttpServletRequest request, PrescriptionDTO pre_vo, Model model) {
+	public String end_prescription(HttpServletRequest request, PrescriptionDTO pre_vo, MedicineDTO medi_vo, Model model) {
 
+		/*배열로 받은 값 , 구분자를 붙여 String으로 만든 후 insert*/
 		String dsg = arrayJoin(",", pre_vo.getDosage());
-		String qty = arrayJoin(",", pre_vo.getQuantity());
-		String tdate = arrayJoin(",", pre_vo.getTaking_date());
-		String medi_num = arrayJoin(",", pre_vo.getMedicine_num());
-		String pre_date = arrayJoin(",", request.getParameterValues("prescription_date"));
 		pre_vo.setDsg(dsg);
+		String qty = arrayJoin(",", pre_vo.getQuantity());
 		pre_vo.setQty(qty);
+		String tdate = arrayJoin(",", pre_vo.getTaking_date());
 		pre_vo.setTdate(tdate);
+		String medi_num = arrayJoin(",", pre_vo.getMedicine_num());
 		pre_vo.setMedi_num(medi_num);
-		pre_vo.setPre_date(pre_date);	
-		pre_dao.add_prescription(pre_vo);
+		String pre_date = arrayJoin(",", request.getParameterValues("prescription_date"));
+		pre_vo.setPre_date(pre_date);			
+		//pre_dao.add_prescription(pre_vo);
 		
 		/* 방금 pre_dao.add_prescription 한 값에서 바로 prescription을 가져와서 setting 하는 방법이 뭘까 */
-		pre_vo.setPrescription_num(109);
-		
+		/* 방금 pre_dao.add_prescription 한 값을 바로 페이지에 띄우기 위해 select*/
+		pre_vo.setPrescription_num(109); //처방번호와
+		pre_vo.setPatient_num(2);		//환자 번호로 select
 		PrescriptionDTO prescription = pre_dao.detail_prescription(pre_vo);
+		
+		//약품 이름을 띄우기 위해 "2,2,2"로 들어온 약품번호를 배열에 담아 한개씩 select
+		String medicine_num ;
+		MedicineDTO medi_detail;
+		for(int i = 0 ; i > pre_vo.getMedicine_num().length ; i++) {
+			medicine_num=pre_vo.getMedicine_num()[i];
+			medi_detail = pre_dao.medicine_detail_info(medicine_num);
+			model.addAttribute("medi_detail"+i,medi_detail);
+		}
 		System.out.println(prescription.getMedicineDTO().getMedicine_name());
 		model.addAttribute("prescription",prescription);
 		

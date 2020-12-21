@@ -30,6 +30,7 @@ public class PatientController {
 	@Autowired
 	private PatientDaoInter patient_dao;
 	
+	
 	@RequestMapping(value = "{step}")
 	public String accessAnyFiles(@PathVariable String step) {
 		System.out.println("patients 컨트롤러");
@@ -41,8 +42,6 @@ public class PatientController {
 	public String treatmentRecord(PrescriptionDTO pre_vo, Model model) {
 		try {
 		List<PrescriptionDTO> prescriptionRecord = patient_dao.prescriptionRecord(pre_vo);
-		System.out.println(prescriptionRecord.get(0).getPrescription_date()); 
-		System.out.println("***"+prescriptionRecord.get(0).getDoctor_num()); 
 		model.addAttribute("prescriptionRecord", prescriptionRecord);
 		} catch (NullPointerException e) {
 				  
@@ -53,10 +52,11 @@ public class PatientController {
 	/* 김다유 : 처방기록 상세 페이지로 이동 */
 	@RequestMapping(value = "/detail_prescription") 
 	public String end_prescription(PrescriptionDTO vo,Model model) {
+
+		vo.setPrescription_num(109);
+		vo.setPatient_num(2);
+		
 		PrescriptionDTO prescription = pre_dao.detail_prescription(vo);
-		System.out.println("***"+prescription.getPayment_check());
-		System.out.println("***"+prescription.getPrescription_date());
-		System.out.println("***"+prescription.getPrescription_time());
 		model.addAttribute("prescription",prescription);
 		
 		int chk_num = 0;
@@ -65,15 +65,14 @@ public class PatientController {
 		if(chk_num == 0) {
 			int pre_num = prescription.getPrescription_num();
 			model.addAttribute("pre_num",pre_num);
-			url="/patients/결재";
+			url="/patients/payment";
 		}else {
 			model.addAttribute("prescription",prescription);
 			url="/patients/detail_prescription";
 		}
-		model.addAttribute("prescription",prescription);
 		System.out.println("controller detail_prescription 실행 완료");
 		    
-		return "/patients/detail_prescription";
+		return url;
 	}
 
 }

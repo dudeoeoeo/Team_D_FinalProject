@@ -34,15 +34,15 @@ public class PrescriptionDaoImp implements PrescriptionDaoInter {
 
 
 	@Override
-	public PatientDTO prescription_info(PatientDTO patientVo) {
+	public PatientDTO patient_info(int patient_num) {
 		System.out.println("===> Mybatis prescription_info(환자정보) 실행");
-		return ss.selectOne("prescription.patient_info",patientVo);
+		return ss.selectOne("prescription.patient_info",patient_num);
 	}
 
 	@Override
-	public DoctorDTO prescription_info(String d_id) {
+	public DoctorDTO doctor_info(int doctor_num) {
 		System.out.println("===> Mybatis prescription_info(의사정보) 실행");
-		return ss.selectOne("prescription.doctor_info",d_id);
+		return ss.selectOne("prescription.doctor_info",doctor_num);
 	}
 
 
@@ -50,6 +50,12 @@ public class PrescriptionDaoImp implements PrescriptionDaoInter {
 	public List<MedicineDTO> medicine_info(MedicineDTO vo) {
 		System.out.println("===> Mybatis medicine_info() 실행");
 		return ss.selectList("prescription.medicine_info",vo);
+	}
+
+	@Override
+	public MedicineDTO medicine_detail_info(String medicine_num) {
+		System.out.println("===> Mybatis medicine_detail_info() 실행");
+		return ss.selectOne("prescription.medicine_detail_info",medicine_num);
 	}
 
 }
