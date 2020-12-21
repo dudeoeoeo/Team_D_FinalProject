@@ -86,6 +86,17 @@
 		<collection property="patientDTO" resultMap="patientMap"/>
 	</resultMap>
 	
+   <!-- 김다유 : 처방전 입력-->
+   <insert id="add_prescription" parameterType="prescriptionDTO">
+   insert into prescription (prescription_num, patient_num,doctor_num,medicine_num,payment_check,treatment_num,dosage,quantity,taking_date,prescription_date) 
+   values (prescription_num.nextval, (select patient_num from treatment_record where treatment_num = 102),
+   (select doctor_num from treatment_record where treatment_num = 102),
+   #{medi_num, jdbcType=VARCHAR},default,102,
+   #{dsg, jdbcType=VARCHAR},#{qty, jdbcType=VARCHAR},
+   #{tdate, jdbcType=VARCHAR},#{pre_date, jdbcType=VARCHAR})
+   </insert>
+
+	
    <!-- 김다유 : 처방전 환자 정보 -->
   <select id="patient_info" parameterType="patientDTO" resultType="patientDTO">
   	select * from dl_user where p_name = '환자1' 
@@ -106,25 +117,16 @@
   	select * from medicine
   </select>
   
-  <!-- 김다유 : 처방전 저장 -->
-  <!-- <insert id="insertPrescription">
-  insert into prescription(prescription_num, patient_num,doctor_num,medicine_num,payment_check,treatment_num,dosage,quantity,taking_date,prescription_date) 
-  values (prescription_num.nextval, 
-  (select patient_num from treatment_record where treatment_num = #{treatment_num}),
-  (select doctor_num from treatment_record where treatment_num = #{treatment_num}),
-  #{medicine_num}, default ,#{treatment_num} ,#{dosage} ,#{quantity} ,#{taking_date}, #{prescription_date} )
-  </insert> -->
-  
   <!-- 김다유 : 처방전 상세 정보 -->
   <!-- 테스트 중이라 향후에 patient_num=#{patient_num}으로 수정해야함  -->
-  <select id="detail_prescription" parameterType="int" resultMap="prescriptionMap">
+  <select id="detail_prescription" parameterType="prescriptionDTO" resultMap="prescriptionMap">
 	  select * 
 	from 
 		prescription p join treatment_record t on p.treatment_num=t.treatment_num
         join dl_user u on p.patient_num = u.patient_num
         join dl_doctor d on p.doctor_num = d.doctor_num 
 	where 
-		p.patient_num=2 and p.prescription_num=102
+		p.patient_num=#{patient_num} and p.prescription_num=#{prescription_num}
   </select>
   
   <!-- 김다유 : 처방기록 -->

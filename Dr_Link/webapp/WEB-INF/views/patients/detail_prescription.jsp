@@ -132,7 +132,7 @@ body {
 															</thead>
 															<tbody>
 																<tr>
-																	<td>${prescription.prescription_date}<span class="d-block text-info">시간</span></td>
+																	<td>${prescription.prescription_date}<span class="d-block text-info">${prescription.prescription_time}</span></td>
 																	<td>제 <span> 15${prescription.prescription_num}</span> 호</td>
 																	<td>${prescription.patientDTO.p_name}</td>
 																	<td class="text-left">

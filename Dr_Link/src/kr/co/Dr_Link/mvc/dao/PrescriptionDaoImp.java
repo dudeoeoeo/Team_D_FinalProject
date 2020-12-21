@@ -20,9 +20,9 @@ public class PrescriptionDaoImp implements PrescriptionDaoInter {
 	
 	/* 리스트 처리 해야 함 ... */
 	@Override
-	public void insertPrescription(PrescriptionDTO vo) {
-		System.out.println("===> Mybatis insertPrescription() 실행");
-		ss.insert("prescription.insertPrescription",vo);
+	public void add_prescription(PrescriptionDTO vo) {
+		System.out.println("===> Mybatis add_prescription() 실행");
+		ss.insert("prescription.add_prescription",vo);
 	}
 
 	@Override
@@ -45,11 +45,6 @@ public class PrescriptionDaoImp implements PrescriptionDaoInter {
 		return ss.selectOne("prescription.doctor_info",d_id);
 	}
 
-	@Override
-	public DrLinkDTO prescription_info(DrLinkDTO drLinkVo) {
-		System.out.println("===> Mybatis prescription_info(병원정보) 실행");
-		return ss.selectOne("prescription.drLink_info",drLinkVo);
-	}
 
 	@Override
 	public List<MedicineDTO> medicine_info(MedicineDTO vo) {

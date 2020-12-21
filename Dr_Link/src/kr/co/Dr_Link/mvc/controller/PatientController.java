@@ -52,10 +52,11 @@ public class PatientController {
 	
 	/* 김다유 : 처방기록 상세 페이지로 이동 */
 	@RequestMapping(value = "/detail_prescription") 
-	public String end_prescription(PrescriptionDTO vo,Model model, DrLinkDTO drLinkVo) {
+	public String end_prescription(PrescriptionDTO vo,Model model) {
 		PrescriptionDTO prescription = pre_dao.detail_prescription(vo);
-		DrLinkDTO drLinkinfo = pre_dao.prescription_info(drLinkVo);
 		System.out.println("***"+prescription.getPayment_check());
+		System.out.println("***"+prescription.getPrescription_date());
+		System.out.println("***"+prescription.getPrescription_time());
 		model.addAttribute("prescription",prescription);
 		
 		int chk_num = 0;
@@ -70,7 +71,6 @@ public class PatientController {
 			url="/patients/detail_prescription";
 		}
 		model.addAttribute("prescription",prescription);
-		model.addAttribute("drLinkinfo",drLinkinfo);
 		System.out.println("controller detail_prescription 실행 완료");
 		    
 		return "/patients/detail_prescription";

@@ -122,9 +122,9 @@ body {
 															</thead>
 															<tbody>
 																<tr>
-																	<td>${drLinkinfo.dl_name}</td>
-																	<td>${drLinkinfo.dl_tel}</td>
-																	<td>${drLinkinfo.dl_faxtel}</td>
+																	<td>Dr.Link</td>
+																	<td>02-2025-4119</td>
+																	<td>02-2025-4120</td>
 																	<td><Strong style="text-decoration:underline; color:#003669;">${doctorinfo.d_name}</Strong></td>
 																</tr>
 															</tbody>
@@ -143,7 +143,6 @@ body {
 									<div class="card card-table">
 										<div class="card-body">
 											<div class="table-responsive">
-											 <input type="hidden" id="medicine_num" name="medicine_num"/>
 												<table class="table table-hover table-center text-center">
 												<thead>
 													<tr>
@@ -157,7 +156,7 @@ body {
 												<tbody class="prescription-info">
 													<tr class="prescription-cont">
 														<td>
-															<select name="medicine_num" class="form-control select2" id="select2"> 
+															<select name="medicines" class="form-control select2 select_medi" id="select2"> 
 															<c:forEach var="medi" items="${medicine_info}">
 																<option value="${medi.medicine_num}">${medi.medicine_name}</option>
 															</c:forEach>
@@ -182,8 +181,8 @@ body {
 									</div>
 									<!-- /Prescription Item -->
 													
-											<div class="text-center" style="margin:10px !important;">		<!--  formaction="end_prescription"-->
-												<button type="submit" class="btn btn-info submit-btn send_btn"  formaction="end_prescription">입력 완료</button>
+											<div class="text-center" style="margin:10px !important;">		
+												<button type="submit" class="btn btn-info submit-btn send_btn" >입력 완료</button>
 												<button type="submit" class="btn btn-info submit-btn" formaction="#">취소</button>
 											</div>	
 										</form>
@@ -230,7 +229,7 @@ $(function(){
 
 		$(".prescription-info").append('<tr class="prescription-cont">'+
 	   			'<td>'+
-	   			'<select class="form-control select2">'+ 
+	   			'<select class="form-control select2 select_medi">'+ 
 				'<c:forEach var="medi" items="${medicine_info}">'+
 				'<option value="${medi.medicine_num}">${medi.medicine_name}</option>'+	
 				'</c:forEach>'+
@@ -252,45 +251,20 @@ $(function(){
 				'</td>'+
 				'</tr>');
 	       		$('select.select2').last().select2();
-	       		$('select.select2').on('change', function() {
-	    			var data = $(".select2 option:selected").val();
-	    		    $("input#medicine_num").val(data);
-	    		    alert('약품번호 '+data);
-	    	    })
+	       		
 			 return false;
 		   }); // click
 		   
 		$(".select2").select2();
-		   
-		$('.select2').on('change', function() {
-			var data = $(".select2 option:selected").val();
-		    $("input#medicine_num").val(data);
-		    alert('약품번호 '+data);
-	    })
-	    
-	    /* 
- 		$('.select2').change(function(){
-            var o=document.getElementById('select2').getElementsByTagName('option');
-            var all="";
-            for(var i=0;i<o.length;i++){
-                if(o[i].selected){
-                    all+=o[i].value+",";
-                }   
-            }
-		    alert(all);
- 		}); */
-		   
-		/*var pk_num = []
-		$('.send_btn').click(function(){
-			$("span.select2-selection").each(function(idx){
-				for(var i=0; i<$('select.select2 option').length; i++) {
-					if($('select.select2:eq(idx) option:eq(i)').val() == $(this).text()) {
-						pk_num.push(i);
-						alert("현재 i: " + i) 
-					}
-				}			
-			}) // each
-		}) // click */
+	    $('.send_btn').click(function(){
+	    	var medi_num = [];
+	    	$('select.select_medi').each(function(){
+	    		console.log($(this).val());
+	    		medi_num.push($(this).val());
+	    	}) // each
+	    	$('#prescription_form').append('<input type="hidden" name="medicine_num" value="'+medi_num+'">');
+	    	$('#prescription_form').attr('action', 'end_prescription').submit();
+	    }) // click
 });
 
 

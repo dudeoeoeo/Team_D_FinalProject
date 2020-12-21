@@ -58,7 +58,7 @@ public class DoctorController {
 
 	/* 김다유 : add_prescription 페이지로 이동 */
 	@RequestMapping(value = "/add_prescription") 
-	public String add_prescription(DrLinkDTO drLinkVo, PatientDTO patientVo,DoctorDTO doctorVo, MedicineDTO mediVo, Model model, HttpSession session) {
+	public String add_prescription( HttpServletRequest request, PatientDTO patientVo,DoctorDTO doctorVo, MedicineDTO mediVo, Model model, HttpSession session) {
 		System.out.println("처방입력 페이지로 이동");
 		
 		/* 로그인해서 session에 값이 있다고 가정하고 테스트 */
@@ -68,13 +68,11 @@ public class DoctorController {
 		String d_name = (String)session.getAttribute("d_name");
 		
 		PatientDTO patientinfo = pre_dao.prescription_info(patientVo);
-		DrLinkDTO drLinkinfo = pre_dao.prescription_info(drLinkVo);
 		DoctorDTO doctorinfo = pre_dao.prescription_info(d_name);
 		List<MedicineDTO> medicine_info = pre_dao.medicine_info(mediVo);
 		
 		model.addAttribute("patientinfo",patientinfo);
 		model.addAttribute("doctorinfo",doctorinfo);
-		model.addAttribute("drLinkinfo",drLinkinfo);
 		model.addAttribute("medicine_info",medicine_info);
 		System.out.println("controller drLink_info 실행 완료");
 		return "/doctor/add_prescription";
@@ -82,51 +80,25 @@ public class DoctorController {
 	
 	/* 김다유 : end_prescription 페이지로 이동 */
 	@RequestMapping(value = "/end_prescription", method = RequestMethod.POST) 
-	public String end_prescription(PrescriptionDTO pre_vo, DrLinkDTO drLinkVo, PatientDTO patientVo,DoctorDTO doctorVo, MedicineDTO mediVo, Model model, HttpSession session) {
+	public String end_prescription(HttpServletRequest request, PrescriptionDTO pre_vo, Model model) {
 
-		
-		System.out.println("vo로 뽑은 투여량값: " + pre_vo.getDosage());
-		System.out.println("vo로 뽑은 횟수값: " + pre_vo.getQuantity());
-		System.out.println("vo로 뽑은 복용일값: " + pre_vo.getTaking_date());
-		System.out.println("vo로 뽑은 약번호값: " + pre_vo.getMedicine_num());
-		System.out.println("vo에 담긴 시간: " + pre_vo.getPrescription_date());
-		System.out.println("vo에 담긴 의사번호: " + pre_vo.getDoctor_num());
-		System.out.println("vo에 담긴 환자번호: " + pre_vo.getPatient_num());
-		
-		//pre_dao.insertPrescription(vo);
+		String dsg = arrayJoin(",", pre_vo.getDosage());
+		String qty = arrayJoin(",", pre_vo.getQuantity());
+		String tdate = arrayJoin(",", pre_vo.getTaking_date());
+		String medi_num = arrayJoin(",", pre_vo.getMedicine_num());
+		String pre_date = arrayJoin(",", request.getParameterValues("prescription_date"));
+		pre_vo.setDsg(dsg);
+		pre_vo.setQty(qty);
+		pre_vo.setTdate(tdate);
+		pre_vo.setMedi_num(medi_num);
+		pre_vo.setPre_date(pre_date);	
+		pre_dao.add_prescription(pre_vo);
+		/* 방금 pre_dao.add_prescription 한 값에서 바로 prescription을 가져와서 setting 하는 방법이 뭘까 */
+		pre_vo.setPrescription_num(109);
+		PrescriptionDTO prescription = pre_dao.detail_prescription(pre_vo);
+		model.addAttribute("prescription",prescription);
 		
 		return "/doctor/end_prescription";
-		/*
-		String [] qty = request.getParameterValues("quantity");
-		String [] dsg = request.getParameterValues("dosage");
-		String [] dys = request.getParameterValues("days");
-		System.out.println("quantity "+ request.getParameterValues("quantity"));
-		System.out.println("dosage "+ request.getParameterValues("dosage"));
-		System.out.println("days "+request.getParameterValues("days"));
-		*/
-		/*
-		System.out.println("vo로 뽑은 값: " + vo.getQuantity());
-		for (int i=0; i<vo.getQuantity().length; i++) {
-			System.out.println("for문 안 vo로 뽑은 값: " + vo.getQuantity()[i]);
-		}
-		/*
-		for(int i = 0 ; i<qty.length ; i++) {
-			System.out.println(qty[i]);
-			System.out.println(dsg[i]);
-			System.out.println(dys[i]);
-		}
-		String quantity = arrayJoin(",", qty);
-		String dosage = arrayJoin(",", dsg);
-		String days = arrayJoin(",", dys);
-		
-		System.out.println("붙였다! " + quantity);
-		System.out.println("붙였다! " + dosage);
-		System.out.println("붙였다! " + days);
-		/*
-		vo.setQuantity(quantity);
-		vo.setDosage(dosage);
-		vo.setDays(days);
-		*/
 		
 	}
 

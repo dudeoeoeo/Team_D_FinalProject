@@ -17,7 +17,8 @@ import java.util.List;
 public class PrescriptionDTO {
 	
 	private int prescription_num, patient_num,doctor_num,treatment_num;
-	private String payment_check,prescription_date;
+	private String payment_check,prescription_date,prescription_time;
+	private String dsg,qty,tdate,medi_num,pre_date;
 	private String [] medicine_num,dosage,quantity,taking_date;
 	private TreatmentRecordDTO treatmentRecordDTO;
 	private MedicineDTO medicineDTO;
@@ -25,6 +26,37 @@ public class PrescriptionDTO {
 	private PatientDTO patientDTO;
 
 	
+	public String getPre_date() {
+		return pre_date;
+	}
+	public void setPre_date(String pre_date) {
+		
+		this.pre_date = pre_date;
+	}
+	public String getDsg() {
+		return dsg;
+	}
+	public void setDsg(String dsg) {
+		this.dsg = dsg;
+	}
+	public String getQty() {
+		return qty;
+	}
+	public void setQty(String qty) {
+		this.qty = qty;
+	}
+	public String getTdate() {
+		return tdate;
+	}
+	public void setTdate(String tdate) {
+		this.tdate = tdate;
+	}
+	public String getMedi_num() {
+		return medi_num;
+	}
+	public void setMedi_num(String medi_num) {
+		this.medi_num = medi_num;
+	}
 	public TreatmentRecordDTO getTreatmentRecordDTO() {
 		return treatmentRecordDTO;
 	}
@@ -58,6 +90,7 @@ public class PrescriptionDTO {
 		this.prescription_num = prescription_num;
 	}
 	public void setMedicine_num(String medicine_num) {
+		System.out.println("vo로 들어온 값: "+ medicine_num);
 		this.medicine_num = medicine_num.split(",");
 	}
 	
@@ -119,12 +152,15 @@ public class PrescriptionDTO {
 		return prescription_date;
 	}
 	public void setPrescription_date(String prescription_date) {
-		StringBuffer str = new StringBuffer(prescription_date);
-		str = str.insert(4, "년 ");
-		str = str.insert(8, "월 ");
-		str = str.insert(12, "일 ");
-		prescription_date = str.toString();
-		this.prescription_date = prescription_date;
+		//2020년 년 월 12일 월 21일,06:01 오후
+		this.prescription_time = prescription_date.split(",")[1];
+		this.prescription_date = prescription_date.split(",")[0];
+	}
+	public String getPrescription_time() {
+		return prescription_time;
+	}
+	public void setPrescription_time(String prescription_time) {
+		this.prescription_time = prescription_time;
 	}
 	
 	

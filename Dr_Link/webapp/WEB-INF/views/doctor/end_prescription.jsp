@@ -144,16 +144,15 @@ body {
 															</thead>
 															<tbody>
 																<tr>
-																	<td>시간
-																	<span class="d-block text-info">시간</span></td>
-																	<td>제 <span> 15489 </span> 호</td>
-																	<td>홍길동</td>
+																	<td>${prescription.prescription_date}<span class="d-block text-info">${prescription.prescription_time}</span></td>
+																	<td>제 <span> 15${prescription.prescription_num}</span> 호</td>
+																	<td>${prescription.patientDTO.p_name}</td>
 																	<td class="text-left">
 																		<h2 class="table-avatar">
-																			<a href="doctor-profile">김**<span>외과</span></a>
+																			<a href="doctor-profile">${prescription.doctorDTO.d_name}</a>
 																		</h2>
 																	</td>
-																	<td>전문의</td>
+																	<td>${prescription.doctorDTO.d_career[0][0]}</td>
 																	<td>3415-4</td>
 																</tr>
 															</tbody>
