@@ -19,34 +19,34 @@ public class PrescriptionDTO {
 	private int prescription_num, patient_num,doctor_num,treatment_num;
 	private String payment_check,prescription_date;
 	private String [] medicine_num,dosage,quantity,taking_date;
-	private List<TreatmentRecordDTO> treatmentRecordDTO;
-	private List<MedicineDTO> medicineDTO;
-	private List<DoctorDTO> doctorDTO;
-	private List<PatientDTO> patientDTO;
+	private TreatmentRecordDTO treatmentRecordDTO;
+	private MedicineDTO medicineDTO;
+	private DoctorDTO doctorDTO;
+	private PatientDTO patientDTO;
 
 	
-	public List<TreatmentRecordDTO> getTreatmentRecordDTO() {
+	public TreatmentRecordDTO getTreatmentRecordDTO() {
 		return treatmentRecordDTO;
 	}
-	public void setTreatmentRecordDTO(List<TreatmentRecordDTO> treatmentRecordDTO) {
+	public void setTreatmentRecordDTO(TreatmentRecordDTO treatmentRecordDTO) {
 		this.treatmentRecordDTO = treatmentRecordDTO;
 	}
-	public List<MedicineDTO> getMedicineDTO() {
+	public MedicineDTO getMedicineDTO() {
 		return medicineDTO;
 	}
-	public void setMedicineDTO(List<MedicineDTO> medicineDTO) {
+	public void setMedicineDTO(MedicineDTO medicineDTO) {
 		this.medicineDTO = medicineDTO;
 	}
-	public List<DoctorDTO> getDoctorDTO() {
+	public DoctorDTO getDoctorDTO() {
 		return doctorDTO;
 	}
-	public void setDoctorDTO(List<DoctorDTO> doctorDTO) {
+	public void setDoctorDTO(DoctorDTO doctorDTO) {
 		this.doctorDTO = doctorDTO;
 	}
-	public List<PatientDTO> getPatientDTO() {
+	public PatientDTO getPatientDTO() {
 		return patientDTO;
 	}
-	public void setPatientDTO(List<PatientDTO> patientDTO) {
+	public void setPatientDTO(PatientDTO patientDTO) {
 		this.patientDTO = patientDTO;
 	}
 	

@@ -149,7 +149,7 @@ body {
 											<img src="${pageContext.request.contextPath}/resources/img/patients/patient.jpg" alt="User Image">
 										</a>
 										<div class="profile-det-info">
-											<h3>김 환자</h3>
+											<h3>김환자</h3>
 											<div class="patient-details">
 												<h5><i class="fas fa-birthday-cake"></i> 1990년 8월 23일, 만 30 세</h5>
 												<h5 class="mb-0"><i class="fas fa-map-marker-alt"></i> 금천구, 서울</h5>
@@ -530,7 +530,7 @@ body {
 																			<a href="doctor-profile" class="avatar avatar-sm mr-2">
 																				<img class="avatar-img rounded-circle" src="${pageContext.request.contextPath}/resources/img/doctors/doctor-thumb-01.jpg" alt="User Image">
 																			</a>
-																			<a href="doctor-profile"><%-- ${prescriptionRecord.doctorDTO.d_name} --%> <span><%-- ${prescriptionRecord.departmentDTO.dep_name} --%></span></a>
+																			<a href="doctor-profile">${prescriptionRecord.doctorDTO.d_name} <span>${prescriptionRecord.doctorDTO.departmentDTO.dep_name}</span></a>
 																		</h2>
 																	</td>
 																	<td class="text-right">

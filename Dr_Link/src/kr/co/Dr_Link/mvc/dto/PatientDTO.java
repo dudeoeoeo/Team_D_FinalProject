@@ -94,6 +94,10 @@ public class PatientDTO {
 		return p_phone_num;
 	}
 	public void setP_phone_num(String p_phone_num) {
+		StringBuffer str = new StringBuffer(p_phone_num);
+		str = str.insert(3, "-");
+		str = str.insert(8, "-");
+		p_phone_num = str.toString();
 		this.p_phone_num = p_phone_num;
 	}
 	public String getP_address() {

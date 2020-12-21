@@ -75,7 +75,7 @@ body {
 												<img src="${pageContext.request.contextPath}/resources/img/patients/patient.jpg" alt="User Image">
 											</a>
 											<div class="profile-det-info">
-												<h3><a href="patient-profile">Richard Wilson</a></h3>
+												<h3><a href="patient-profile">${prescription.patientDTO.p_name}</a></h3>
 												<div class="patient-details">
 													<h5><b>Patient ID :</b> PT00${prescription.patient_num}</h5>
 												</div>
@@ -84,9 +84,9 @@ body {
 									</div>
 									<div class="patient-info">
 										<ul>
-											<li>Phone <span>+1 952 001 8563</span></li>
+											<li>Phone <span>${prescription.patientDTO.p_phone_num}</span></li>
 											<li>Age <span>38 Years, Male</span></li>
-											<li>Blood Group <span>AB+</span></li>
+											<li>Blood Group <span>${prescription.patientDTO.bloodtype}</span></li>
 										</ul>
 									</div>
 								</div>
@@ -107,8 +107,8 @@ body {
 									<div class="row">
 										<div class="col-sm-6">
 											<div class="biller-info">
-												<h4 class="d-block"><%-- ${prescription.patientDTO.p_name} --%> 님</h4>
-												<span class="d-block text-sm text-muted">'진료과목' 진료</span>
+												<h4 class="d-block">${prescription.patientDTO.p_name} 님</h4>
+												<span class="d-block text-sm text-muted">${prescription.doctorDTO.departmentDTO.dep_name} 진료</span>
 											</div>
 										</div>
 										<div class="col-sm-6 text-sm-right">
@@ -132,15 +132,15 @@ body {
 															</thead>
 															<tbody>
 																<tr>
-																	<td>시간<span class="d-block text-info">시간</span></td>
-																	<td>제 <span> 15prescription_num </span> 호</td>
-																	<td>환자명</td>
+																	<td>${prescription.prescription_date}<span class="d-block text-info">시간</span></td>
+																	<td>제 <span> 15${prescription.prescription_num}</span> 호</td>
+																	<td>${prescription.patientDTO.p_name}</td>
 																	<td class="text-left">
 																		<h2 class="table-avatar">
-																			<a href="doctor-profile">의사명</a>
+																			<a href="doctor-profile">${prescription.doctorDTO.d_name}</a>
 																		</h2>
 																	</td>
-																	<td>전문의</td>
+																	<td>${prescription.doctorDTO.d_career[0][0]}</td>
 																	<td>3415-4</td>
 																</tr>
 															</tbody>
@@ -156,9 +156,9 @@ body {
 															</thead>
 															<tbody>
 																<tr>
-																	<td>${drLinkinfo.dl_name}</td>
-																	<td>${drLinkinfo.dl_tel}</td>
-																	<td>${drLinkinfo.dl_faxtel}</td>
+																	<td>Dr.Link</td>
+																	<td>02-2025-4119</td>
+																	<td>02-2025-4120</td>
 																	<td>김** 서명 사진 들어갈 예정</td>
 																</tr>
 															</tbody>

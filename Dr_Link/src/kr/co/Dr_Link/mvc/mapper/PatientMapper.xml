@@ -5,7 +5,9 @@
   
   <mapper namespace="patient">
   
-  
+  <!-- 김다유 : 회원 정보 -->
+  <select id="">
+  </select>
   
   
   	<!-- 김성민 -->

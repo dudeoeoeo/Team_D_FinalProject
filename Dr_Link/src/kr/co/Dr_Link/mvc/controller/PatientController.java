@@ -41,8 +41,8 @@ public class PatientController {
 	public String treatmentRecord(PrescriptionDTO pre_vo, Model model) {
 		try {
 		List<PrescriptionDTO> prescriptionRecord = patient_dao.prescriptionRecord(pre_vo);
-		 System.out.println(prescriptionRecord.get(0).getPrescription_date()); 
-		 System.out.println("***"+prescriptionRecord.get(0).getDoctor_num()); 
+		System.out.println(prescriptionRecord.get(0).getPrescription_date()); 
+		System.out.println("***"+prescriptionRecord.get(0).getDoctor_num()); 
 		model.addAttribute("prescriptionRecord", prescriptionRecord);
 		} catch (NullPointerException e) {
 				  
@@ -55,8 +55,20 @@ public class PatientController {
 	public String end_prescription(PrescriptionDTO vo,Model model, DrLinkDTO drLinkVo) {
 		PrescriptionDTO prescription = pre_dao.detail_prescription(vo);
 		DrLinkDTO drLinkinfo = pre_dao.prescription_info(drLinkVo);
+		System.out.println("***"+prescription.getPayment_check());
+		model.addAttribute("prescription",prescription);
 		
+		int chk_num = 0;
+		String url ="";
 		
+		if(chk_num == 0) {
+			int pre_num = prescription.getPrescription_num();
+			model.addAttribute("pre_num",pre_num);
+			url="/patients/결재";
+		}else {
+			model.addAttribute("prescription",prescription);
+			url="/patients/detail_prescription";
+		}
 		model.addAttribute("prescription",prescription);
 		model.addAttribute("drLinkinfo",drLinkinfo);
 		System.out.println("controller detail_prescription 실행 완료");
