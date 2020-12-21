@@ -96,6 +96,10 @@
    #{tdate, jdbcType=VARCHAR},#{pre_date, jdbcType=VARCHAR})
    </insert>
 
+ <!-- 김다유 : 처방전 약품 검색 -->
+  <select id="patient_info" parameterType="prescriptionDTO" resultType="medicineDTO">
+  	select * from medicine where medicine_num = 2
+  </select>
 	
    <!-- 김다유 : 처방전 환자 정보 -->
   <select id="patient_info" parameterType="patientDTO" resultType="patientDTO">
