@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import kr.co.Dr_Link.mvc.dto.PatientDTO;
+import kr.co.Dr_Link.mvc.dto.PrescriptionDTO;
 import kr.co.Dr_Link.mvc.dto.TreatmentRecordDTO;
 
 
@@ -19,9 +20,9 @@ public class PatientDaoImp implements PatientDaoInter{
 
 	/* 김다유 처방기록 select */
 	@Override
-	public List<TreatmentRecordDTO> treatmentRecord(TreatmentRecordDTO vo) {
-		System.out.println("===> Mybatis treatmentRecord() 실행");
-		return ss.selectList("patient.treatmentRecord");
+	public List<PrescriptionDTO> prescriptionRecord(PrescriptionDTO vo) {
+		System.out.println("===> Mybatis prescriptionRecord() 실행");
+		return ss.selectList("prescription.prescriptionRecord");
 	}
 	
 	/* 김성민 */
