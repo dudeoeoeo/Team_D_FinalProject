@@ -49,6 +49,8 @@ public class PrescriptionDTO {
 	public void setPatientDTO(List<PatientDTO> patientDTO) {
 		this.patientDTO = patientDTO;
 	}
+	
+	
 	public int getPrescription_num() {
 		return prescription_num;
 	}

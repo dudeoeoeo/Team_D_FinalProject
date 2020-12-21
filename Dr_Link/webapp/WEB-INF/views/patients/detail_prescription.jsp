@@ -183,6 +183,7 @@ body {
 												<tbody>
 												<c:set var="len" value="${fn:length(prescription.medicine_num)}"/> 
 												<c:forEach begin="0" end="${len-1}" varStatus="status">
+												
 													<tr>
 														<td>
 															<input class="form-control" value="${prescription.medicine_num[status.index]}" type="text" readonly="readonly">

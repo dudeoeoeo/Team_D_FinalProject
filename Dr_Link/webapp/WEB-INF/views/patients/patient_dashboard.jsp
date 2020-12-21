@@ -530,7 +530,7 @@ body {
 																			<a href="doctor-profile" class="avatar avatar-sm mr-2">
 																				<img class="avatar-img rounded-circle" src="${pageContext.request.contextPath}/resources/img/doctors/doctor-thumb-01.jpg" alt="User Image">
 																			</a>
-																			<a href="doctor-profile">${prescriptionRecord.doctorDTO.d_name} <span>${prescriptionRecord.departmentDTO.dep_name}</span></a>
+																			<a href="doctor-profile"><%-- ${prescriptionRecord.doctorDTO.d_name} --%> <span><%-- ${prescriptionRecord.departmentDTO.dep_name} --%></span></a>
 																		</h2>
 																	</td>
 																	<td class="text-right">
