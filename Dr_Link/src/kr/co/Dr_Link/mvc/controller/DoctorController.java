@@ -93,9 +93,12 @@ public class DoctorController {
 		pre_vo.setMedi_num(medi_num);
 		pre_vo.setPre_date(pre_date);	
 		pre_dao.add_prescription(pre_vo);
+		
 		/* 방금 pre_dao.add_prescription 한 값에서 바로 prescription을 가져와서 setting 하는 방법이 뭘까 */
 		pre_vo.setPrescription_num(109);
+		
 		PrescriptionDTO prescription = pre_dao.detail_prescription(pre_vo);
+		System.out.println(prescription.getMedicineDTO().getMedicine_name());
 		model.addAttribute("prescription",prescription);
 		
 		return "/doctor/end_prescription";

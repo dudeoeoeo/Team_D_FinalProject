@@ -120,7 +120,7 @@
   <!-- 김다유 : 처방전 상세 정보 -->
   <!-- 테스트 중이라 향후에 patient_num=#{patient_num}으로 수정해야함  -->
   <select id="detail_prescription" parameterType="prescriptionDTO" resultMap="prescriptionMap">
-	  select * 
+	 select * 
 	from 
 		prescription p join treatment_record t on p.treatment_num=t.treatment_num
         join dl_user u on p.patient_num = u.patient_num

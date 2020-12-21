@@ -186,7 +186,7 @@ body {
 												
 													<tr>
 														<td>
-															<input class="form-control" value="${prescription.medicine_num[status.index]}" type="text" readonly="readonly">
+															<input class="form-control" value="${prescription.medicineDTO.medicine_name[status.index]}" type="text" readonly="readonly">
 														</td>
 														<td>
 															<input class="form-control" value="${prescription.dosage[status.index]}" type="text" readonly="readonly">

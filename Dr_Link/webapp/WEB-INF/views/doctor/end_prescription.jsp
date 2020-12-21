@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html> 
 <html lang="en">
 	<head>
@@ -123,7 +125,7 @@ body {
 							<!-- Login Tab Content -->
 							<div class="account-content">
 								<div class="row align-items-center justify-content-center">
-								<h3><span>홍길동</span>님 진료가 종료되었습니다 :)</h3>
+								<h3><span>${prescription.patientDTO.p_name}</span>님 진료가 종료되었습니다 :)</h3>
 								</div>
 								<div class="card" style="margin:1.5rem !important;">
 								<div class="card-header text-center" style="border-bottom:0px !important; margin-top:10px !important;">
@@ -176,6 +178,45 @@ body {
 															</tbody>
 														</table>
 													</div>
+																
+													<!-- Prescription Item -->
+									<div class="card card-table">
+										<div class="card-body">
+											<div class="table-responsive">
+												<table class="table table-hover table-center">
+												<thead>
+													<tr>
+														<th style="width: 200px">약품명</th>
+														<th style="width: 100px">투여량</th>
+														<th style="width: 100px">횟수</th>
+														<th style="width: 100px;">일수</th>
+													</tr>
+												</thead>
+												<tbody>
+												<c:set var="len" value="${fn:length(prescription.medicine_num)}"/> 
+												<c:forEach begin="0" end="${len-1}" varStatus="status">
+												
+													<tr>
+														<td>
+															<input class="form-control" value="${prescription.medicineDTO.medicine_name[status.index]}" type="text" readonly="readonly">
+														</td>
+														<td>
+															<input class="form-control" value="${prescription.dosage[status.index]}" type="text" readonly="readonly">
+														</td>
+														<td>
+															<input class="form-control" value="${prescription.quantity[status.index]}" type="text" readonly="readonly">
+														</td>
+														<td>
+															<input class="form-control" value="${prescription.taking_date[status.index]}" type="text" readonly="readonly">
+														</td>
+													</tr>
+												</c:forEach> 
+												</tbody>
+												</table>
+											</div>
+										</div>
+									</div>
+									<!-- /Prescription Item -->
 												<div class="text-center" style="margin:10px !important;">		
 											<button type="submit" class="btn btn-info submit-btn" formaction="detail_prescription">처방전 상세페이지</button>
 											<button type="submit" class="btn btn-info submit-btn" formaction="#">메인으로</button>
