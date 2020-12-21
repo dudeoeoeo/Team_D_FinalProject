@@ -4,8 +4,8 @@ public class DoctorDTO {
     
     private int doctor_num, dep_num;
 	private String d_id, d_pwd, d_name, d_jumin_num, d_phone_num, d_address, d_email;
-	private String d_career, d_licence, d_photo, d_regdate;
-	private String d_graduation;
+	private String d_licence, d_photo, d_regdate;
+	private String[][] d_graduation,d_career;
 	private DepartmentDTO departmentDTO;
 	
 	public DepartmentDTO getDepartmentDTO() {
@@ -80,18 +80,28 @@ public class DoctorDTO {
 	public void setD_email(String d_email) {
 		this.d_email = d_email;
 	}
-	public String getD_graduation() {
+	public String[][] getD_graduation() {
 		return d_graduation;
 	}
 	public void setD_graduation(String d_graduation) {
 		//System.out.println("else문 안의 d_graduation : " + d_graduation);
-		this.d_graduation = d_graduation;
+		String[] school = d_graduation.split(",");
+		String[][] result = new String[school.length][];
+		for (int i = 0; i < school.length; ++i) {
+			result[i] = school[i].split(" ");
+		}
+		this.d_graduation = result;
 	}
-	public String getD_career() {
+	public String[][] getD_career() {
 		return d_career;
 	}
 	public void setD_career(String d_career) {
-		this.d_career = d_career;
+		String[] school = d_career.split(",");
+		String[][] result = new String[school.length][];
+		for (int i = 0; i < school.length; ++i) {
+			result[i] = school[i].split(" ");
+		}
+		this.d_career = result;
 	}
 	public String getD_licence() {
 		return d_licence;

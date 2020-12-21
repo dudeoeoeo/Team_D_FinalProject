@@ -25,9 +25,9 @@ public class PatientDTO {
 //		);
 	
 	
-    private int patient_num;
+	private int patient_num;
     private String p_id, p_pwd, p_name, p_birth, p_gender, p_jumin_num, p_phone_num, p_address, p_email, bloodtype, height, weight, allergy, p_imgfile;
-    private MultipartFile p_photo;
+   // private MultipartFile p_photo;
     private String p_jumin_num2, p_zipcode ,p_address1 ,p_address2 ,p_phone;
 	private String p_regdate;
 
@@ -37,12 +37,11 @@ public class PatientDTO {
 	public void setP_imgfile(String p_imgfile) {
 		this.p_imgfile = p_imgfile;
 	}
-	public MultipartFile getP_photo() {
-		return p_photo;
-	}
-	public void setP_photo(MultipartFile p_photo) {
-		this.p_photo = p_photo;
-	}
+
+	/*
+	 * public MultipartFile getP_photo() { return p_photo; } public void
+	 * setP_photo(MultipartFile p_photo) { this.p_photo = p_photo; }
+	 */
 	public String getP_jumin_num2() {
 		return p_jumin_num2;
 	}
