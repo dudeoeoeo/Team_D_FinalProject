@@ -78,12 +78,6 @@ public class MainController {
 	  	d_field = doctor_profile.getD_field().split(",");
 		m.add(d_field);
 	  }
-	  for (int i=0; i<m.get(0).length;i++) {
-		  System.out.println("m.size "+i+m.get(0)[i]);
-	  }
-	  for (int i=0; i<m.get(1).length;i++) {
-		  System.out.println("m.size "+i+m.get(1)[i]);
-	  }
 	 
 	  
 	  model.addAttribute("m",m);
