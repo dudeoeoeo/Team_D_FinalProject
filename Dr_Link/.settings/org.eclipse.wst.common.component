@@ -4,6 +4,6 @@
         <wb-resource deploy-path="/" source-path="/webapp" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
         <property name="java-output-path" value="/Dr_Link/build/classes"/>
-        <property name="context-root" value="springmvc_aop12_07"/>
+        <property name="context-root" value="Dr_Link"/>
     </wb-module>
 </project-modules>

@@ -11,16 +11,16 @@
 		#{review_writer}, #{review_content}, #{review_rating}, sysdate)
 	</insert>
 
-	<!-- <select id="reviewList" parameterType="int"
+	<select id="reviewList" parameterType="int"
 		resultType="reviewInfo">
 		select a.patient_num as patient_num, p_name, p_photo, review_num,
 		review_content, review_rating, review_date from dl_user a, doc_review
 		b
 		where a.patient_num=b.patient_num and doctor_num=#{doctor_num} order by
 		review_date desc
-	</select> -->
+	</select>
 
-	<!-- <resultMap id="reviewInfo" type="doc_ReviewDTO">
+	<resultMap id="reviewInfo" type="doc_ReviewDTO">
 		<id property="review_num" column="review_num" />
 		<id property="patient_num" column="patient_num" />
 		<id property="review_content" column="review_content" />
@@ -31,7 +31,7 @@
 			<result property="p_photo" column="p_photo" />
 		</association>
 	</resultMap>
- -->
+
 	<update id="updateReview" parameterType="doc_ReviewDTO">
 		update doc_review set review_content=#{review_content}, review_rating=#{review_rating} where review_num=#{review_num}
 	</update>
