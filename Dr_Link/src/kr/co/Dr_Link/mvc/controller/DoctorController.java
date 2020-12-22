@@ -38,16 +38,17 @@ public class DoctorController {
 		return "/doctor/"+step;
 	}
 	
+	
 	/* 배열 붙이는 메소드 */
 	public static String arrayJoin(String glue, String array[]) {
 	    String result = "";
-
 	    for (int i = 0; i < array.length; i++) {
 	      result += array[i];
 	      if (i < array.length - 1) result += glue;
 	    }
 	    return result;
 	  }
+	
 	
 
 	@RequestMapping(value = "/login")
@@ -62,13 +63,8 @@ public class DoctorController {
 		System.out.println("처방입력 페이지로 이동");
 		
 		/* 로그인해서 session에 값이 있다고 가정하고 테스트 */
-		session.setAttribute("doctor_num", 2);
-
-		/* 로그인 한 의사의 아이디를 받아서 vo로 넘기기 */
-		int doctor_num = (int)session.getAttribute("doctor_num");
-		int patient_num = 2;
-		PatientDTO patientinfo = pre_dao.patient_info(patient_num);
-		DoctorDTO doctorinfo = pre_dao.doctor_info(doctor_num);
+		PatientDTO patientinfo = pre_dao.patient_info(2);
+		DoctorDTO doctorinfo = pre_dao.doctor_info(2);
 		List<MedicineDTO> medicine_info = pre_dao.medicine_info(mediVo);
 		
 		model.addAttribute("patientinfo",patientinfo);
@@ -103,22 +99,26 @@ public class DoctorController {
 		pre_vo.setPatient_num(2);		//환자 번호로 select
 		PrescriptionDTO prescription = pre_dao.detail_prescription(pre_vo);
 		
-		//약품 이름을 띄우기 위해 "2,2,2"로 들어온 약품번호를 배열에 담아 한개씩 select
-		 
-		System.out.println(medi_detail.get(0).getMedicine_name());
+		//약품 이름을 띄우기 위해 들어온 약품번호를 배열에 담아 한개씩 select
 		model.addAttribute("prescription",prescription);
 		model.addAttribute("medi_detail",medi_detail);
 		
 		return "/doctor/end_prescription";
 		
 	}
-
+	
+	/*김다유 : 의사 프로필 수정 페이지*/
+	@RequestMapping(value = "/doctor-profile-settings")
+	public String profile_settings(DoctorDTO vo, Model model) {
+		DoctorDTO doctorinfo = pre_dao.doctor_info(2);
+		model.addAttribute("doctorinfo",doctorinfo);
+		System.out.println(doctorinfo.getD_name());
+		return "/doctor/doctor-profile-settings";
+	}
+	
 	/* 김다유 : 의사 프로필세팅 완료 후 페이지 이동 */
 	@RequestMapping(value = "/setting_ok" )
-	public String setting_ok(DoctorDTO vo, HttpServletRequest req, HttpServletResponse resp){
-		System.out.println("*****setting_ok 실행*****");
-		 
-		System.out.println(vo.getD_graduation());
+	public String setting_ok(DoctorDTO vo, HttpServletRequest req, HttpServletResponse resp,Model model){
 		doc_dao.doctor_profile_update(vo);
 		return "/doctor/doctor-dashboard";
 		}

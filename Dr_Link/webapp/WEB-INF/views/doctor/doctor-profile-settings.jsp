@@ -76,10 +76,10 @@
 											<img src="${pageContext.request.contextPath}/resources/img/doctors/doctor-thumb-02.jpg" alt="User Image">
 										</a>
 										<div class="profile-det-info">
-											<h3>김성민 의사</h3>
+											<h3>${doctorinfo.d_name} 의사</h3>
 											
 											<div class="patient-details">
-												<h5 class="mb-0">정신건강의학과</h5>
+												<h5 class="mb-0">${doctorinfo.departmentDTO.dep_name}</h5>
 											</div>
 										</div>
 									</div>
@@ -176,31 +176,25 @@
 										<div class="col-md-6">
 											<div class="form-group">
 												<label>아이디 <span class="text-danger">*</span></label>
-												<input type="text" class="form-control" readonly value="doctor123">
+												<input type="text" class="form-control" readonly value="${doctorinfo.d_id}">
 											</div>
 										</div>
 										<div class="col-md-6">
 											<div class="form-group">
 												<label>Email <span class="text-danger">*</span></label>
-												<input type="email" class="form-control">
-											</div>
-										</div>
-										<div class="col-md-6">
-											<div class="form-group">
-												<label>성 <span class="text-danger">*</span></label>
-												<input type="text" class="form-control">
+												<input type="email" class="form-control" value="${doctorinfo.d_email}">
 											</div>
 										</div>
 										<div class="col-md-6">
 											<div class="form-group">
 												<label>이름<span class="text-danger">*</span></label>
-												<input type="text" class="form-control">
+												<input type="text" class="form-control" value="${doctorinfo.d_name}">
 											</div>
 										</div>
 										<div class="col-md-6">
 											<div class="form-group">
 												<label>휴대폰</label>
-												<input type="text" class="form-control">
+												<input type="text" class="form-control" value="${doctorinfo.d_phone_num}">
 											</div>
 										</div>
 										<div class="col-md-6">
@@ -216,7 +210,7 @@
 										<div class="col-md-6">
 											<div class="form-group mb-0">
 												<label>생년월일</label>
-												<input type="text" class="form-control">
+												<input type="text" class="form-control" readonly value="${doctorinfo.d_jumin_num}">
 											</div>
 										</div>
 									</div>
@@ -242,7 +236,7 @@
 									<h4 class="card-title">진료과목</h4>
 									<div class="form-group">
 										<label>진료과</label>
-										<input type="text" data-role="tagsinput" class="input-tags form-control" placeholder="진료과를 입력하세요." name="services" value="정신건강의학과" id="services">
+										<input type="text" data-role="tagsinput" class="input-tags form-control" placeholder="진료과를 입력하세요." name="services" value="${doctorinfo.departmentDTO.dep_name}" id="services">
 										<small class="form-text text-muted">알림 : 새로운 진료과목을 추가하시려면 엔터를 누르세요.</small>
 									</div> 
 									<div class="form-group mb-0">

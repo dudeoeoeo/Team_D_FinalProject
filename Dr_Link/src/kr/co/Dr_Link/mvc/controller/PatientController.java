@@ -8,6 +8,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -16,6 +17,7 @@ import kr.co.Dr_Link.mvc.dao.PatientDaoInter;
 import kr.co.Dr_Link.mvc.dao.PrescriptionDaoImp;
 import kr.co.Dr_Link.mvc.dao.PrescriptionDaoInter;
 import kr.co.Dr_Link.mvc.dto.DrLinkDTO;
+import kr.co.Dr_Link.mvc.dto.MedicineDTO;
 import kr.co.Dr_Link.mvc.dto.PrescriptionDTO;
 import kr.co.Dr_Link.mvc.dto.TreatmentRecordDTO;
 
@@ -51,11 +53,14 @@ public class PatientController {
 	
 	/* 김다유 : 처방기록 상세 페이지로 이동 */
 	@RequestMapping(value = "/detail_prescription") 
-	public String end_prescription(PrescriptionDTO vo,Model model) {
-		vo.setPrescription_num(109);
-		vo.setPatient_num(2);
+	public String end_prescription(PrescriptionDTO pre_vo,Model model, MedicineDTO medi_vo) {
 		
-		PrescriptionDTO prescription = pre_dao.detail_prescription(vo);
+
+		List<MedicineDTO> medi_detail = pre_dao.medicine_detail_info(pre_vo.getMedicine_num());
+		pre_vo.setPrescription_num(109);
+		pre_vo.setPatient_num(2);
+		
+		PrescriptionDTO prescription = pre_dao.detail_prescription(pre_vo);
 		model.addAttribute("prescription",prescription);
 		
 		int chk_num = 0;
@@ -67,6 +72,7 @@ public class PatientController {
 			url="/patients/payment";
 		}else {
 			model.addAttribute("prescription",prescription);
+			model.addAttribute("medi_detail",medi_detail);
 			url="/patients/detail_prescription";
 		}
 		System.out.println("controller detail_prescription 실행 완료");
