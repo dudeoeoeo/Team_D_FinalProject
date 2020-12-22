@@ -7,7 +7,6 @@ RequestDispatcher rd = request.getRequestDispatcher("/main");
 
 rd.forward(request, response);
 
-//response.sendRedirect(request.getContextPath()+"/");
 %>
 <!DOCTYPE html>
 <html>

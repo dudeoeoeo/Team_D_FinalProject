@@ -3,7 +3,6 @@ package kr.co.Dr_Link.mvc.dao;
 import java.util.List;
 
 import kr.co.Dr_Link.mvc.dto.DoctorDTO;
-import kr.co.Dr_Link.mvc.dto.DrLinkDTO;
 import kr.co.Dr_Link.mvc.dto.MedicineDTO;
 import kr.co.Dr_Link.mvc.dto.PatientDTO;
 import kr.co.Dr_Link.mvc.dto.PrescriptionDTO;
