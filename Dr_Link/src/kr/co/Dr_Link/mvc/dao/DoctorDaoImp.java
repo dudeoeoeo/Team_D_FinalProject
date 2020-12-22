@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import kr.co.Dr_Link.mvc.dto.DoctorDTO;
-import kr.co.Dr_Link.mvc.dto.PrescriptionDTO;
 import kr.co.Dr_Link.mvc.dto.SearchDTO;
 
 @Repository("DoctorDaoInter")

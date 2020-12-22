@@ -31,8 +31,8 @@ public class DoctorDTO {
     private int doctor_num, dep_num;
 	private String d_id, d_pwd, d_name, d_jumin_num, d_phone_num, d_zipcode, d_address1, d_address2, d_email;
 	private String d_licence, d_licence_num, d_regdate, d_gender,d_content, d_imgfile;
-	private String[] d_graduation,d_career,d_field;
-	private MultipartFile d_photo;
+	private String d_graduation,d_career,d_field;
+//	private MultipartFile d_photo;
 	private DepartmentDTO departmentDTO;
 	
 	public DepartmentDTO getDepartmentDTO() {
@@ -41,7 +41,6 @@ public class DoctorDTO {
 	public void setDepartmentDTO(DepartmentDTO departmentDTO) {
 		this.departmentDTO = departmentDTO;
 	}
-	
 	
 	
 	public String getD_licence_num() {
@@ -114,18 +113,18 @@ public class DoctorDTO {
 	public void setD_email(String d_email) {
 		this.d_email = d_email;
 	}
-	public String[] getD_graduation() {
+	public String getD_graduation() {
 		return d_graduation;
 	}
 	public void setD_graduation(String d_graduation) {
 		//System.out.println("else문 안의 d_graduation : " + d_graduation);
-		this.d_graduation = d_graduation.split(",");
+		this.d_graduation = d_graduation;
 	}
-	public String[] getD_career() {
+	public String getD_career() {
 		return d_career;
 	}
 	public void setD_career(String d_career) {
-		this.d_career = d_career.split(",");
+		this.d_career = d_career;
 	}
 	public String getD_licence() {
 		return d_licence;
@@ -133,18 +132,18 @@ public class DoctorDTO {
 	public void setD_licence(String d_licence) {
 		this.d_licence = d_licence;
 	}
-	public String getD_imgfile() {
-		return d_imgfile;
-	}
-	public void setD_imgfile(String d_imgfile) {
-		this.d_imgfile = d_imgfile;
-	}
-	public MultipartFile getD_photo() {
-		return d_photo;
-	}
-	public void setD_photo(MultipartFile d_photo) {
-		this.d_photo = d_photo;
-	}
+//	public String getD_imgfile() {
+//		return d_imgfile;
+//	}
+//	public void setD_imgfile(String d_imgfile) {
+//		this.d_imgfile = d_imgfile;
+//	}
+//	public MultipartFile getD_photo() {
+//		return d_photo;
+//	}
+//	public void setD_photo(MultipartFile d_photo) {
+//		this.d_photo = d_photo;
+//	}
 	public String getD_regdate() {
 		return d_regdate;
 	}
@@ -175,11 +174,11 @@ public class DoctorDTO {
 	public void setD_content(String d_content) {
 		this.d_content = d_content;
 	}
-	public String[] getD_field() {
+	public String getD_field() {
 		return d_field;
 	}
 	public void setD_field(String d_field) {
-		this.d_field = d_field.split(",");;
+		this.d_field = d_field;
 	}
 	
 	

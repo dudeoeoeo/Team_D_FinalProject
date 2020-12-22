@@ -30,7 +30,6 @@
 		<result column="d_graduation" property="d_graduation" />
 		<result column="d_career" property="d_career" />
 		<result column="d_field" property="d_field" />
-		<result column="d_photo" property="d_photo" />
 		<collection property="departmentDTO" resultMap="departmentMap"/>
 	</resultMap>
  
@@ -54,7 +53,7 @@
 	
  	<!-- 회원가입 -->
 	<insert id="add" parameterType="doctorDTO">
-		insert into doctor(doctor_num, d_id, d_pwd, d_name, d_gender, d_jumin_num, d_phone_num, d_address, d_email, d_graduation, d_career, d_imgfile) values(doctor_num_pk.nextval,#{d_id}, #{d_pwd}, #{d_name}, #{d_gender}, #{d_jumin_num}, #{d_phone_num}, #{d_zipcode}, #{d_email}, #{d_graduation2}, #{d_career}, #{d_imgfile})
+		insert into doctor(doctor_num, d_id, d_pwd, d_name, d_gender, d_jumin_num, d_phone_num, d_address, d_email, d_graduation, d_career, d_imgfile) values(doctor_num_pk.nextval,#{d_id}, #{d_pwd}, #{d_name}, #{d_gender}, #{d_jumin_num}, #{d_phone_num}, #{d_zipcode}, #{d_email}, #{d_graduation2}, #{d_career, jdbcType=VARCHAR}}, #{d_imgfile})
 	</insert>
 
   

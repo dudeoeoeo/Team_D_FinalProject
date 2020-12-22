@@ -16,7 +16,6 @@ import kr.co.Dr_Link.mvc.dao.PatientDaoImp;
 import kr.co.Dr_Link.mvc.dao.PatientDaoInter;
 import kr.co.Dr_Link.mvc.dao.PrescriptionDaoImp;
 import kr.co.Dr_Link.mvc.dao.PrescriptionDaoInter;
-import kr.co.Dr_Link.mvc.dto.DrLinkDTO;
 import kr.co.Dr_Link.mvc.dto.MedicineDTO;
 import kr.co.Dr_Link.mvc.dto.PrescriptionDTO;
 import kr.co.Dr_Link.mvc.dto.TreatmentRecordDTO;
@@ -38,6 +37,8 @@ public class PatientController {
 		System.out.println("patients 컨트롤러");
 		return "/patients/"+step;
 	}
+	
+	
 	/* 김다유 : patient_dashboard 페이지로 이동 - 처방기록리스트 */
 	/* patient_dashboard에서 진료기록, 결제기록, 예약기록 담당하시는 분들 여기서 값 세팅해주세요 */
 	@RequestMapping(value = "patient_dashboard")

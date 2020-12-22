@@ -179,7 +179,7 @@ body {
 											<div class="widget education-widget">
 												<h4 class="widget-title">학력</h4>
 												<c:choose>
-										        <c:when test="${empty doctor_profile}">
+										        <c:when test="${empty m}">
 										            아직 정보가 입력되지 않았습니다.
 										        </c:when> 
 												<c:otherwise>
@@ -192,11 +192,11 @@ body {
 													                
 															<div class="experience-content">
 																<div class="timeline-content">
-																<c:set var="len" value="${fn:length(doctor_profile.d_graduation)/3}"/> 
+																<c:set var="len" value="${fn:length(m.d_graduation)/3}"/> 
 																<c:forEach begin="0" end="${len-1}" varStatus="status">
-																	<a href="javascript:void(0)" class="name">${doctor_profile.d_graduation[status.index]}</a>
-																	<div>${doctor_profile.d_graduation[status.index]}</div>
-																	<span class="time">${doctor_profile.d_graduation[status.index]}</span>
+																	<a href="javascript:void(0)" class="name">${m.d_graduation[status.index]}</a>
+																	<div>${m.d_graduation[status.index]}</div>
+																	<span class="time">${m.d_graduation[status.index]}</span>
 																	<br/>
 																</c:forEach>
 																</div>
@@ -213,7 +213,7 @@ body {
 											<div class="widget experience-widget">
 												<h4 class="widget-title">경력 및 활동</h4>
 												 <c:choose>
-											        <c:when test="${empty doctor_profile}">
+											        <c:when test="${empty m}">
 											            아직 정보가 입력되지 않았습니다.
 											        </c:when> 
 													<c:otherwise>
@@ -225,10 +225,10 @@ body {
 															</div>
 															<div class="experience-content">
 																<div class="timeline-content">
-																<c:set var="len" value="${fn:length(doctor_profile.d_career)/3}"/> 
+																<c:set var="len" value="${fn:length(m.d_career)/3}"/> 
 																<c:forEach begin="0" end="${len-1}" varStatus="status">
-																	<a href="javascript:void(0)" class="name">${doctor_profile.d_career[0]}</a>
-																	<div>${doctor_profile.d_career[1]}</div>
+																	<a href="javascript:void(0)" class="name">${m.d_career[0]}</a>
+																	<div>${m.d_career[1]}</div>
 																	<br/>
 																</c:forEach>
 																</div>

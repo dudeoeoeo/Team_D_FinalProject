@@ -9,7 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import kr.co.Dr_Link.mvc.dto.PatientDTO;
 import kr.co.Dr_Link.mvc.dto.PrescriptionDTO;
-import kr.co.Dr_Link.mvc.dto.TreatmentRecordDTO;
 
 
 @Repository("PatientDaoInter")

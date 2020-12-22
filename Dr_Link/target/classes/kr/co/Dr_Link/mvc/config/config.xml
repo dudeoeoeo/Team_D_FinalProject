@@ -9,7 +9,6 @@
  		<typeAlias type="kr.co.Dr_Link.mvc.dto.PatientDTO" alias="patientDTO"/>
  		<typeAlias type="kr.co.Dr_Link.mvc.dto.DoctorDTO" alias="doctorDTO"/>
  		<typeAlias type="kr.co.Dr_Link.mvc.dto.PrescriptionDTO" alias="prescriptionDTO"/>
- 		<typeAlias type="kr.co.Dr_Link.mvc.dto.DrLinkDTO" alias="drLinkDTO"/>
  		<typeAlias type="kr.co.Dr_Link.mvc.dto.DepartmentDTO" alias="departmentDTO"/>
  		<typeAlias type="kr.co.Dr_Link.mvc.dto.MedicineDTO" alias="medicineDTO"/>
  		<typeAlias type="kr.co.Dr_Link.mvc.dto.TreatmentRecordDTO" alias="treatmentRecordDTO"/>

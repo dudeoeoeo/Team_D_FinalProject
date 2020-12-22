@@ -1,7 +1,5 @@
 package kr.co.Dr_Link.mvc.dto;
 
-import java.util.List;
-
 /*
   prescription_num number(4) CONSTRAINT prescription_num_pk primary key,
     patient_num number,

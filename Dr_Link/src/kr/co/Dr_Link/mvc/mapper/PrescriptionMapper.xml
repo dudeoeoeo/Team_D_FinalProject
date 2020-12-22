@@ -29,6 +29,8 @@
 		<result column="monitoring_time" property="monitoring_time"/>
 		<result column="start_treatment_time" property="start_treatment_time"/>
 	</resultMap>
+	
+	<!-- 에러나서 이미지 전부 지움 imgfile/photo -->
 	<resultMap type="doctorDTO" id="doctorMap">
 		<result column="doctor_num" property="doctor_num" />
 		<result column="d_id" property="d_id" />
@@ -49,7 +51,6 @@
 		<result column="d_graduation" property="d_graduation" />
 		<result column="d_career" property="d_career" />
 		<result column="d_field" property="d_field" />
-		<result column="d_photo" property="d_photo" />
 		<collection property="departmentDTO" resultMap="departmentMap"/>
 	</resultMap>
 
@@ -65,8 +66,6 @@
 		<result column="p_email" property="p_email" />
 		<result column="height" property="height" />
 		<result column="weight" property="weight" />
-		<result column="p_photo" property="p_photo" />
-		<result column="p_imgfile" property="p_imgfile" />
 		<result column="p_birth" property="p_birth" />
 		<result column="p_gender" property="p_gender" />
 		<result column="p_zipcode" property="p_zipcode" />
@@ -141,6 +140,6 @@
   JOIN dl_doctor b ON a.doctor_num = b.doctor_num 
   JOIN department c ON b.dep_num=c.dep_num 
   WHERE patient_num=2 order by a.prescription_num desc
-  </select>
+  </select>	
   
   </mapper>
