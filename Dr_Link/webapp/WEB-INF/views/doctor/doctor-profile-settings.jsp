@@ -201,9 +201,16 @@
 											<div class="form-group">
 												<label>성별</label>
 												<select class="form-control select">
-													<option>Select</option>
-													<option>남성</option>
-													<option>여성</option>
+												<c:choose>
+												<c:when test="${doctorinfo.d_gender eq '남'}">
+											        <option value="${doctorinfo.d_gender}" selected="selected">${doctorinfo.d_gender}</option>
+											        <option value="여" >여</option>
+												</c:when>
+												<c:otherwise>
+											        <option value="${doctorinfo.d_gender}" selected="selected">${doctorinfo.d_gender}</option>
+											        <option value="남" >남</option>
+												</c:otherwise>
+												</c:choose>
 												</select>
 											</div>
 										</div>
@@ -322,32 +329,6 @@
 							</div>
 							<!-- /Experience -->
 							
-							<!-- Awards -->
-							<div class="card">
-								<div class="card-body">
-									<h4 class="card-title">수상내역</h4>
-									<div class="awards-info">
-										<div class="row form-row awards-cont">
-											<div class="col-12 col-md-5">
-												<div class="form-group">
-													<label>수상명</label>
-													<input type="text" class="form-control">
-												</div> 
-											</div>
-											<div class="col-12 col-md-5">
-												<div class="form-group">
-													<label>수상년도</label>
-													<input type="text" class="form-control">
-												</div> 
-											</div>
-										</div>
-									</div>
-									<div class="add-more">
-										<a href="javascript:void(0);" class="add-award"><i class="fa fa-plus-circle"></i> Add More</a>
-									</div>
-								</div>
-							</div>
-							<!-- /Awards -->
 							
 							<!-- Registrations -->
 							<div class="card">
@@ -355,13 +336,19 @@
 									<h4 class="card-title">면허내역</h4>
 									<div class="registrations-info">
 										<div class="row form-row reg-cont">
-											<div class="col-12 col-md-5">
+											<div class="col-12 col-md-6 col-lg-4">
 												<div class="form-group">
-													<label>면허번호</label>
-													<input type="text" class="form-control">
+													<label>면허이름</label>
+													<input type="text" class="form-control" value="${doctorinfo.d_licence}">
 												</div> 
 											</div>
-											<div class="col-12 col-md-5">
+											<div class="col-12 col-md-6 col-lg-4">
+												<div class="form-group">
+													<label>면허번호</label>
+													<input type="text" class="form-control" value="${doctorinfo.d_licence_num}">
+												</div> 
+											</div>
+											<div class="col-12 col-md-6 col-lg-4">
 												<div class="form-group">
 													<label>취득년도</label>
 													<input type="text" class="form-control">

@@ -112,7 +112,10 @@ public class DoctorController {
 	public String profile_settings(DoctorDTO vo, Model model) {
 		DoctorDTO doctorinfo = pre_dao.doctor_info(2);
 		model.addAttribute("doctorinfo",doctorinfo);
-		System.out.println(doctorinfo.getD_name());
+		System.out.println(doctorinfo.getD_gender());
+		System.out.println(doctorinfo.getD_address());
+		System.out.println(doctorinfo.getD_licence());
+		System.out.println(doctorinfo.getD_licence_num());
 		return "/doctor/doctor-profile-settings";
 	}
 	

@@ -4,7 +4,7 @@ public class DoctorDTO {
     
     private int doctor_num, dep_num;
 	private String d_id, d_pwd, d_name, d_jumin_num, d_phone_num, d_address, d_email;
-	private String d_licence, d_photo, d_regdate;
+	private String d_licence, d_licence_num, d_photo, d_regdate, d_gender;
 	private String[][] d_graduation,d_career;
 	private DepartmentDTO departmentDTO;
 	
@@ -15,6 +15,14 @@ public class DoctorDTO {
 		this.departmentDTO = departmentDTO;
 	}
 	
+	
+	
+	public String getD_licence_num() {
+		return d_licence_num;
+	}
+	public void setD_licence_num(String d_licence_num) {
+		this.d_licence_num = d_licence_num;
+	}
 	public int getDep_num() {
 		return dep_num;
 	}
@@ -32,6 +40,16 @@ public class DoctorDTO {
 	 * //System.out.println("else문 안의 d_whengrad : " + d_whengrad); this.d_whengrad
 	 * = d_whengrad; }
 	 */
+	
+
+	public String getD_gender() {
+		return d_gender;
+	}
+	
+	public void setD_gender(String d_gender) {
+		this.d_gender = d_gender;
+	}
+	
 	public int getDoctor_num() {
 		return doctor_num;
 	}
@@ -60,16 +78,18 @@ public class DoctorDTO {
 		return d_jumin_num;
 	}
 	public void setD_jumin_num(String d_jumin_num) {
+		StringBuffer str = new StringBuffer(d_jumin_num);
+		str = str.insert(7, "-");
+		d_jumin_num = str.toString();
 		this.d_jumin_num = d_jumin_num;
 	}
 	public String getD_phone_num() {
-		StringBuffer str = new StringBuffer(d_phone_num);
-		str = str.insert(3, "-");
-		str = str.insert(8, "-");
-		d_phone_num = str.toString();
 		return d_phone_num;
 	}
 	public void setD_phone_num(String d_phone_num) {
+		StringBuffer str = new StringBuffer(d_phone_num);
+		str = str.insert(3, "-");
+		str = str.insert(8, "-");
 		this.d_phone_num = d_phone_num;
 	}
 	public String getD_address() {

@@ -17,10 +17,11 @@ public class DoctorDaoImp implements DoctorDaoInter {
 	private SqlSessionTemplate ss;
 
 	@Override
-	public DoctorDTO doctor_profile(DoctorDTO vo) {
-		System.out.println("===> Mybatis doctor_profile() 실행");
-		return ss.selectOne("doctor.doctor_profile",vo);
+	public DoctorDTO doctor_info(int doctor_num) {
+		System.out.println("===> Mybatis prescription_info(의사정보) 실행");
+		return ss.selectOne("prescription.doctor_info",doctor_num);
 	}
+
 
 	@Override
 	public void doctor_profile_update(DoctorDTO vo) {

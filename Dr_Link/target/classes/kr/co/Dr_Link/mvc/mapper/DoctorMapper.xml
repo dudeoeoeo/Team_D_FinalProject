@@ -5,16 +5,39 @@
   
   <mapper namespace="doctor">
     
+   	<resultMap type="departmentDTO" id="departmentMap">
+	<result column="dep_num" property="dep_num"/>
+	<result column="dep_name" property="dep_name"/>
+	</resultMap>
+	
+	<resultMap type="doctorDTO" id="doctorMap">
+		<result column="doctor_num" property="doctor_num" />
+		<result column="d_id" property="d_id" />
+		<result column="d_pwd" property="d_pwd" />
+		<result column="d_name" property="d_name" />
+		<result column="d_jumin_num" property="d_jumin_num" />
+		<result column="d_phone_num" property="d_phone_num" />
+		<result column="d_address" property="d_address" />
+		<result column="d_email" property="d_email" />
+		<result column="d_career" property="d_career" />
+		<result column="d_licence" property="d_licence" />
+		<result column="d_photo" property="d_photo" />
+		<result column="d_regdate" property="d_regdate" />
+		<result column="d_graduation" property="d_graduation" />
+		<result column="d_gender" property="d_gender" />
+		<collection property="departmentDTO" resultMap="departmentMap"/>
+	</resultMap>
  
-  <!-- 김다유 : 의사프로필 -->
-  <select id="doctor_profile" parameterType="doctorDTO" resultType="doctorDTO">
-  	select * from dl_doctor where doctor_num=26
-  </select>
   
-  
+  <!-- 김다유 : 의사 프로필 업데이트 -->
+  <!-- <update id="doctor_profile_settings" parameterType="doctorDTO">
+  update dl_doctor set d_pwd = #{d_pwd} , 
+  d_name = #{d_name} , d_phone_num=#{d_phone_num}, d_email=#{d_email}, 
+  d_graduation=#{d_graduation}, 
+  d_career=#{d_career}, d_licence=#{d_licence}, d_licence_num=#{d_licence_num}, 
+  d_photo=#{d_photo} where doctor_num = #{doctor_num}
+  </update> -->
    <!-- 의료진소개 -->
-    <select id="getSearch" resultType="SearchDTO">
-		SELECT * FROM SEARCH
-	</select>
+   
   
   </mapper>
