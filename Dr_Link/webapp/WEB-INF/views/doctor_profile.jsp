@@ -262,34 +262,38 @@ body {
 								<div role="tabpanel" id="doc_reviews" class="tab-pane fade">
 								
 									<!-- Review Listing -->
-									<div class="widget review-listing">
-										<ul class="comments-list">
-										
-											<!-- Comment List -->
-											<li>
-												<div class="comment">
-													<img class="avatar avatar-sm rounded-circle" alt="User Image" src="${pageContext.request.contextPath}/resources/img/patients/patient.jpg">
-													<div class="comment-body col-lg-11">
-														<div class="meta-data">
-															<span class="comment-author">김**</span>
-															<span class="comment-date">2일 전</span>
-															<div class="review-count rating">
-																<i class="fas fa-star filled"></i>
-																<i class="fas fa-star filled"></i>
-																<i class="fas fa-star filled"></i>
-																<i class="fas fa-star filled"></i>
-																<i class="fas fa-star"></i>
-															</div>
+								<div class="widget review-listing">
+									<ul class="comments-list">
+										<c:if test="${null eq reviewList }">
+											댓글이 없습니다.
+										</c:if>
+										<c:forEach var="review" items="${reviewList}">
+										<!-- Comment List -->
+										<li>
+											<div class="comment">
+												<img class="avatar avatar-sm rounded-circle" alt="User Image" src="${path}/resources/assets/img/patients/${review.patientDTO.p_photo}">
+												<div class="comment-body">
+													<div class="meta-data">
+														<span class="comment-author">${review.patientDTO.p_name }</span>
+														<span class="comment-date">${review.review_date}</span>
+														<div class="review-count rating">
+															<c:forEach begin="1" end="5" step="1" varStatus="i">
+																<c:choose>
+																	<c:when test="${review.review_rating ge i}">
+																		<i class="fas fa-star filled"></i>	
+																	</c:when>
+																	<c:otherwise>
+																		<i class="fas fa-star"></i>
+																	</c:otherwise>
+																</c:choose>	
+															</c:forEach>
 														</div>
-														<p class="recommended"><i class="far fa-thumbs-up"></i> 추천</p>
-														<p class="comment-content">
-															진료 넘 친절하세요ㅠㅠ
-														</p>
-														<div class="comment-reply">
-															<a class="comment-btn" href="#">
-																<i class="fas fa-reply"></i> Reply
-															</a>
-														   <p class="recommend-btn">
+													</div>
+													<p class="comment-content">
+														${review.content }
+													</p>
+													<div class="comment-reply">
+														<p class="recommend-btn">
 															<span>Recommend?</span>
 															<a href="#" class="like-btn">
 																<i class="far fa-thumbs-up"></i> Yes
@@ -298,105 +302,24 @@ body {
 																<i class="far fa-thumbs-down"></i> No
 															</a>
 														</p>
-														</div>
 													</div>
 												</div>
-												
-												<!-- Comment Reply -->
-												<ul class="comments-reply">
-													<li>
-														<div class="comment">
-															<img class="avatar avatar-sm rounded-circle" alt="User Image" src="${pageContext.request.contextPath}/resources/img/patients/patient1.jpg">
-															<div class="comment-body">
-																<div class="meta-data">
-																	<span class="comment-author">Charlene Reed</span>
-																	<span class="comment-date">Reviewed 3 Days ago</span>
-																	<div class="review-count rating">
-																		<i class="fas fa-star filled"></i>
-																		<i class="fas fa-star filled"></i>
-																		<i class="fas fa-star filled"></i>
-																		<i class="fas fa-star filled"></i>
-																		<i class="fas fa-star"></i>
-																	</div>
-																</div>
-																<p class="comment-content">
-																	Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-																	sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-																	Ut enim ad minim veniam.
-																	Curabitur non nulla sit amet nisl tempus
-																</p>
-																<div class="comment-reply">
-																	<a class="comment-btn" href="#">
-																		<i class="fas fa-reply"></i> Reply
-																	</a>
-																	<p class="recommend-btn">
-																		<span>Recommend?</span>
-																		<a href="#" class="like-btn">
-																			<i class="far fa-thumbs-up"></i> Yes
-																		</a>
-																		<a href="#" class="dislike-btn">
-																			<i class="far fa-thumbs-down"></i> No
-																		</a>
-																	</p>
-																</div>
-															</div>
-														</div>
-													</li>
-												</ul>
-												<!-- /Comment Reply -->
-												
-											</li>
-											<!-- /Comment List -->
-											
-											<!-- Comment List -->
-											<li>
-												<div class="comment">
-													<img class="avatar avatar-sm rounded-circle" alt="User Image" src="${pageContext.request.contextPath}/resources/img/patients/patient2.jpg">
-													<div class="comment-body col-lg-11">
-														<div class="meta-data">
-															<span class="comment-author">박**</span>
-															<span class="comment-date">4일 전</span>
-															<div class="review-count rating">
-																<i class="fas fa-star filled"></i>
-																<i class="fas fa-star filled"></i>
-																<i class="fas fa-star filled"></i>
-																<i class="fas fa-star filled"></i>
-																<i class="fas fa-star"></i>
-															</div>
-														</div>
-														<p class="comment-content">
-															아이엄마인데 밑에 리뷰보고 혹여나 맘 졸였네요  아이가 볼이 따갑다고는 하는데 외관상 문제가 없어서 진료보러갔어요ㅜ 원장님도 친절하시고 좋았어요  연고 처방받아왔네요~
-														</p>
-														<div class="comment-reply">
-															<a class="comment-btn" href="#">
-																<i class="fas fa-reply"></i> Reply
-															</a>
-															<p class="recommend-btn">
-																<span>Recommend?</span>
-																<a href="#" class="like-btn">
-																	<i class="far fa-thumbs-up"></i> Yes
-																</a>
-																<a href="#" class="dislike-btn">
-																	<i class="far fa-thumbs-down"></i> No
-																</a>
-															</p>
-														</div>
-													</div>
-												</div>
-											</li>
-											<!-- /Comment List -->
-											
-										</ul>
-										
-										 <!-- Show All -->
-										<!-- <div class="all-feedback text-center">
-											<a href="#" class="btn btn-primary btn-sm">
-												Show all feedback <strong>(167)</strong>
-											</a>
-										</div> -->
-										<!--/Show All -->
-										
+											</div>
+										</li>
+										<!-- /Comment List -->
+										</c:forEach>
+									</ul>
+									
+									<!-- Show All -->
+									<div class="all-feedback text-center">
+										<a href="#" class="btn btn-primary btn-sm">
+											Show all feedback <strong>(167)</strong>
+										</a>
 									</div>
+									<!-- /Show All -->
+									
+								</div>
+									
 									<!-- /Review Listing -->
 								
 									<!-- Write Review -->

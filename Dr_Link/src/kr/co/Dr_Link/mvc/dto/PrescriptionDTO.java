@@ -90,7 +90,6 @@ public class PrescriptionDTO {
 		this.prescription_num = prescription_num;
 	}
 	public void setMedicine_num(String medicine_num) {
-		System.out.println("vo로 들어온 값: "+ medicine_num);
 		this.medicine_num = medicine_num.split(",");
 	}
 	
@@ -152,7 +151,7 @@ public class PrescriptionDTO {
 		return prescription_date;
 	}
 	public void setPrescription_date(String prescription_date) {
-		//2020년 년 월 12일 월 21일,06:01 오후
+		//2020-12-21,06:01 오후
 		this.prescription_time = prescription_date.split(",")[1];
 		this.prescription_date = prescription_date.split(",")[0];
 	}

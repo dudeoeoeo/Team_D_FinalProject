@@ -8,7 +8,7 @@ public class PatientDTO {
     private String p_id, p_pwd, p_name, p_birth, p_gender, p_jumin_num, p_phone_num, p_email, bloodtype, height, weight, allergy, p_imgfile;
     private MultipartFile p_photo;
     private String p_zipcode ,p_address1 ,p_address2;
-   private String p_regdate;
+    private String p_regdate;
 
    public String getP_imgfile() {
       return p_imgfile;

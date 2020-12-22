@@ -5,9 +5,8 @@
 <%@ page import="java.text.SimpleDateFormat" %>
 <%
 	Date nowTime = new Date();
-	SimpleDateFormat date = new SimpleDateFormat("yyyy년 MM월 dd일");
+	SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
 	SimpleDateFormat time = new SimpleDateFormat("hh:mm a");;
-	SimpleDateFormat date_time = new SimpleDateFormat("yyyy/MM/dd/hh:mm");
 %>
 <!DOCTYPE html> 
 <html lang="en">
