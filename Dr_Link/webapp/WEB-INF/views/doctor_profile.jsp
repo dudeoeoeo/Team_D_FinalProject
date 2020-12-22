@@ -307,7 +307,7 @@ body {
 														</div>
 													</div>
 													<p class="comment-content">
-														${review.content }
+														${review.content}
 													</p>
 													<div class="comment-reply">
 														<p class="recommend-btn">
@@ -328,11 +328,11 @@ body {
 									</ul>
 									
 									<!-- Show All -->
-									<div class="all-feedback text-center">
+									<!-- <div class="all-feedback text-center">
 										<a href="#" class="btn btn-primary btn-sm">
 											Show all feedback <strong>(167)</strong>
 										</a>
-									</div>
+									</div> -->
 									<!-- /Show All -->
 									
 								</div>
