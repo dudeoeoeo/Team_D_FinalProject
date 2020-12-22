@@ -74,15 +74,17 @@ public class DoctorController {
 		model.addAttribute("patientinfo",patientinfo);
 		model.addAttribute("doctorinfo",doctorinfo);
 		model.addAttribute("medicine_info",medicine_info);
-		System.out.println("controller drLink_info 실행 완료");
+		System.out.println("controller add_prescription 실행 완료");
 		return "/doctor/add_prescription";
 	}
 	
 	/* 김다유 : end_prescription 페이지로 이동 */
 	@RequestMapping(value = "/end_prescription", method = RequestMethod.POST) 
 	public String end_prescription(HttpServletRequest request, PrescriptionDTO pre_vo, MedicineDTO medi_vo, Model model) {
-
 		/*배열로 받은 값 , 구분자를 붙여 String으로 만든 후 insert*/
+		
+		List<MedicineDTO> medi_detail = pre_dao.medicine_detail_info(pre_vo.getMedicine_num());
+		
 		String dsg = arrayJoin(",", pre_vo.getDosage());
 		pre_vo.setDsg(dsg);
 		String qty = arrayJoin(",", pre_vo.getQuantity());
@@ -102,15 +104,10 @@ public class DoctorController {
 		PrescriptionDTO prescription = pre_dao.detail_prescription(pre_vo);
 		
 		//약품 이름을 띄우기 위해 "2,2,2"로 들어온 약품번호를 배열에 담아 한개씩 select
-		String medicine_num ;
-		MedicineDTO medi_detail;
-		for(int i = 0 ; i > pre_vo.getMedicine_num().length ; i++) {
-			medicine_num=pre_vo.getMedicine_num()[i];
-			medi_detail = pre_dao.medicine_detail_info(medicine_num);
-			model.addAttribute("medi_detail"+i,medi_detail);
-		}
-		System.out.println(prescription.getMedicineDTO().getMedicine_name());
+		 
+		System.out.println(medi_detail.get(0).getMedicine_name());
 		model.addAttribute("prescription",prescription);
+		model.addAttribute("medi_detail",medi_detail);
 		
 		return "/doctor/end_prescription";
 		
@@ -120,25 +117,11 @@ public class DoctorController {
 	@RequestMapping(value = "/setting_ok" )
 	public String setting_ok(DoctorDTO vo, HttpServletRequest req, HttpServletResponse resp){
 		System.out.println("*****setting_ok 실행*****");
-		/*
-		 * for(String a : vo.getD_graduation()) {
-		 * System.out.println("getD_graduation 반복문 : " + a); } for(String a :
-		 * vo.getD_school()) { System.out.println("getD_school 반복문  : " + a); }
-		 * for(String a : vo.getD_whengrad()) {
-		 * System.out.println("getD_whengrad 반복문  : " + a); }
-		 */
 		 
 		System.out.println(vo.getD_graduation());
 		doc_dao.doctor_profile_update(vo);
 		return "/doctor/doctor-dashboard";
 		}
 		
-		/*
-		 * Enumeration<String> params = req.getParameterNames();
-		 * System.out.println("----------------------------"); while
-		 * (params.hasMoreElements()){ String name = (String)params.nextElement();
-		 * System.out.println(name + " : " +req.getParameter(name)); }
-		 * System.out.println("----------------------------");
-		 */
 	
 }

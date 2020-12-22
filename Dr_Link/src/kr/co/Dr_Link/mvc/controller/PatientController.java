@@ -52,7 +52,6 @@ public class PatientController {
 	/* 김다유 : 처방기록 상세 페이지로 이동 */
 	@RequestMapping(value = "/detail_prescription") 
 	public String end_prescription(PrescriptionDTO vo,Model model) {
-
 		vo.setPrescription_num(109);
 		vo.setPatient_num(2);
 		

@@ -1,5 +1,6 @@
 package kr.co.Dr_Link.mvc.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -53,9 +54,13 @@ public class PrescriptionDaoImp implements PrescriptionDaoInter {
 	}
 
 	@Override
-	public MedicineDTO medicine_detail_info(String medicine_num) {
+	public List<MedicineDTO> medicine_detail_info(String [] medicine_num) {
 		System.out.println("===> Mybatis medicine_detail_info() 실행");
-		return ss.selectOne("prescription.medicine_detail_info",medicine_num);
+		List medi_num = new ArrayList<MedicineDTO>();
+		for(String medicine : medicine_num) {
+			medi_num.add(ss.selectOne("prescription.medicine_detail_info",medicine));
+		}
+		return medi_num;
 	}
 
 }
