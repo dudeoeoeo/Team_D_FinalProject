@@ -37,14 +37,13 @@ public class PatientController {
 		System.out.println("patients 컨트롤러");
 		return "/patients/"+step;
 	}
-	
-	
 	/* 김다유 : patient_dashboard 페이지로 이동 - 처방기록리스트 */
 	/* patient_dashboard에서 진료기록, 결제기록, 예약기록 담당하시는 분들 여기서 값 세팅해주세요 */
 	@RequestMapping(value = "patient_dashboard")
 	public String treatmentRecord(PrescriptionDTO pre_vo, Model model) {
 		try {
 		List<PrescriptionDTO> prescriptionRecord = patient_dao.prescriptionRecord(pre_vo);
+		
 		model.addAttribute("prescriptionRecord", prescriptionRecord);
 		} catch (NullPointerException e) {
 				  
