@@ -86,8 +86,8 @@ body {
 									</div>
 									<div class="doc-info-cont">
 										<h4 class="doc-name">${doctor_profile.d_name}</h4>
-										<%-- <p class="doc-speciality">${ddepartment} 피부과</p> --%>
-										<p class="doc-department"><img src="${pageContext.request.contextPath}/resources/img/specialities/specialities-05.png" class="img-fluid" alt="Speciality">${ddepartment }</p>
+										<p class="doc-speciality">${doctor_profile.departmentDTO.dep_name}</p>
+										<p class="doc-department"><i class="fa fa-stethoscope" aria-hidden="true"></i> ${doctor_profile.d_licence}</p>
 										<div class="rating">
 											<i class="fas fa-star filled"></i>
 											<i class="fas fa-star filled"></i>
@@ -100,10 +100,10 @@ body {
 											<span>피부종양</span>
 										</div>
 										<div class="clini-infos">
-										<ul>
+										<!-- <ul>
 											<li><i class="far fa-thumbs-up"></i> 99%</li>
 											<li><i class="far fa-comment"></i> 35 개의 후기</li>
-										</ul>
+										</ul> -->
 									</div>
 									</div>
 								</div>
@@ -192,12 +192,12 @@ body {
 													                
 															<div class="experience-content">
 																<div class="timeline-content">
-																<c:set var="len" value="${fn:length(doctor_profile.d_graduation[0])}"/> 
+																<c:set var="len" value="${fn:length(doctor_profile.d_graduation)/3}"/> 
 																<c:forEach begin="0" end="${len-1}" varStatus="status">
-																	<a href="#/" class="name">${doctor_profile.d_graduation[status.index][0]}</a>
-																	<div>${doctor_profile.d_graduation[status.index][1]}</div>
+																	<a href="javascript:void(0)" class="name">${doctor_profile.d_graduation[status.index]}</a>
+																	<div>${doctor_profile.d_graduation[status.index]}</div>
+																	<span class="time">${doctor_profile.d_graduation[status.index]}</span>
 																	<br/>
-																	<!-- <span class="time">1998 - 2003</span> -->
 																</c:forEach>
 																</div>
 															</div>
@@ -225,10 +225,10 @@ body {
 															</div>
 															<div class="experience-content">
 																<div class="timeline-content">
-																<c:set var="len" value="${fn:length(doctor_profile.d_career[0])}"/> 
+																<c:set var="len" value="${fn:length(doctor_profile.d_career)/3}"/> 
 																<c:forEach begin="0" end="${len-1}" varStatus="status">
-																	<a href="#/" class="name">${doctor_profile.d_career[status.index][0]}</a>
-																	<div>${doctor_profile.d_career[status.index][1]}</div>
+																	<a href="javascript:void(0)" class="name">${doctor_profile.d_career[0]}</a>
+																	<div>${doctor_profile.d_career[1]}</div>
 																	<br/>
 																</c:forEach>
 																</div>

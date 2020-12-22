@@ -52,7 +52,7 @@ public class MainController {
 		
 		  try {
 		  
-		  DoctorDTO doctor_profile = doctor_dao.doctor_profile(vo); 
+		  DoctorDTO doctor_profile = doctor_dao.doctor_info(2); 
 		  model.addAttribute("doctor_profile",doctor_profile);
 		  System.out.println("의사상세프로필 이동");
 		  

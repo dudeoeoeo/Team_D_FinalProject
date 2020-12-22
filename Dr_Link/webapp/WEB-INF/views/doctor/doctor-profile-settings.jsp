@@ -243,7 +243,7 @@
 									<h4 class="card-title">진료과목</h4>
 									<div class="form-group">
 										<label>진료과</label>
-										<input type="text" data-role="tagsinput" class="input-tags form-control" placeholder="진료과를 입력하세요." name="services" value="${doctorinfo.departmentDTO.dep_name}" id="services">
+										<input type="text" data-role="tagsinput" class="input-tags form-control" placeholder="진료과를 입력하세요." name="dep_no" value="${doctorinfo.departmentDTO.dep_name}" id="services">
 										<small class="form-text text-muted">알림 : 새로운 진료과목을 추가하시려면 엔터를 누르세요.</small>
 									</div> 
 									<div class="form-group mb-0">
@@ -265,20 +265,20 @@
 												<div class="row form-row">
 													<div class="col-12 col-md-6 col-lg-4">
 														<div class="form-group">
-															<label>졸업여부</label>
-															<input type="text" class="form-control" name="d_graduation">
+															<label>출신대학</label>
+															<input type="text" class="form-control" name="d_graduation" value="${doctorinfo.d_graduation[0]}">
 														</div> 
 													</div>
 													<div class="col-12 col-md-6 col-lg-4">
 														<div class="form-group">
-															<label>출신대학 및 학과</label>
-															<input type="text" class="form-control" name="d_school">
+															<label>학과</label>
+															<input type="text" class="form-control" name="d_graduation" value="${doctorinfo.d_graduation[1]}">
 														</div> 
 													</div>
 													<div class="col-12 col-md-6 col-lg-4">
 														<div class="form-group">
 															<label>졸업년도</label>
-															<input type="text" class="form-control" name="d_whengrad">
+															<input type="text" class="form-control" name="d_graduation" value="${doctorinfo.d_graduation[2]}">
 														</div> 
 													</div>
 												</div>

@@ -112,17 +112,15 @@ public class DoctorController {
 	public String profile_settings(DoctorDTO vo, Model model) {
 		DoctorDTO doctorinfo = pre_dao.doctor_info(2);
 		model.addAttribute("doctorinfo",doctorinfo);
-		System.out.println(doctorinfo.getD_gender());
-		System.out.println(doctorinfo.getD_address());
-		System.out.println(doctorinfo.getD_licence());
-		System.out.println(doctorinfo.getD_licence_num());
+		System.out.println(doctorinfo.getD_graduation()[0]);
 		return "/doctor/doctor-profile-settings";
 	}
 	
 	/* 김다유 : 의사 프로필세팅 완료 후 페이지 이동 */
 	@RequestMapping(value = "/setting_ok" )
 	public String setting_ok(DoctorDTO vo, HttpServletRequest req, HttpServletResponse resp,Model model){
-		doc_dao.doctor_profile_update(vo);
+		System.out.println("requset"+req.getParameter("d_graduation")+vo.getD_graduation());
+		//doc_dao.doctor_profile_update(vo);
 		return "/doctor/doctor-dashboard";
 		}
 		

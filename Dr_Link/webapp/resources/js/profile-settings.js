@@ -34,13 +34,13 @@ Version      : 1.0
 				'<div class="row form-row">' +
 					'<div class="col-12 col-md-6 col-lg-4">' +
 						'<div class="form-group">' +
-							'<label>졸업여부</label>' +
+							'<label>출신대학</label>' +
 							'<input type="text" class="form-control" name="d_graduation">' +
 						'</div>' +
 					'</div>' +
 					'<div class="col-12 col-md-6 col-lg-4">' +
 						'<div class="form-group">' +
-							'<label>출신대학 및 학과</label>' +
+							'<label>학과</label>' +
 							'<input type="text" class="form-control" name="d_school">' +
 						'</div>' +
 					'</div>' +

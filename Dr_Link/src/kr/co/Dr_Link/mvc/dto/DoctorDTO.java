@@ -1,11 +1,35 @@
 package kr.co.Dr_Link.mvc.dto;
 
 public class DoctorDTO {
+	
+	/*
+	doctor_num number(4) CONSTRAINT doctor_num_pk primary key,
+    dep_num number,
+    d_id varchar2(20) not null,
+    d_pwd varchar2(20) not null,
+    d_name varchar2(15) not null,
+    d_gender char(2) not null,
+    d_jumin_num char(13) not null,
+    d_phone_num char(13) not null,
+    d_zipcode varchar2(50) not null,
+    d_address1 varchar2(60) not null,
+    d_address2  varchar2(50),
+    d_email varchar2(30) not null,
+    d_graduation varchar2(150) not null,
+    d_career varchar2(200),
+    d_licence varchar2(100),
+    d_licence_num varchar2(20),
+    d_photo varchar2(50),
+    d_regdate date default sysdate, 
+    d_content varchar2(500),
+    d_field varchar2(100)
+	 
+	 */
     
     private int doctor_num, dep_num;
-	private String d_id, d_pwd, d_name, d_jumin_num, d_phone_num, d_address, d_email;
-	private String d_licence, d_licence_num, d_photo, d_regdate, d_gender;
-	private String[][] d_graduation,d_career;
+	private String d_id, d_pwd, d_name, d_jumin_num, d_phone_num, d_zipcode, d_address1, d_address2, d_email;
+	private String d_licence, d_licence_num, d_photo, d_regdate, d_gender,d_content;
+	private String[] d_graduation,d_career,d_field;
 	private DepartmentDTO departmentDTO;
 	
 	public DepartmentDTO getDepartmentDTO() {
@@ -29,18 +53,6 @@ public class DoctorDTO {
 	public void setDep_num(int dep_num) {
 		this.dep_num = dep_num;
 	}
-
-	/*
-	 * public String getD_school() { 
-	 * return d_school; 
-	 * } public void
-	 * setD_school(String d_school) { //System.out.println("else문 안의 d_school : " +
-	 * d_school); this.d_school = d_school; } public String getD_whengrad() { return
-	 * d_whengrad; } public void setD_whengrad(String d_whengrad) {
-	 * //System.out.println("else문 안의 d_whengrad : " + d_whengrad); this.d_whengrad
-	 * = d_whengrad; }
-	 */
-	
 
 	public String getD_gender() {
 		return d_gender;
@@ -92,40 +104,25 @@ public class DoctorDTO {
 		str = str.insert(8, "-");
 		this.d_phone_num = d_phone_num;
 	}
-	public String getD_address() {
-		return d_address;
-	}
-	public void setD_address(String d_address) {
-		this.d_address = d_address;
-	}
+	
 	public String getD_email() {
 		return d_email;
 	}
 	public void setD_email(String d_email) {
 		this.d_email = d_email;
 	}
-	public String[][] getD_graduation() {
+	public String[] getD_graduation() {
 		return d_graduation;
 	}
 	public void setD_graduation(String d_graduation) {
 		//System.out.println("else문 안의 d_graduation : " + d_graduation);
-		String[] school = d_graduation.split(",");
-		String[][] result = new String[school.length][];
-		for (int i = 0; i < school.length; ++i) {
-			result[i] = school[i].split(" ");
-		}
-		this.d_graduation = result;
+		this.d_graduation = d_graduation.split(",");
 	}
-	public String[][] getD_career() {
+	public String[] getD_career() {
 		return d_career;
 	}
 	public void setD_career(String d_career) {
-		String[] school = d_career.split(",");
-		String[][] result = new String[school.length][];
-		for (int i = 0; i < school.length; ++i) {
-			result[i] = school[i].split(" ");
-		}
-		this.d_career = result;
+		this.d_career = d_career.split(",");
 	}
 	public String getD_licence() {
 		return d_licence;
@@ -145,5 +142,37 @@ public class DoctorDTO {
 	public void setD_regdate(String d_regdate) {
 		this.d_regdate = d_regdate;
 	}
+	public String getD_zipcode() {
+		return d_zipcode;
+	}
+	public void setD_zipcode(String d_zipcode) {
+		this.d_zipcode = d_zipcode;
+	}
+	public String getD_address1() {
+		return d_address1;
+	}
+	public void setD_address1(String d_address1) {
+		this.d_address1 = d_address1;
+	}
+	public String getD_address2() {
+		return d_address2;
+	}
+	public void setD_address2(String d_address2) {
+		this.d_address2 = d_address2;
+	}
+	public String getD_content() {
+		return d_content;
+	}
+	public void setD_content(String d_content) {
+		this.d_content = d_content;
+	}
+	public String[] getD_field() {
+		return d_field;
+	}
+	public void setD_field(String d_field) {
+		this.d_field = d_field.split(",");;
+	}
+	
+	
 	
 }
