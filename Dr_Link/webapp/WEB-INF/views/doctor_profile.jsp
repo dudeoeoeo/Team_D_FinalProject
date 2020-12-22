@@ -96,8 +96,17 @@ body {
 											<i class="fas fa-star"></i>
 										</div>
 										<div class="clinic-services">
-											<span>탈모</span>
-											<span>피부종양</span>
+										<c:choose>
+								        <c:when test="${empty m[3]}">
+								            아직 정보가 입력되지 않았습니다.
+								        </c:when> 
+										<c:otherwise>
+										<c:set var="len" value="${fn:length(m[3])}"/> 
+										<c:forEach begin="0" end="${len-1}" varStatus="status">
+											<span>${m[3][status.index]}</span>
+										</c:forEach>
+										</c:otherwise>
+										</c:choose>
 										</div>
 										<div class="clini-infos">
 										<!-- <ul>
@@ -164,11 +173,11 @@ body {
 											<div class="widget about-widget">
 												<h4 class="widget-title">About Me</h4>
 												<c:choose>
-										        <c:when test="${empty doctor_profile}">
+										        <c:when test="${empty m[2]}">
 										            아직 정보가 입력되지 않았습니다.
 										        </c:when> 
 												<c:otherwise>
-												<p>내 몸같이, 내 가족같이 마음을 담아 진료합니다.</p>
+												<p>${m[2][0]}</p>
 												<!-- 여기 아직 jstl 처리 안함!!! -->
 												</c:otherwise>
 												</c:choose>
@@ -179,7 +188,7 @@ body {
 											<div class="widget education-widget">
 												<h4 class="widget-title">학력</h4>
 												<c:choose>
-										        <c:when test="${empty m}">
+										        <c:when test="${empty m[0]}">
 										            아직 정보가 입력되지 않았습니다.
 										        </c:when> 
 												<c:otherwise>
@@ -192,11 +201,11 @@ body {
 													                
 															<div class="experience-content">
 																<div class="timeline-content">
-																<c:set var="len" value="${fn:length(m.d_graduation)/3}"/> 
-																<c:forEach begin="0" end="${len-1}" varStatus="status">
-																	<a href="javascript:void(0)" class="name">${m.d_graduation[status.index]}</a>
-																	<div>${m.d_graduation[status.index]}</div>
-																	<span class="time">${m.d_graduation[status.index]}</span>
+																<c:set var="len" value="${fn:length(m[0])}"/> 
+																<c:forEach begin="0" end="${len-1}" varStatus="status" step="3">
+																	<a href="javascript:void(0)" class="name">${m[0][status.index]}</a>
+																	<div>${m[0][status.index+1]}</div>
+																	<span class="time">${m[0][status.index+2]}</span>
 																	<br/>
 																</c:forEach>
 																</div>
@@ -213,7 +222,7 @@ body {
 											<div class="widget experience-widget">
 												<h4 class="widget-title">경력 및 활동</h4>
 												 <c:choose>
-											        <c:when test="${empty m}">
+											        <c:when test="${empty m[1]}">
 											            아직 정보가 입력되지 않았습니다.
 											        </c:when> 
 													<c:otherwise>
@@ -225,10 +234,10 @@ body {
 															</div>
 															<div class="experience-content">
 																<div class="timeline-content">
-																<c:set var="len" value="${fn:length(m.d_career)/3}"/> 
-																<c:forEach begin="0" end="${len-1}" varStatus="status">
-																	<a href="javascript:void(0)" class="name">${m.d_career[0]}</a>
-																	<div>${m.d_career[1]}</div>
+																<c:set var="len" value="${fn:length(m[1])}"/> 
+																<c:forEach begin="0" end="${len-1}" varStatus="status" step="2">
+																	<a href="javascript:void(0)" class="name">${m[1][status.index]}</a>
+																	<div>${m[1][status.index+1]}</div>
 																	<br/>
 																</c:forEach>
 																</div>
@@ -244,12 +253,20 @@ body {
 											<!-- Services List -->
 											<div class="service-list">
 												<h4>진료분야</h4>
+												<c:choose>
+										        <c:when test="${empty m[3]}">
+										            아직 정보가 입력되지 않았습니다.
+										        </c:when> 
+												<c:otherwise>
 												<ul class="clearfix">
-													<li>아토피 피부염</li>
-													<li>백반증</li>
-													<li>탈모</li>
-													<li>피부종양</li>
+												<c:set var="len" value="${fn:length(m[3])}"/> 
+												<c:forEach begin="0" end="${len-1}" varStatus="status">
+												<li>${m[3][status.index]}</li>
+												</c:forEach>
 												</ul>
+												</c:otherwise>
+												</c:choose>
+												
 											</div>
 											<!-- /Services List -->
 

@@ -61,19 +61,33 @@ public class MainController {
 	  try {
 	  DoctorDTO doctor_profile = doctor_dao.doctor_info(2);
 	  model.addAttribute("doctor_profile",doctor_profile);
-	  
-
 	  List<String[]> m = new ArrayList<String[]>();
 	  String [] d_graduation = doctor_profile.getD_graduation().split(",");
-	  m.add(d_graduation);
 	  String [] d_career = doctor_profile.getD_career().split(",");
-	  m.add(d_career);
-	  String [] d_field = doctor_profile.getD_field().split(",");
-	  m.add(d_field);
-	  
+	  String [] d_content = null;
+	  String [] d_field = null;
 
+	  m.add(d_graduation);
+	  m.add(d_career);
+	  
+	  if(doctor_profile.getD_content()!=null) {
+		d_content = doctor_profile.getD_content().split(",");
+		m.add(d_content);
+	  }
+	  if(doctor_profile.getD_field()!=null) {
+	  	d_field = doctor_profile.getD_field().split(",");
+		m.add(d_field);
+	  }
+	  for (int i=0; i<m.get(0).length;i++) {
+		  System.out.println("m.size "+i+m.get(0)[i]);
+	  }
+	  for (int i=0; i<m.get(1).length;i++) {
+		  System.out.println("m.size "+i+m.get(1)[i]);
+	  }
+	 
+	  
 	  model.addAttribute("m",m);
-	  model.addAttribute("reviewList",re_dao.getReviewList(2));
+	  //model.addAttribute("reviewList",re_dao.getReviewList(2));
 	  
 	  System.out.println("의사상세프로필 이동");
 	  
