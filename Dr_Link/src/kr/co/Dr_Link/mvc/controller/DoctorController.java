@@ -92,8 +92,8 @@ public class DoctorController {
 		
 		/* 방금 pre_dao.add_prescription 한 값에서 바로 prescription을 가져와서 setting 하는 방법이 뭘까 */
 		/* 방금 pre_dao.add_prescription 한 값을 바로 페이지에 띄우기 위해 select*/
-		pre_vo.setPrescription_num(pre_dao.detail_prescription(pre_vo).getTreatment_num()); //처방번호와
-		pre_vo.setPatient_num(pre_dao.detail_prescription(pre_vo).getPatient_num());		//환자 번호로 select
+		pre_vo.setPrescription_num(121); //처방번호와
+		pre_vo.setPatient_num(2);		//환자 번호로 select
 		PrescriptionDTO prescription = pre_dao.detail_prescription(pre_vo);
 		List<MedicineDTO> medi_detail = pre_dao.medicine_detail_info(prescription.getMedicine_num());
 		model.addAttribute("medi_detail",medi_detail);
