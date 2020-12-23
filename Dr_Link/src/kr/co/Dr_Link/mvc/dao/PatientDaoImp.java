@@ -25,6 +25,7 @@ public class PatientDaoImp implements PatientDaoInter{
 	}
 	
 	/* 김성민 */
+	//환자 회원가입
 	@Override
 	public void insertPatient(PatientDTO dto) {
 		System.out.println("===> imple에서 Mybatis mapper add()로 실행");
@@ -32,6 +33,7 @@ public class PatientDaoImp implements PatientDaoInter{
 		ss.insert("patient.add",dto);
 	}
 	
+	//환자 로그인
 	@Override
 	public PatientDTO loginCheckPatient(PatientDTO dto) {
 		System.out.println("===> imple에서 Mybatis mapper loginchk()로 실행");

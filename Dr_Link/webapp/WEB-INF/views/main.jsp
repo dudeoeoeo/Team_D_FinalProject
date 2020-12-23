@@ -69,13 +69,15 @@ width:auto !important;
 	<!-- Main Wrapper -->
 <div class="main-wrapper">
 
-	<!-- Header -->
-	<% if (request.getParameter("p_id") == null) { %>
-   <%@include file ="tiles/header.jsp" %>
-   <% } else { %>
-   <%@include file ="tiles/loginHeader.jsp" %>
-   <% } %>
-	<!-- /Header -->
+		<!-- Header -->
+		<% if (request.getParameter("p_id") != null) { %>
+		<%@include file ="tiles/patient_loginHeader.jsp" %>
+		<% } else if(request.getParameter("d_id") != null){ %>
+		<%@include file ="tiles/doctor_loginHeader.jsp" %>
+		<% }else{%>
+		  <%@include file ="tiles/header.jsp"%>
+		<% } %>
+		<!-- /Header -->
 	
 <!-- Home Banner -->
 	
@@ -663,13 +665,15 @@ width:auto !important;
 	</section>
 	<!-- /Blog Section -->			
 	
-	<!-- Footer -->
-	<% if (request.getParameter("p_id") == null) { %>
-   <%@include file ="tiles/footer.jsp" %>
-   <% } else { %>
-   <%@include file ="tiles/loginFooter.jsp" %>
-   <% } %>
-	<!-- /Footer -->
+		<!-- Footer -->
+		<% if (request.getParameter("p_id") != null) { %>
+		<%@include file ="/WEB-INF/views/tiles/patient_loginFooter.jsp" %>
+		<% } else if(request.getParameter("d_id") != null){ %>
+		<%@include file ="/WEB-INF/views/tiles/doctor_loginFooter.jsp" %>
+		<% }else{%>
+		  <%@include file ="/WEB-INF/views/tiles/footer.jsp"%>
+		<% } %>
+		<!-- /Footer -->
    
   </div>
   <!-- /Main Wrapper -->
