@@ -54,30 +54,29 @@ public class PatientController {
 	/* 김다유 : 처방기록 상세 페이지로 이동 */
 	@RequestMapping(value = "/detail_prescription") 
 	public String end_prescription(PrescriptionDTO pre_vo,Model model, MedicineDTO medi_vo) {
-		
-
-		List<MedicineDTO> medi_detail = pre_dao.medicine_detail_info(pre_vo.getMedicine_num());
-		pre_vo.setPrescription_num(109);
+		pre_vo.setPrescription_num(103);
 		pre_vo.setPatient_num(2);
-		
 		PrescriptionDTO prescription = pre_dao.detail_prescription(pre_vo);
+		
+		List<MedicineDTO> medi_detail = pre_dao.medicine_detail_info(prescription.getMedicine_num());
 		model.addAttribute("prescription",prescription);
+		model.addAttribute("medi_detail",medi_detail);
 		
-		int chk_num = 0;
-		String url ="";
-		
-		if(chk_num == 0) {
-			int pre_num = prescription.getPrescription_num();
-			model.addAttribute("pre_num",pre_num);
-			url="/patients/payment";
-		}else {
-			model.addAttribute("prescription",prescription);
-			model.addAttribute("medi_detail",medi_detail);
-			url="/patients/detail_prescription";
-		}
+//		int chk_num = 0;
+//		String url ="";
+//		
+//		if(chk_num == 0) {
+//			int pre_num = prescription.getPrescription_num();
+//			model.addAttribute("pre_num",pre_num);
+//			url="/patients/payment";
+//		}else {
+//			model.addAttribute("prescription",prescription);
+//			model.addAttribute("medi_detail",medi_detail);
+//			url="/patients/detail_prescription";
+//		}
 		System.out.println("controller detail_prescription 실행 완료");
 		    
-		return url;
+		return "/patients/detail_prescription";
 	}
 
 }

@@ -140,8 +140,8 @@ body {
 																			<a href="doctor-profile">${prescription.doctorDTO.d_name}</a>
 																		</h2>
 																	</td>
-																	<td>${prescription.doctorDTO.d_career[0][0]}</td>
-																	<td>3415-4</td>
+																	<td>${prescription.doctorDTO.d_licence}</td>
+																	<td>${prescription.doctorDTO.d_licence_num}</td>
 																</tr>
 															</tbody>
 														</table>
@@ -159,7 +159,7 @@ body {
 																	<td>Dr.Link</td>
 																	<td>02-2025-4119</td>
 																	<td>02-2025-4120</td>
-																	<td>김** 서명 사진 들어갈 예정</td>
+																	<td><Strong style="text-decoration:underline; color:#003669;">${prescription.doctorDTO.d_name}</Strong></td>
 																</tr>
 															</tbody>
 														</table>
@@ -186,7 +186,7 @@ body {
 												
 													<tr>
 														<td>
-															<input class="form-control" value="${prescription.medicineDTO.medicine_name[status.index]}" type="text" readonly="readonly">
+															<input class="form-control" value="${medi_detail[status.index].medicine_name}" type="text" readonly="readonly">
 														</td>
 														<td>
 															<input class="form-control" value="${prescription.dosage[status.index]}" type="text" readonly="readonly">

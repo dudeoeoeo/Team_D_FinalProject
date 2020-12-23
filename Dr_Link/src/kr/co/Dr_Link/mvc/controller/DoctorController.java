@@ -76,7 +76,6 @@ public class DoctorController {
 	public String end_prescription(HttpServletRequest request, PrescriptionDTO pre_vo, MedicineDTO medi_vo, Model model) {
 		/*배열로 받은 값 , 구분자를 붙여 String으로 만든 후 insert*/
 		
-		List<MedicineDTO> medi_detail = pre_dao.medicine_detail_info(pre_vo.getMedicine_num());
 		
 		String dsg = arrayJoin(",", pre_vo.getDosage());
 		pre_vo.setDsg(dsg);
@@ -95,6 +94,8 @@ public class DoctorController {
 		pre_vo.setPrescription_num(109); //처방번호와
 		pre_vo.setPatient_num(2);		//환자 번호로 select
 		PrescriptionDTO prescription = pre_dao.detail_prescription(pre_vo);
+		List<MedicineDTO> medi_detail = pre_dao.medicine_detail_info(prescription.getMedicine_num());
+		model.addAttribute("medi_detail",medi_detail);
 		
 		//약품 이름을 띄우기 위해 들어온 약품번호를 배열에 담아 한개씩 select
 		model.addAttribute("prescription",prescription);
