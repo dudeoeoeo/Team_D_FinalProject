@@ -13,33 +13,28 @@
   	<!-- 김성민 -->
   	<!-- 회원가입 -->
 	<insert id="add" parameterType="patientDTO">
-		insert into dl_user(patient_num, p_id, p_pwd, p_name, p_gender, p_jumin_num, p_phone_num, p_address, p_email, bloodtype, p_imgfile, height, weight, allergy) values(dl_patient_num_pk.nextval,#{p_id}, #{p_pwd}, #{p_name}, #{p_gender}, #{p_jumin_num}, #{p_phone_num}, #{p_zipcode}, #{p_email}, #{bloodtype}, #{p_imgfile}, #{height}, #{weight}, #{allergy})
+		insert into dl_user(patient_num, p_id, p_pwd, p_name, p_gender, p_jumin_num, p_phone_num, p_zipcode, p_address1, p_address2, p_email, bloodtype, p_imgfile, height, weight, allergy) values(dl_patient_num.nextval,#{p_id}, #{p_pwd}, #{p_name}, #{p_gender}, #{p_jumin_num}, #{p_phone_num}, #{p_zipcode}, #{p_address1}, #{p_address2}, #{p_email}, #{bloodtype}, #{p_imgfile}, #{height}, #{weight}, #{allergy})
 	</insert>
-	
 	
 	<!-- 로그인 -->
 	<select id="loginchk" parameterType="patientDTO" resultType="patientDTO">
 		select p_id, p_pwd from dl_user where p_id=#{p_id} and p_pwd=#{p_pwd}
 	</select>
-
   
 	<!-- 아이디 중복 검사 -->
 	<select id="idCheck" parameterType="String" resultType="int">
 		select count(*) from dl_user where p_id = #{p_id}
 	</select>
 
-  
-	<!-- 아이디 중복 검사 -->
+  	<!-- 아이디 중복 검사 -->
 	<select id="check_id" parameterType="String" resultType="int">
 		select count(*) from dl_user where p_id = #{p_id}
 	</select>
-	
 	
 	<!-- 아이디 찾기 -->
 	<select id="find_id" parameterType="String" resultType="String">
 		select p_id from dl_user where p_email = #{email}
 	</select>
-
 
 	<!-- 비밀번호 변경 -->
 	<update id="update_pw" parameterType="patientDTO">
