@@ -5,17 +5,6 @@ select * from pr
 --DROP SEQUENCE "dl_patient_num";
 
 
-SELECT * FROM prescription a 
-  JOIN dl_doctor b ON a.doctor_num = b.doctor_num 
-  JOIN department c ON b.dep_num=c.dep_num 
-  WHERE patient_num=2 order by a.prescription_num desc
-
-select a.patient_num as patient_num, p_name, p_imgfile, review_num,
-		review_content, review_rating, review_date from dl_user a, doc_review
-		b
-		where a.patient_num=b.patient_num and doctor_num=2 order by
-		review_date desc
-
 create table dl_user (      
     patient_num number(4) constraint dl_patient_num_pk primary key,
     p_id varchar2(20) not null,
@@ -36,27 +25,27 @@ create table dl_user (
     p_regdate date default sysdate
 );
 
-create sequence dl_patient_num  -- È¸¿ø¹øÈ£ ½ÃÄö½º
+create sequence dl_patient_num  -- íšŒì›ë²ˆí˜¸ ì‹œí€€ìŠ¤
 increment by 1
 start with 1;
 
-insert into dl_user values (dl_patient_num.nextval, 'pati_test1', '1111', 'È¯ÀÚ1','³²', '1234561234567', '01000001111','48653','¼­¿ï½Ã±İÃµ±¸°¡»êµ¿','', 'asd123@naver.com','O','','160','54','0',sysdate);
-insert into dl_user values (dl_patient_num.nextval, 'pati_test2', '1111', 'È¯ÀÚ2','¿©', '1234561234567', '01000001111','52595','¼­¿ï½Ã±İÃµ±¸°¡»êµ¿','', 'asd123@naver.com','O','','160','54','0',sysdate);
-insert into dl_user values (dl_patient_num.nextval, 'pati_test3', '1111', 'È¯ÀÚ3','³²', '1234561234567', '01000001111','52553','¼­¿ï½Ã±İÃµ±¸°¡»êµ¿','', 'asd123@naver.com','O','','180','64','0',sysdate);
+insert into dl_user values (dl_patient_num.nextval, 'pati_test1', '1111', 'í™˜ì1','ë‚¨', '1234561234567', '01000001111','48653','ì„œìš¸ì‹œê¸ˆì²œêµ¬ê°€ì‚°ë™','', 'asd123@naver.com','O','','160','54','0',sysdate);
+insert into dl_user values (dl_patient_num.nextval, 'pati_test2', '1111', 'í™˜ì2','ì—¬', '1234561234567', '01000001111','52595','ì„œìš¸ì‹œê¸ˆì²œêµ¬ê°€ì‚°ë™','', 'asd123@naver.com','O','','160','54','0',sysdate);
+insert into dl_user values (dl_patient_num.nextval, 'pati_test3', '1111', 'í™˜ì3','ë‚¨', '1234561234567', '01000001111','52553','ì„œìš¸ì‹œê¸ˆì²œêµ¬ê°€ì‚°ë™','', 'asd123@naver.com','O','','180','64','0',sysdate);
 
 
-create table department (  -- ºÎ¼­
+create table department (  -- ë¶€ì„œ
     dep_num number(3) CONSTRAINT dep_num_pk primary key,
     dep_name varchar(50)
 );
 
-insert into department values( 10, '¾È°ú');
-insert into department values( 20, 'ÇÇºÎ°ú');
-insert into department values( 30, 'Á¤½Å°Ç°­ÀÇÇĞ°ú');
+insert into department values( 10, 'ì•ˆê³¼');
+insert into department values( 20, 'í”¼ë¶€ê³¼');
+insert into department values( 30, 'ì •ì‹ ê±´ê°•ì˜í•™ê³¼');
 
 commit;
 
-create table dl_doctor (   -- ÀÇ»ç
+create table dl_doctor (   -- ì˜ì‚¬
     doctor_num number(4) CONSTRAINT doctor_num_pk primary key,
     d_id varchar2(20) not null,
     d_pwd varchar2(20) not null,
@@ -81,19 +70,19 @@ create table dl_doctor (   -- ÀÇ»ç
     references department(dep_num) 
 );
 
-create sequence doctor_num  -- ÀÇ»ç ½ÃÄö½º
+create sequence doctor_num  -- ì˜ì‚¬ ì‹œí€€ìŠ¤
 increment by 1
 start with 1;
 
 
-Insert into DRLINK.DL_DOCTOR (DOCTOR_NUM,D_ID,D_PWD,D_NAME,D_GENDER,D_JUMIN_NUM,D_PHONE_NUM,D_ZIPCODE,D_ADDRESS1,D_ADDRESS2,D_EMAIL,DEP_NUM,D_GRADUATION,D_CAREER,D_LICENCE,D_LICENCE_NUM,D_PHOTO,D_REGDATE,D_CONTENT,D_FIELD) values (doctor_num.nextval,'doctor_test1','1111','ÀÇ»ç1','³²','1234561234567','01000001111  ','52553','¼­¿ï½Ã±İÃµ±¸°¡»êµ¿',null,'asd123@naver.com',20,'¼­¿ï´ë,È£»§ÇĞ°ú,2015,¿¬¼¼´ë,ÇÇÀÚÇĞ°ú,2018','¼­¿ï´ë,ºÎ±³¼ö,2015,¿¬¼¼´ë,ºÎ±³¼ö,2018','Àü°øÀÇ','1234',null,sysdate,'È¯ÀÚÀÇ Æí¿¡¼­ ¹Ù¶óº¸´Â Áø·á','Å»¸ğ,ÇÇºÎ Á¾¾ç');
-Insert into DRLINK.DL_DOCTOR (DOCTOR_NUM,D_ID,D_PWD,D_NAME,D_GENDER,D_JUMIN_NUM,D_PHONE_NUM,D_ZIPCODE,D_ADDRESS1,D_ADDRESS2,D_EMAIL,DEP_NUM,D_GRADUATION,D_CAREER,D_LICENCE,D_LICENCE_NUM,D_PHOTO,D_REGDATE,D_CONTENT,D_FIELD) values (doctor_num.nextval,'doctor_test2','1111','ÀÇ»ç2','¿©','1234561234567','01000001111  ','52595','¼­¿ï½Ã±İÃµ±¸°¡»êµ¿',null,'asd123@naver.com',10,'¼­¿ï´ë,È£»§ÇĞ°ú,2015,¿¬¼¼´ë,ÇÇÀÚÇĞ°ú,2018','°í·Á´ë,ºÎ±³¼ö,¼¼Á¾´ë,±³¼ö','Àü°øÀÇ','1234',null,sysdate,'µ· ¸¹ÀÌ ¹ú°í ½Í´Ù!',null);
-Insert into DRLINK.DL_DOCTOR (DOCTOR_NUM,D_ID,D_PWD,D_NAME,D_GENDER,D_JUMIN_NUM,D_PHONE_NUM,D_ZIPCODE,D_ADDRESS1,D_ADDRESS2,D_EMAIL,DEP_NUM,D_GRADUATION,D_CAREER,D_LICENCE,D_LICENCE_NUM,D_PHOTO,D_REGDATE,D_CONTENT,D_FIELD) values (doctor_num.nextval,'doctor_test3','1111','ÀÇ»ç3','¿©','1234561234567','01000001111  ','48653','¼­¿ï½Ã±İÃµ±¸°¡»êµ¿',null,'asd123@naver.com',30,'¼­¿ï´ë,È£»§ÇĞ°ú,2015,¿¬¼¼´ë,ÇÇÀÚÇĞ°ú,2018','°æ·Â','Àü°øÀÇ','1234',null,sysdate,null,null);
+Insert into DRLINK.DL_DOCTOR (DOCTOR_NUM,D_ID,D_PWD,D_NAME,D_GENDER,D_JUMIN_NUM,D_PHONE_NUM,D_ZIPCODE,D_ADDRESS1,D_ADDRESS2,D_EMAIL,DEP_NUM,D_GRADUATION,D_CAREER,D_LICENCE,D_LICENCE_NUM,D_PHOTO,D_REGDATE,D_CONTENT,D_FIELD) values (doctor_num.nextval,'doctor_test1','1111','ì˜ì‚¬1','ë‚¨','1234561234567','01000001111  ','52553','ì„œìš¸ì‹œê¸ˆì²œêµ¬ê°€ì‚°ë™',null,'asd123@naver.com',20,'ì„œìš¸ëŒ€,í˜¸ë¹µí•™ê³¼,2015,ì—°ì„¸ëŒ€,í”¼ìí•™ê³¼,2018','ì„œìš¸ëŒ€,ë¶€êµìˆ˜,2015,ì—°ì„¸ëŒ€,ë¶€êµìˆ˜,2018','ì „ê³µì˜','1234',null,sysdate,'í™˜ìì˜ í¸ì—ì„œ ë°”ë¼ë³´ëŠ” ì§„ë£Œ','íƒˆëª¨,í”¼ë¶€ ì¢…ì–‘');
+Insert into DRLINK.DL_DOCTOR (DOCTOR_NUM,D_ID,D_PWD,D_NAME,D_GENDER,D_JUMIN_NUM,D_PHONE_NUM,D_ZIPCODE,D_ADDRESS1,D_ADDRESS2,D_EMAIL,DEP_NUM,D_GRADUATION,D_CAREER,D_LICENCE,D_LICENCE_NUM,D_PHOTO,D_REGDATE,D_CONTENT,D_FIELD) values (doctor_num.nextval,'doctor_test2','1111','ì˜ì‚¬2','ì—¬','1234561234567','01000001111  ','52595','ì„œìš¸ì‹œê¸ˆì²œêµ¬ê°€ì‚°ë™',null,'asd123@naver.com',10,'ì„œìš¸ëŒ€,í˜¸ë¹µí•™ê³¼,2015,ì—°ì„¸ëŒ€,í”¼ìí•™ê³¼,2018','ê³ ë ¤ëŒ€,ë¶€êµìˆ˜,ì„¸ì¢…ëŒ€,êµìˆ˜','ì „ê³µì˜','1234',null,sysdate,'ëˆ ë§ì´ ë²Œê³  ì‹¶ë‹¤!',null);
+Insert into DRLINK.DL_DOCTOR (DOCTOR_NUM,D_ID,D_PWD,D_NAME,D_GENDER,D_JUMIN_NUM,D_PHONE_NUM,D_ZIPCODE,D_ADDRESS1,D_ADDRESS2,D_EMAIL,DEP_NUM,D_GRADUATION,D_CAREER,D_LICENCE,D_LICENCE_NUM,D_PHOTO,D_REGDATE,D_CONTENT,D_FIELD) values (doctor_num.nextval,'doctor_test3','1111','ì˜ì‚¬3','ì—¬','1234561234567','01000001111  ','48653','ì„œìš¸ì‹œê¸ˆì²œêµ¬ê°€ì‚°ë™',null,'asd123@naver.com',30,'ì„œìš¸ëŒ€,í˜¸ë¹µí•™ê³¼,2015,ì—°ì„¸ëŒ€,í”¼ìí•™ê³¼,2018','ê²½ë ¥','ì „ê³µì˜','1234',null,sysdate,null,null);
 
 --drop table appointment cascade CONSTRAINTS;
 --drop sequence appointment_num;
 
-create table appointment(    -- ¿¹¾à
+create table appointment(    -- ì˜ˆì•½
     appoint_num number CONSTRAINT appointment_appoint_num_pk PRIMARY KEY,
     patient_num number,
     doctor_num number,
@@ -108,11 +97,11 @@ create table appointment(    -- ¿¹¾à
     constraint dep_num1_fk foreign key(dep_num)
     references department(dep_num)
 );
-create sequence appointment_num  -- ¿¹¾à ½ÃÄö½º
+create sequence appointment_num  -- ì˜ˆì•½ ì‹œí€€ìŠ¤
 increment by 1
 start with 1;
 
---      È¯ÀÚ¹øÈ£, ÀÇ»ç¹øÈ£, ºÎ¼­¹øÈ£, '¿¹¾àÀÏ', '¿¹¾à½Ã°£',
+--      í™˜ìë²ˆí˜¸, ì˜ì‚¬ë²ˆí˜¸, ë¶€ì„œë²ˆí˜¸, 'ì˜ˆì•½ì¼', 'ì˜ˆì•½ì‹œê°„',
 insert into appointment values (appointment_num.nextval, 2, 2, 20, '2020-12-22','18:30', sysdate); 
 insert into appointment values (appointment_num.nextval, 2, 2, 20, '2020-12-21','15:20', sysdate); 
 insert into appointment values (appointment_num.nextval, 2, 2, 20, '2020-12-23','14:30', sysdate); 
@@ -121,12 +110,12 @@ insert into appointment values (appointment_num.nextval, 3, 2, 20, '2020-12-23',
 insert into appointment values (appointment_num.nextval, 3, 2, 20, '2020-12-24','18:30', sysdate); 
 
 
-create table treatment_record (   -- Áø·á ±â·Ï
+create table treatment_record (   -- ì§„ë£Œ ê¸°ë¡
     treatment_num number(5) CONSTRAINT treatment_num_pk primary key,
     patient_num number,
     doctor_num number,
     dep_num number,
-    appoint_num number,  -- ¿¹¾à¹øÈ£ fk Ãß°¡
+    appoint_num number,  -- ì˜ˆì•½ë²ˆí˜¸ fk ì¶”ê°€
     start_treatment_time date default sysdate,
     monitoring_time number(5),
     
@@ -140,7 +129,7 @@ create table treatment_record (   -- Áø·á ±â·Ï
     references appointment(appoint_num)
 );
 
-create sequence treatment_num  -- Áø·á ±â·Ï ½ÃÄö½º
+create sequence treatment_num  -- ì§„ë£Œ ê¸°ë¡ ì‹œí€€ìŠ¤
 increment by 1
 start with 100;
 
@@ -149,16 +138,16 @@ insert into treatment_record values (treatment_num.nextval, 2, 2, (select dep_nu
 insert into treatment_record values (treatment_num.nextval, 2, 2, (select dep_num from dl_doctor where doctor_num=3),3,sysdate,'30');
 
 
-create table prescription (     -- Ã³¹æÀü
+create table prescription (     -- ì²˜ë°©ì „
     prescription_num number(4) CONSTRAINT prescription_num_pk primary key,
     patient_num number,
     doctor_num number,
     treatment_num number,
     medicine_num varchar2(20), -- REFERENCES treatment_record (start_treatment_time)
     payment_check char(2) default '0',
-    dosage varchar2(20), --Åõ¿©·®
-    quantity varchar2(20), --È½¼ö
-    taking_date varchar2(20), --ÀÏ¼ö
+    dosage varchar2(20), --íˆ¬ì—¬ëŸ‰
+    quantity varchar2(20), --íšŸìˆ˜
+    taking_date varchar2(20), --ì¼ìˆ˜
     prescription_date varchar2(50),
     price number(7),
     
@@ -170,7 +159,7 @@ create table prescription (     -- Ã³¹æÀü
     references dl_doctor(doctor_num)
 );
 
-create sequence prescription_num  -- Ã³¹æÀü ½ÃÄö½º
+create sequence prescription_num  -- ì²˜ë°©ì „ ì‹œí€€ìŠ¤
 increment by 1
 start with 100;
 
@@ -178,22 +167,22 @@ start with 100;
 insert into prescription(prescription_num, patient_num,doctor_num,medicine_num,payment_check,treatment_num,dosage,quantity,taking_date,prescription_date,price) 
 values(prescription_num.nextval, (select patient_num from treatment_record where treatment_num = 101),
  (select doctor_num from treatment_record where treatment_num = 101),
-  '19,20,21',default,101,'2,2,2','2,2,2','2,2,2', '2020³â 12ÀÏ 21ÀÏ,06:01 ¿ÀÈÄ' ,67000);
+  '19,20,21',default,101,'2,2,2','2,2,2','2,2,2', '2020ë…„ 12ì¼ 21ì¼,06:01 ì˜¤í›„' ,67000);
   
 insert into prescription(prescription_num, patient_num,doctor_num,medicine_num,payment_check,treatment_num,dosage,quantity,taking_date,prescription_date,price) 
 values(prescription_num.nextval, (select patient_num from treatment_record where treatment_num = 102),
  (select doctor_num from treatment_record where treatment_num = 102),
-  '19,20,21',default,102,'2,2,2','2,2,2','2,2,2', '2020³â 12ÀÏ 21ÀÏ,06:01 ¿ÀÈÄ' ,85000);
+  '19,20,21',default,102,'2,2,2','2,2,2','2,2,2', '2020ë…„ 12ì¼ 21ì¼,06:01 ì˜¤í›„' ,85000);
   
   
    insert into prescription (prescription_num, patient_num,doctor_num,medicine_num,payment_check,treatment_num,dosage,quantity,taking_date,prescription_date) 
    values (prescription_num.nextval, (select patient_num from treatment_record where treatment_num = 102),
    (select doctor_num from treatment_record where treatment_num = 102),
-   '2,3,4',default,102,'2,3,4','2,3,4','2,3,4','2020³â 12¿ù 20ÀÏ,07:12 ¿ÀÈÄ');
+   '2,3,4',default,102,'2,3,4','2,3,4','2,3,4','2020ë…„ 12ì›” 20ì¼,07:12 ì˜¤í›„');
 
 
 
-create table medicine (  -- ¾à Á¤º¸
+create table medicine (  -- ì•½ ì •ë³´
     medicine_num varchar2(100) constraint medicine_num_pk primary key,
     medicine_name varchar2(100) not null,
     medicine_detail varchar2(1000) not null,
@@ -202,46 +191,46 @@ create table medicine (  -- ¾à Á¤º¸
     CONSTRAINT UK_INFO UNIQUE(medicine_name)
 );
 
-create sequence medicine_num  -- ¾à ¹øÈ£ ½ÃÄö½º
+create sequence medicine_num  -- ì•½ ë²ˆí˜¸ ì‹œí€€ìŠ¤
 increment by 1
 start with 1;
 
-INSERT INTO MEDICINE (medicine_num, MEDICINE_NAME, MEDICINE_DETAIL, MEDICINE_TAKING, MEDICINE_WARNING) VALUES (medicine_num.nextval,'Æ÷Å©¶ö½Ã·´(Æ÷¼öÅ¬·Î¶ö)_(9.5g/95mL)','¹«»ö È¤Àº ¹ÌÈ²»öÀÇ Åõ¸íÇÑ ½Ã·´Á¦','Æ÷¼öÅ¬·Î¶ö·Î¼­ 0.5 ¡­ 1 gÀ» ÃëÄ§ 15 ¡­ 30ºĞ Àü ¶Ç´Â ¼ö¼ú 30ºĞ Àü¿¡ °æ±¸Åõ¿©ÇÑ´Ù.','"ÁßÁõÀÇ ¾Æ³ªÇÊ¶ô½Ã½º ¹İÀÀ');
+INSERT INTO MEDICINE (medicine_num, MEDICINE_NAME, MEDICINE_DETAIL, MEDICINE_TAKING, MEDICINE_WARNING) VALUES (medicine_num.nextval,'í¬í¬ë„ì‹œëŸ½(í¬ìˆ˜í´ë¡œë„)_(9.5g/95mL)','ë¬´ìƒ‰ í˜¹ì€ ë¯¸í™©ìƒ‰ì˜ íˆ¬ëª…í•œ ì‹œëŸ½ì œ','í¬ìˆ˜í´ë¡œë„ë¡œì„œ 0.5 âˆ¼ 1 gì„ ì·¨ì¹¨ 15 âˆ¼ 30ë¶„ ì „ ë˜ëŠ” ìˆ˜ìˆ  30ë¶„ ì „ì— ê²½êµ¬íˆ¬ì—¬í•œë‹¤.','"ì¤‘ì¦ì˜ ì•„ë‚˜í•„ë½ì‹œìŠ¤ ë°˜ì‘');
 
-INSERT INTO MEDICINE (medicine_num, MEDICINE_NAME, MEDICINE_DETAIL, MEDICINE_TAKING, MEDICINE_WARNING) VALUES (medicine_num.nextval,'Æ÷Å©¶ö½Ã·´(Æ÷¼öÅ¬·Î¶ö)_(1g/10mL)','¹«»ö È¤Àº ¹ÌÈ²»öÀÇ Åõ¸íÇÑ ½Ã·´Á¦','Æ÷¼öÅ¬·Î¶ö·Î¼­ 0.5 ¡­ 1 gÀ» ÃëÄ§ 15 ¡­ 30ºĞ Àü ¶Ç´Â ¼ö¼ú 30ºĞ Àü¿¡ °æ±¸Åõ¿©ÇÑ´Ù.','"ÁßÁõÀÇ ¾Æ³ªÇÊ¶ô½Ã½º ¹İÀÀ');
-
-
-INSERT INTO MEDICINE (medicine_num, MEDICINE_NAME, MEDICINE_DETAIL, MEDICINE_TAKING, MEDICINE_WARNING) VALUES (medicine_num.nextval,'Æ÷Å©¶ö½Ã·´(Æ÷¼öÅ¬·Î¶ö)_(0.5g/5mL)','¹«»ö È¤Àº ¹ÌÈ²»öÀÇ Åõ¸íÇÑ ½Ã·´Á¦','Æ÷¼öÅ¬·Î¶ö·Î¼­ 0.5 ¡­ 1 gÀ» ÃëÄ§ 15 ¡­ 30ºĞ Àü ¶Ç´Â ¼ö¼ú 30ºĞ Àü¿¡ °æ±¸Åõ¿©ÇÑ´Ù.','"ÁßÁõÀÇ ¾Æ³ªÇÊ¶ô½Ã½º ¹İÀÀ');
-
-INSERT INTO MEDICINE (medicine_num, MEDICINE_NAME, MEDICINE_DETAIL, MEDICINE_TAKING, MEDICINE_WARNING) VALUES (medicine_num.nextval,'µ¶¼¼Á¤3¹Ğ¸®±×·¥(µ¶¼¼ÇÉ¿°»ê¿°)_(3.39mg/1Á¤)','Èò»öÀÇ Å¸¿øÇü Á¤Á¦','ÀÌ ¾àÀÇ ±ÇÀå¿ë·®Àº 1ÀÏ 1È¸ 6mgÀÌ¸ç, È¯ÀÚÀÇ °æ¿ì ÀÇ»çÀÇ Ã³¹æ¿¡ µû¶ó 1ÀÏ 1È¸ 3mgÀÌ ÀûÀıÇÒ ¼ö ÀÖ´Ù.','"ÀÚ»ì À§Çè ¹× ¿ì¿ïÁõÀÇ ¾ÇÈ­');
+INSERT INTO MEDICINE (medicine_num, MEDICINE_NAME, MEDICINE_DETAIL, MEDICINE_TAKING, MEDICINE_WARNING) VALUES (medicine_num.nextval,'í¬í¬ë„ì‹œëŸ½(í¬ìˆ˜í´ë¡œë„)_(1g/10mL)','ë¬´ìƒ‰ í˜¹ì€ ë¯¸í™©ìƒ‰ì˜ íˆ¬ëª…í•œ ì‹œëŸ½ì œ','í¬ìˆ˜í´ë¡œë„ë¡œì„œ 0.5 âˆ¼ 1 gì„ ì·¨ì¹¨ 15 âˆ¼ 30ë¶„ ì „ ë˜ëŠ” ìˆ˜ìˆ  30ë¶„ ì „ì— ê²½êµ¬íˆ¬ì—¬í•œë‹¤.','"ì¤‘ì¦ì˜ ì•„ë‚˜í•„ë½ì‹œìŠ¤ ë°˜ì‘');
 
 
+INSERT INTO MEDICINE (medicine_num, MEDICINE_NAME, MEDICINE_DETAIL, MEDICINE_TAKING, MEDICINE_WARNING) VALUES (medicine_num.nextval,'í¬í¬ë„ì‹œëŸ½(í¬ìˆ˜í´ë¡œë„)_(0.5g/5mL)','ë¬´ìƒ‰ í˜¹ì€ ë¯¸í™©ìƒ‰ì˜ íˆ¬ëª…í•œ ì‹œëŸ½ì œ','í¬ìˆ˜í´ë¡œë„ë¡œì„œ 0.5 âˆ¼ 1 gì„ ì·¨ì¹¨ 15 âˆ¼ 30ë¶„ ì „ ë˜ëŠ” ìˆ˜ìˆ  30ë¶„ ì „ì— ê²½êµ¬íˆ¬ì—¬í•œë‹¤.','"ì¤‘ì¦ì˜ ì•„ë‚˜í•„ë½ì‹œìŠ¤ ë°˜ì‘');
 
-insert into medicine values(medicine_num.nextval,'°¡Æ¼ÇÃ·ÎÁ¡¾È¾×(°¡Æ¼ÇÃ·Ï»ç½Å¼öÈ­¹°)','º»Á¦¿¡ °¨¼ö¼ºÀÌ ÀÖ´Â ´ÙÀ½ÀÇ ±ÕÁ¾¿¡ ÀÇÇÑ ¼¼±Õ¼º °á¸·¿°, °ËÆÇ¼±¿°, °¢¸·¿°(°¢¸·±Ë¾ç Æ÷ÇÔ)ÀÇ Ä¡·á, ¾È°ú¼ö¼ú½Ã ¹«±ÕÈ­¿ä¹ı
+INSERT INTO MEDICINE (medicine_num, MEDICINE_NAME, MEDICINE_DETAIL, MEDICINE_TAKING, MEDICINE_WARNING) VALUES (medicine_num.nextval,'ë…ì„¸ì •3ë°€ë¦¬ê·¸ë¨(ë…ì„¸í•€ì—¼ì‚°ì—¼)_(3.39mg/1ì •)','í°ìƒ‰ì˜ íƒ€ì›í˜• ì •ì œ','ì´ ì•½ì˜ ê¶Œì¥ìš©ëŸ‰ì€ 1ì¼ 1íšŒ 6mgì´ë©°, í™˜ìì˜ ê²½ìš° ì˜ì‚¬ì˜ ì²˜ë°©ì— ë”°ë¼ 1ì¼ 1íšŒ 3mgì´ ì ì ˆí•  ìˆ˜ ìˆë‹¤.','"ìì‚´ ìœ„í—˜ ë° ìš°ìš¸ì¦ì˜ ì•…í™”');
 
-Æ÷µµ»ó±¸±Õ¼Ó, ¿¬¼â»ó±¸±Õ¼Ó, Æó·Å±¸±Õ, Àå±¸±Õ¼Ó, ÄÚ¸®³×¹ÚÅ×¸®¿ò¼Ó, ¸ğ¶ô¼¿¶ó(ºê¶õÇÏ¸á¶ó)-Ä«Å¸¶ö¸®½º, ½ÃÆ®·Î¹ÚÅÍ-ÇÁ·éµğ, Å©·¾½Ã¿¤¶ó-´º¸ğ´Ï¾Æ¿¡, ¼¼¶óÄ¡¾Æ¼Ó, ¸ğ¸£°¡³Ú¶ó-¸ğ¸£°¡´Ï, ÀÎÇÃ·ç¿£ÀÚ±Õ, ½´µµ¸ğ³ª½º¼Ó, ³ì³ó±Õ, ½ºÇÎ°í¸ğ³ª½º-ÆÄ¿ìÄ¡¸ğºô¸®½º, ½ºÅ×³ëÆ®·ÎÆ÷¸ğ³ª½º(Å©»êÅä¸ğ³ª½º)-¸»ÅäÇÊ¸®¾Æ, ¾Æ½Ã³×Åä¹ÚÅÍ¼Ó, ¾ÆÅ©³×±Õ','¼¼±Õ¼º °á¸·¿°, °ËÆÇ¼±¿°, °¢¸·¿°(°¢¸·±Ë¾ç Æ÷ÇÔ) : Åë»ó 1È¸ 1¹æ¿ï 1ÀÏ 3È¸ Á¡¾È (ÀûÀıÈ÷ Áõ°¨)ÇÑ´Ù.',' ÀÌ ¾àÀº Á¡¾È¿ë ÀÌ¿ÜÀÇ ¸ñÀûÀ¸·Î »ç¿ëÇÒ ¼ö ¾øÀ¸¸ç, °á¸·ÇÏ·Î ÁÖ»çÇÏ°Å³ª, ¾È±¸ÀÇ Àü¹æ(anterior chamber)¿¡ Á÷Á¢ ÁÖÀÔÇÏÁö ¸»¾Æ¾ß ÇÑ´Ù.');
 
-insert into medicine values(medicine_num.nextval,'°Ö¹éÇÃ·¯½ºÁÖ(È÷¾Ë¿ì·Ğ»ê³ªÆ®·ı)','À§¾Æ·¡°¡ °í¹«¸¶°³·Î ¸·Èù À¯¸®°ü(ÇÁ¸®ÇÊµå½Ã¸°Áö ½Ã½ºÅÛÀÇ ÀÏºÎºĞ)¼Ó¿¡ µé¾îÀÖ´Â ¹«»öÅõ¸íÇÑ Á¡Á¶¼ºÀÌ ÀÖ´Â ¾×',' ¼¶À¯ÁÖ ÀıÁ¦¼úµ¿¾È Àü¹æ¿ë·®À» º¸ÃæÇÏ°í À¯ÁöÇÏ±â À§ÇØ ÀÌ ¾àÀ» °¢¸·ÃµÀÚ¸¦ ÅëÇØ ÁÖÀÔÇÑ´Ù.',' ÀÌ ¾à ¼ººĞ ¹× ´Ü¹éÁú°è ¾à¹°¿¡ °ú¹ÎÁõÀÇ º´·ÂÀÌ ÀÖ´Â È¯ÀÚ');
-insert into medicine values(medicine_num.nextval,'°ÕÁö½ºÅæÅ©¸²','Èò»öÀÇ Å©¸²Á¦',' 1ÀÏ 1¢¦3È¸ È¯ºÎ¿¡ Àû´ç·®À» ¹Ù¸¥´Ù.','1. ´ÙÀ½°ú °°Àº »ç¶÷Àº ÀÌ ¾àÀ» »ç¿ëÇÏÁö ¸» °Í.
 
-1) ¼¼±Õ(°áÇÙ, ¸Åµ¶ µî)¤ıÁø±Õ(Ä­µğ´ÙÁõ, ¹é¼± µî)¤ı½ºÇÇ·ÎÇìÅ¸¼Ó¤ıÈ¿¸ğ¤ı¹ÙÀÌ·¯½º(´ë»óÆ÷Áø, ´Ü¼øÆ÷Áø, ¼öµÎ, Á¾µÎÁõ µî)¤ıµ¿¹°(¿È, »ç¸é¹ßÀÌ µî)¼º ÇÇºÎ°¨¿°Áõ È¯ÀÚ(Áõ»óÀÌ ¾ÇÈ­µÉ ¼ö ÀÖ´Ù)
+insert into medicine values(medicine_num.nextval,'ê°€í‹°í”Œë¡œì ì•ˆì•¡(ê°€í‹°í”Œë¡ì‚¬ì‹ ìˆ˜í™”ë¬¼)','ë³¸ì œì— ê°ìˆ˜ì„±ì´ ìˆëŠ” ë‹¤ìŒì˜ ê· ì¢…ì— ì˜í•œ ì„¸ê· ì„± ê²°ë§‰ì—¼, ê²€íŒì„ ì—¼, ê°ë§‰ì—¼(ê°ë§‰ê¶¤ì–‘ í¬í•¨)ì˜ ì¹˜ë£Œ, ì•ˆê³¼ìˆ˜ìˆ ì‹œ ë¬´ê· í™”ìš”ë²•
 
-2) ÀÌ ¾à ¶Ç´Â ÀÌ ¾à ¼ººĞ¿¡ °ú¹ÎÁõ ¹× ±× º´·ÂÀÌ ÀÖ´Â È¯ÀÚ
+í¬ë„ìƒêµ¬ê· ì†, ì—°ì‡„ìƒêµ¬ê· ì†, íë ´êµ¬ê· , ì¥êµ¬ê· ì†, ì½”ë¦¬ë„¤ë°•í…Œë¦¬ì›€ì†, ëª¨ë½ì…€ë¼(ë¸Œë€í•˜ë©œë¼)-ì¹´íƒ€ë„ë¦¬ìŠ¤, ì‹œíŠ¸ë¡œë°•í„°-í”„ë£¬ë””, í¬ë ™ì‹œì—˜ë¼-ë‰´ëª¨ë‹ˆì•„ì—, ì„¸ë¼ì¹˜ì•„ì†, ëª¨ë¥´ê°€ë„¬ë¼-ëª¨ë¥´ê°€ë‹ˆ, ì¸í”Œë£¨ì—”ìê· , ìŠˆë„ëª¨ë‚˜ìŠ¤ì†, ë…¹ë†ê· , ìŠ¤í•‘ê³ ëª¨ë‚˜ìŠ¤-íŒŒìš°ì¹˜ëª¨ë¹Œë¦¬ìŠ¤, ìŠ¤í…Œë…¸íŠ¸ë¡œí¬ëª¨ë‚˜ìŠ¤(í¬ì‚°í† ëª¨ë‚˜ìŠ¤)-ë§í† í•„ë¦¬ì•„, ì•„ì‹œë„¤í† ë°•í„°ì†, ì•„í¬ë„¤ê· ','ì„¸ê· ì„± ê²°ë§‰ì—¼, ê²€íŒì„ ì—¼, ê°ë§‰ì—¼(ê°ë§‰ê¶¤ì–‘ í¬í•¨) : í†µìƒ 1íšŒ 1ë°©ìš¸ 1ì¼ 3íšŒ ì ì•ˆ (ì ì ˆíˆ ì¦ê°)í•œë‹¤.',' ì´ ì•½ì€ ì ì•ˆìš© ì´ì™¸ì˜ ëª©ì ìœ¼ë¡œ ì‚¬ìš©í•  ìˆ˜ ì—†ìœ¼ë©°, ê²°ë§‰í•˜ë¡œ ì£¼ì‚¬í•˜ê±°ë‚˜, ì•ˆêµ¬ì˜ ì „ë°©(anterior chamber)ì— ì§ì ‘ ì£¼ì…í•˜ì§€ ë§ì•„ì•¼ í•œë‹¤.');
 
-3) °í¸·Ãµ°øÀÌ ÀÖ´Â ½ÀÁø¼º ¿ÜÀÌµµ¿° È¯ÀÚ(Ãµ°øºÎÀ§ÀÇ Ä¡À¯Áö¿¬ÀÌ ³ªÅ¸³¯ ¼ö ÀÖ´Ù.)
+insert into medicine values(medicine_num.nextval,'ê²”ë°±í”ŒëŸ¬ìŠ¤ì£¼(íˆì•Œìš°ë¡ ì‚°ë‚˜íŠ¸ë¥¨)','ìœ„ì•„ë˜ê°€ ê³ ë¬´ë§ˆê°œë¡œ ë§‰íŒ ìœ ë¦¬ê´€(í”„ë¦¬í•„ë“œì‹œë¦°ì§€ ì‹œìŠ¤í…œì˜ ì¼ë¶€ë¶„)ì†ì— ë“¤ì–´ìˆëŠ” ë¬´ìƒ‰íˆ¬ëª…í•œ ì ì¡°ì„±ì´ ìˆëŠ” ì•¡',' ì„¬ìœ ì£¼ ì ˆì œìˆ ë™ì•ˆ ì „ë°©ìš©ëŸ‰ì„ ë³´ì¶©í•˜ê³  ìœ ì§€í•˜ê¸° ìœ„í•´ ì´ ì•½ì„ ê°ë§‰ì²œìë¥¼ í†µí•´ ì£¼ì…í•œë‹¤.',' ì´ ì•½ ì„±ë¶„ ë° ë‹¨ë°±ì§ˆê³„ ì•½ë¬¼ì— ê³¼ë¯¼ì¦ì˜ ë³‘ë ¥ì´ ìˆëŠ” í™˜ì');
+insert into medicine values(medicine_num.nextval,'ê²ì§€ìŠ¤í†¤í¬ë¦¼','í°ìƒ‰ì˜ í¬ë¦¼ì œ',' 1ì¼ 1ï½3íšŒ í™˜ë¶€ì— ì ë‹¹ëŸ‰ì„ ë°”ë¥¸ë‹¤.','1. ë‹¤ìŒê³¼ ê°™ì€ ì‚¬ëŒì€ ì´ ì•½ì„ ì‚¬ìš©í•˜ì§€ ë§ ê²ƒ.
 
-4) ±Ë¾ç(º£Ã¼Æ®º´ Á¦¿Ü), Á¦2µµ ½ÉÀç¼º ÀÌ»óÀÇ È­»ó¤ıµ¿»ó È¯ÀÚ(ÇÇºÎÀç»ıÀÌ ¾ïÁ¦µÇ¾î Ä¡À¯°¡ Áö¿¬µÉ ¼ö ÀÖ´Ù)
+1) ì„¸ê· (ê²°í•µ, ë§¤ë… ë“±)ã†ì§„ê· (ì¹¸ë””ë‹¤ì¦, ë°±ì„  ë“±)ã†ìŠ¤í”¼ë¡œí—¤íƒ€ì†ã†íš¨ëª¨ã†ë°”ì´ëŸ¬ìŠ¤(ëŒ€ìƒí¬ì§„, ë‹¨ìˆœí¬ì§„, ìˆ˜ë‘, ì¢…ë‘ì¦ ë“±)ã†ë™ë¬¼(ì˜´, ì‚¬ë©´ë°œì´ ë“±)ì„± í”¼ë¶€ê°ì—¼ì¦ í™˜ì(ì¦ìƒì´ ì•…í™”ë  ìˆ˜ ìˆë‹¤)
 
-5) ÀÔÁÖÀ§ÇÇºÎ¿°, º¸Åë¿©µå¸§, ÁÖ»ç(rosacea) È¯ÀÚ
+2) ì´ ì•½ ë˜ëŠ” ì´ ì•½ ì„±ë¶„ì— ê³¼ë¯¼ì¦ ë° ê·¸ ë³‘ë ¥ì´ ìˆëŠ” í™˜ì
 
-6) ½ºÆ®·¾Åä¸¶ÀÌ½Å, Ä«³ª¸¶ÀÌ½Å, °ÕÅ¸¸¶ÀÌ½Å, ³×¿À¸¶ÀÌ½Å µî ¾Æ¹Ì³ë±Û¸®ÄÚ»çÀÌµå°è Ç×»ı¹°Áú ¶Ç´Â ¹Ù½ÃÆ®¶ó½Å¿¡ ÀÇÇÑ °ú¹ÎÁõ ¹× ±× º´·ÂÀÌ ÀÖ´Â È¯ÀÚ (¾Æ¹Ì³ë±Û¸®ÄÚ»çÀÌµå°è Ç×»ı¹°Áú»çÀÌ¿¡´Â ±³Â÷ ¾Ë·¹¸£±âÀ¯¹ß¼ºÀÌ ÀÔÁõµÇ¾ú´Ù)');
+3) ê³ ë§‰ì²œê³µì´ ìˆëŠ” ìŠµì§„ì„± ì™¸ì´ë„ì—¼ í™˜ì(ì²œê³µë¶€ìœ„ì˜ ì¹˜ìœ ì§€ì—°ì´ ë‚˜íƒ€ë‚  ìˆ˜ ìˆë‹¤.)
+
+4) ê¶¤ì–‘(ë² ì²´íŠ¸ë³‘ ì œì™¸), ì œ2ë„ ì‹¬ì¬ì„± ì´ìƒì˜ í™”ìƒã†ë™ìƒ í™˜ì(í”¼ë¶€ì¬ìƒì´ ì–µì œë˜ì–´ ì¹˜ìœ ê°€ ì§€ì—°ë  ìˆ˜ ìˆë‹¤)
+
+5) ì…ì£¼ìœ„í”¼ë¶€ì—¼, ë³´í†µì—¬ë“œë¦„, ì£¼ì‚¬(rosacea) í™˜ì
+
+6) ìŠ¤íŠ¸ë ™í† ë§ˆì´ì‹ , ì¹´ë‚˜ë§ˆì´ì‹ , ê²íƒ€ë§ˆì´ì‹ , ë„¤ì˜¤ë§ˆì´ì‹  ë“± ì•„ë¯¸ë…¸ê¸€ë¦¬ì½”ì‚¬ì´ë“œê³„ í•­ìƒë¬¼ì§ˆ ë˜ëŠ” ë°”ì‹œíŠ¸ë¼ì‹ ì— ì˜í•œ ê³¼ë¯¼ì¦ ë° ê·¸ ë³‘ë ¥ì´ ìˆëŠ” í™˜ì (ì•„ë¯¸ë…¸ê¸€ë¦¬ì½”ì‚¬ì´ë“œê³„ í•­ìƒë¬¼ì§ˆì‚¬ì´ì—ëŠ” êµì°¨ ì•Œë ˆë¥´ê¸°ìœ ë°œì„±ì´ ì…ì¦ë˜ì—ˆë‹¤)');
 
 
 
 -------------------------------------------------------
--- ÀÌ¼®ÇĞ»ı¿¡°Ô ¹èÆ÷ÇÒ Å×ÀÌºí 
+-- ì´ì„í•™ìƒì—ê²Œ ë°°í¬í•  í…Œì´ë¸” 
 
-create table payment_record (   -- °áÁ¦³»¿ª
+create table payment_record (   -- ê²°ì œë‚´ì—­
     pay_num number(4) constraint payment_record_num primary key,
     patient_num number,
     doctor_num number,
@@ -262,7 +251,7 @@ create table payment_record (   -- °áÁ¦³»¿ª
 
 
 
-create table hospital_board (   -- º´¿ø°øÁö °Ô½ÃÆÇ
+create table hospital_board (   -- ë³‘ì›ê³µì§€ ê²Œì‹œíŒ
     hospital_board_num number(4) CONSTRAINT hospital_num_pk primary key,
     hospital_photo varchar2(60),
     hospital_title varchar2(100),
@@ -271,11 +260,11 @@ create table hospital_board (   -- º´¿ø°øÁö °Ô½ÃÆÇ
     h_watched number(4)
 );
 
-create sequence hospital_board_num  -- ÀÏÁ¤°Ô½ÃÆÇ ½ÃÄö½º
+create sequence hospital_board_num  -- ì¼ì •ê²Œì‹œíŒ ì‹œí€€ìŠ¤
 increment by 1
 start with 1;
 
-create table hospital_repl (   -- º´¿ø°øÁö ´ñ±Û
+create table hospital_repl (   -- ë³‘ì›ê³µì§€ ëŒ“ê¸€
     hospital_board_num number(4),
     hospital_repl_num number(4) CONSTRAINT news_num_pk primary key,
     patient_num number,
@@ -290,19 +279,19 @@ create table hospital_repl (   -- º´¿ø°øÁö ´ñ±Û
     references dl_doctor(doctor_num)
 );
 
-create table faq_board (   -- FAQ °Ô½ÃÆÇ
+create table faq_board (   -- FAQ ê²Œì‹œíŒ
     faq_board_num number(4) CONSTRAINT faq_num_pk primary key,
     faq_title varchar2(60),
     faq_content varchar2(500),
     faq_regdate date default sysdate
 );
 
-create sequence faq_board_num  -- FAQ °Ô½ÃÆÇ  ½ÃÄö½º
+create sequence faq_board_num  -- FAQ ê²Œì‹œíŒ  ì‹œí€€ìŠ¤
 increment by 1
 start with 1;
 
 
-create table news_board (   -- °Ç°­Á¤º¸ °Ô½ÃÆÇ
+create table news_board (   -- ê±´ê°•ì •ë³´ ê²Œì‹œíŒ
     news_board_num number(4) CONSTRAINT news_num_pk primary key,
     news_url varchar2(60),
     news_photo varchar2(60),
@@ -312,11 +301,11 @@ create table news_board (   -- °Ç°­Á¤º¸ °Ô½ÃÆÇ
     watched number(4)
 );
 
-create sequence news_board_num  -- °Ç°­Á¤º¸ ½ÃÄö½º
+create sequence news_board_num  -- ê±´ê°•ì •ë³´ ì‹œí€€ìŠ¤
 increment by 1
 start with 1;
 
-create table news_repl (   -- °Ç°­Á¤º¸ ´ñ±Û
+create table news_repl (   -- ê±´ê°•ì •ë³´ ëŒ“ê¸€
     news_board_num number(4),
     news_reply_num number(4) CONSTRAINT news_repl_pk primary key,
     patient_num number,
@@ -336,12 +325,12 @@ create table news_repl (   -- °Ç°­Á¤º¸ ´ñ±Û
     references dl_doctor(doctor_num)
 );
 
-create sequence news_board_repl_num  -- °Ç°­Á¤º¸ ´ñ±Û ½ÃÄö½º
+create sequence news_board_repl_num  -- ê±´ê°•ì •ë³´ ëŒ“ê¸€ ì‹œí€€ìŠ¤
 increment by 1
 start with 1;
 
 
-create table ai_record (   -- ai Áø´Ü ±â·Ï
+create table ai_record (   -- ai ì§„ë‹¨ ê¸°ë¡
     patient_num number,
     doctor_num number,
     dep_num number,
@@ -357,7 +346,7 @@ create table ai_record (   -- ai Áø´Ü ±â·Ï
 );
 
 
-create table favorite_doctor (   -- ÂòÇÑ ÀÇ»ç
+create table favorite_doctor (   -- ì°œí•œ ì˜ì‚¬
     patient_num number,
     doctor_num number,
     ai_symptom varchar(20) not null,
@@ -369,7 +358,7 @@ create table favorite_doctor (   -- ÂòÇÑ ÀÇ»ç
 );
 
 
-create table treat_repl (   -- Áø·áÈÄ±â ´ñ±Û
+create table treat_repl (   -- ì§„ë£Œí›„ê¸° ëŒ“ê¸€
     treat_repl_num number(4) CONSTRAINT treat_num_pk primary key,
     treat_repl_comment varchar2(100) not null,
     treat_repl_regdate date default sysdate,
@@ -382,11 +371,11 @@ create table treat_repl (   -- Áø·áÈÄ±â ´ñ±Û
     references dl_doctor(doctor_num)
 );
 
-create sequence treat_repl_num  -- Áø·áÈÄ±â ´ñ±Û ½ÃÄö½º
+create sequence treat_repl_num  -- ì§„ë£Œí›„ê¸° ëŒ“ê¸€ ì‹œí€€ìŠ¤
 increment by 1
 start with 1;
 
-create table doc_review(    -- Áø·áÈÄ±â º°Á¡ ÁÁ¾Æ¿ä ½È¾î¿ä µî
+create table doc_review(    -- ì§„ë£Œí›„ê¸° ë³„ì  ì¢‹ì•„ìš” ì‹«ì–´ìš” ë“±
    review_num number primary key,
    doctor_num number,
    patient_num number,
@@ -400,11 +389,11 @@ create sequence doc_review_seq
 increment by 1
 start with 1;
 
-create table chat_room (  -- Ã¤ÆÃ¹æ ¹øÈ£
+create table chat_room (  -- ì±„íŒ…ë°© ë²ˆí˜¸
     room_num number(4) CONSTRAINT room_num_pk primary key
 );
 
-create table chat_msg (   -- Ã¤ÆÃ¸Ş¼¼Áö
+create table chat_msg (   -- ì±„íŒ…ë©”ì„¸ì§€
     msg_num number(4) CONSTRAINT msg_num_pk primary key,
     msg varchar2(100),
     msg_time date default sysdate,
@@ -418,7 +407,7 @@ create table chat_msg (   -- Ã¤ÆÃ¸Ş¼¼Áö
 
 
 
-create table chat_room_join (  -- Á¶ÀÎÇÑ Ã¤ÆÃ¹æ ¹øÈ£
+create table chat_room_join (  -- ì¡°ì¸í•œ ì±„íŒ…ë°© ë²ˆí˜¸
     join_room_num number,
     doctor_num number,
     constraint join_room_num_fk foreign key(join_room_num)
@@ -427,6 +416,18 @@ create table chat_room_join (  -- Á¶ÀÎÇÑ Ã¤ÆÃ¹æ ¹øÈ£
     references dl_doctor(doctor_num)
 );
 
+
+
+SELECT * FROM prescription a 
+  JOIN dl_doctor b ON a.doctor_num = b.doctor_num 
+  JOIN department c ON b.dep_num=c.dep_num 
+  WHERE patient_num=2 order by a.prescription_num desc
+
+select a.patient_num as patient_num, p_name, p_imgfile, review_num,
+		review_content, review_rating, review_date from dl_user a, doc_review
+		b
+		where a.patient_num=b.patient_num and doctor_num=2 order by
+		review_date desc
 
 
 
