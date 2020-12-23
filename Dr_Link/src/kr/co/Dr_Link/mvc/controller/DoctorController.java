@@ -88,12 +88,12 @@ public class DoctorController {
 		pre_vo.setMedi_num(medi_num);
 		String pre_date = arrayJoin(",", request.getParameterValues("prescription_date"));
 		pre_vo.setPre_date(pre_date);			
-		//pre_dao.add_prescription(pre_vo);
+		pre_dao.add_prescription(pre_vo);
 		
 		/* 방금 pre_dao.add_prescription 한 값에서 바로 prescription을 가져와서 setting 하는 방법이 뭘까 */
 		/* 방금 pre_dao.add_prescription 한 값을 바로 페이지에 띄우기 위해 select*/
-		pre_vo.setPrescription_num(109); //처방번호와
-		pre_vo.setPatient_num(2);		//환자 번호로 select
+		pre_vo.setPrescription_num(pre_dao.detail_prescription(pre_vo).getTreatment_num()); //처방번호와
+		pre_vo.setPatient_num(pre_dao.detail_prescription(pre_vo).getPatient_num());		//환자 번호로 select
 		PrescriptionDTO prescription = pre_dao.detail_prescription(pre_vo);
 		List<MedicineDTO> medi_detail = pre_dao.medicine_detail_info(prescription.getMedicine_num());
 		model.addAttribute("medi_detail",medi_detail);
@@ -134,8 +134,8 @@ public class DoctorController {
 	/* 김다유 : 의사 프로필세팅 완료 후 페이지 이동 */
 	@RequestMapping(value = "/setting_ok" )
 	public String setting_ok(DoctorDTO vo, HttpServletRequest req, HttpServletResponse resp,Model model){
-		System.out.println("requset"+req.getParameter("d_graduation")+vo.getD_graduation());
-		//doc_dao.doctor_profile_update(vo);
+		vo.setD_pwd(req.getParameter("chg_pwd"));
+		doc_dao.doctor_profile_update(vo);
 		return "/doctor/doctor-dashboard";
 		}
 		

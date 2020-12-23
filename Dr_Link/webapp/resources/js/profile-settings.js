@@ -41,13 +41,13 @@ Version      : 1.0
 					'<div class="col-12 col-md-6 col-lg-4">' +
 						'<div class="form-group">' +
 							'<label>학과</label>' +
-							'<input type="text" class="form-control" name="d_school">' +
+							'<input type="text" class="form-control" name="d_graduation">' +
 						'</div>' +
 					'</div>' +
 					'<div class="col-12 col-md-6 col-lg-4">' +
 						'<div class="form-group">' +
 							'<label>졸업년도</label>' +
-							'<input type="text" class="form-control" name="d_whengrad">' +
+							'<input type="text" class="form-control" name="d_graduation">' +
 						'</div>' +
 					'</div>' +
 				'</div>' +
@@ -74,19 +74,19 @@ Version      : 1.0
 					'<div class="col-12 col-md-6 col-lg-4">' +
 						'<div class="form-group">' +
 							'<label>병원이름</label>' +
-							'<input type="text" class="form-control">' +
+							'<input type="text" class="form-control" name="d_career">' +
 						'</div>' +
 					'</div>' +
 					'<div class="col-12 col-md-6 col-lg-4">' +
 						'<div class="form-group">' +
 							'<label>활동년도</label>' +
-							'<input type="text" class="form-control">' +
+							'<input type="text" class="form-control" name="d_career">' +
 						'</div>' +
 					'</div>' +
 					'<div class="col-12 col-md-6 col-lg-4">' +
 						'<div class="form-group">' +
 							'<label>직함</label>' +
-							'<input type="text" class="form-control">' +
+							'<input type="text" class="form-control" name="d_career">' +
 						'</div>' +
 					'</div>' +
 				'</div>' +

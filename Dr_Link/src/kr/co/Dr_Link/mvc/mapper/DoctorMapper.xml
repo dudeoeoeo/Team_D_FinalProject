@@ -6,8 +6,8 @@
   <mapper namespace="doctor">
     
    	<resultMap type="departmentDTO" id="departmentMap">
-	<result column="dep_num" property="dep_num"/>
-	<result column="dep_name" property="dep_name"/>
+		<result column="dep_num" property="dep_num"/>
+		<result column="dep_name" property="dep_name"/>
 	</resultMap>
 	
 	<resultMap type="doctorDTO" id="doctorMap">
@@ -34,14 +34,14 @@
 	</resultMap>
  
   
-  <!-- 김다유 : 의사 프로필 업데이트 -->
-  <!-- <update id="doctor_profile_settings" parameterType="doctorDTO">
+  <!-- 김다유 : 의사 프로필 업데이트 d_photo=#{d_imgfile}, -->
+  <update id="doctor_profile_settings" parameterType="doctorDTO">
   update dl_doctor set d_pwd = #{d_pwd} , 
-  d_name = #{d_name} , d_phone_num=#{d_phone_num}, d_email=#{d_email}, 
+  d_name = #{d_name} , d_gender = #{d_gender}, d_phone_num=#{d_phone_num}, d_email=#{d_email}, 
   d_graduation=#{d_graduation}, 
   d_career=#{d_career}, d_licence=#{d_licence}, d_licence_num=#{d_licence_num}, 
-  d_photo=#{d_photo} where doctor_num = #{doctor_num}
-  </update> -->
+  d_content=#{d_content}, d_field=#{d_field} where doctor_num = #{doctor_num}
+  </update>
    <!-- 의료진소개 -->
    
    

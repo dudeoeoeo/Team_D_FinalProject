@@ -7,7 +7,7 @@ import kr.co.Dr_Link.mvc.dto.PrescriptionDTO;
 
 public interface PatientDaoInter {
 	/* public DoctorDTO detail_prescription(DoctorDTO vo); */
-	public List<PrescriptionDTO> prescriptionRecord (PrescriptionDTO vo);
+	public List<PrescriptionDTO> prescriptionRecord (int patient_num);
 	
 	/* 김성민 */
 	public void insertPatient(PatientDTO dto);

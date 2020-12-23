@@ -135,11 +135,11 @@
   </select>
   
   <!-- 김다유 : 처방기록 -->
-  <select id="prescriptionRecord" parameterType="String" resultMap="prescriptionMap">
+  <select id="prescriptionRecord" parameterType="int" resultMap="prescriptionMap">
   SELECT * FROM prescription a 
   JOIN dl_doctor b ON a.doctor_num = b.doctor_num 
   JOIN department c ON b.dep_num=c.dep_num 
-  WHERE patient_num=2 order by a.prescription_num desc
+  WHERE patient_num=#{patient_num} order by a.prescription_num desc
   </select>	
   
   </mapper>

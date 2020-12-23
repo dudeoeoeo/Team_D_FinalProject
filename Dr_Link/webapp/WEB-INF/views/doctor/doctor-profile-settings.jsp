@@ -167,7 +167,7 @@
 													<div class="upload-img">
 														<div class="change-photo-btn">
 															<span><i class="fa fa-upload"></i> 사진 첨부</span>
-															<input type="file" class="upload">
+															<input type="file" class="upload" name="p_imgfile">
 														</div>
 														<small class="form-text text-muted">JPG, GIF, PNG만 허용됩니다. 최대 사이즈 2MB</small>
 													</div>
@@ -177,31 +177,32 @@
 										<div class="col-md-6">
 											<div class="form-group">
 												<label>아이디 <span class="text-danger">*</span></label>
-												<input type="text" class="form-control" readonly value="${doctorinfo.d_id}">
+												<input type="text" class="form-control" name="d_id" readonly value="${doctorinfo.d_id}">
+												<input type="hidden" class="form-control" name="doctor_num" readonly value="${doctorinfo.doctor_num}">
 											</div>
 										</div>
 										<div class="col-md-6">
 											<div class="form-group">
 												<label>Email <span class="text-danger">*</span></label>
-												<input type="email" class="form-control" value="${doctorinfo.d_email}">
+												<input type="email" class="form-control" name="d_email" value="${doctorinfo.d_email}">
 											</div>
 										</div>
 										<div class="col-md-6">
 											<div class="form-group">
 												<label>이름<span class="text-danger">*</span></label>
-												<input type="text" class="form-control" value="${doctorinfo.d_name}">
+												<input type="text" class="form-control" name="d_name"  value="${doctorinfo.d_name}">
 											</div>
 										</div>
 										<div class="col-md-6">
 											<div class="form-group">
 												<label>휴대폰</label>
-												<input type="text" class="form-control" value="${doctorinfo.d_phone_num}">
+												<input type="text" class="form-control"  name="d_phone_num" value="${doctorinfo.d_phone_num}">
 											</div>
 										</div>
 										<div class="col-md-6">
 											<div class="form-group">
 												<label>성별</label>
-												<select class="form-control select">
+												<select class="form-control select"  name="d_gender" >
 												<c:choose>
 												<c:when test="${doctorinfo.d_gender eq '남'}">
 											        <option value="${doctorinfo.d_gender}" selected="selected">${doctorinfo.d_gender}</option>
@@ -218,7 +219,7 @@
 										<div class="col-md-6">
 											<div class="form-group mb-0">
 												<label>생년월일</label>
-												<input type="text" class="form-control" readonly value="${doctorinfo.d_jumin_num}">
+												<input type="text" class="form-control"  name="d_jumin_num" readonly value="${doctorinfo.d_jumin_num}">
 											</div>
 										</div>
 									</div>
@@ -232,7 +233,7 @@
 									<h4 class="card-title">경력사항</h4>
 									<div class="form-group mb-0">
 										<label>자기소개</label>
-										<textarea class="form-control" rows="5"></textarea>
+										<textarea class="form-control" rows="5" name="d_content">${doctorinfo.d_content}</textarea>
 									</div>
 								</div>
 							</div>
@@ -244,12 +245,12 @@
 									<h4 class="card-title">진료과목</h4>
 									<div class="form-group">
 										<label>진료과</label>
-										<input type="text" data-role="tagsinput" class="input-tags form-control" placeholder="진료과를 입력하세요." name="dep_no" value="${doctorinfo.departmentDTO.dep_name}" id="services">
+										<input type="text" data-role="tagsinput" class="input-tags form-control" placeholder="진료과를 입력하세요." name="dep_name" value="${doctorinfo.departmentDTO.dep_name}" id="services">
 										<small class="form-text text-muted">알림 : 새로운 진료과목을 추가하시려면 엔터를 누르세요.</small>
 									</div> 
 									<div class="form-group mb-0">
 										<label>전문진료분야 </label>
-										<input class="input-tags form-control" type="text" data-role="tagsinput" placeholder="진료분야를 입력하세요." name="specialist" value="${doctorinfo.d_field}" id="specialist">
+										<input class="input-tags form-control" type="text" data-role="tagsinput" placeholder="진료분야를 입력하세요." name="d_field" value="${doctorinfo.d_field}" id="specialist">
 										<small class="form-text text-muted">알림 : 새로운 진료과목을 추가하시려면 엔터를 누르세요.</small>
 									</div> 
 								</div>              
@@ -309,19 +310,19 @@
 													<div class="col-12 col-md-6 col-lg-4">
 														<div class="form-group">
 															<label>병원이름</label>
-															<input type="text" class="form-control" value="${m[1][status.index]}">
+															<input type="text" class="form-control" name="d_career"  value="${m[1][status.index]}">
 														</div> 
 													</div>
 													<div class="col-12 col-md-6 col-lg-4">
 														<div class="form-group">
 															<label>직함</label>
-															<input type="text" class="form-control" value="${m[1][status.index+1]}">
+															<input type="text" class="form-control" name="d_career" value="${m[1][status.index+1]}">
 														</div> 
 													</div>
 													<div class="col-12 col-md-6 col-lg-4">
 														<div class="form-group">
 															<label>활동년도</label>
-															<input type="text" class="form-control" value="${m[1][status.index+2]}">
+															<input type="text" class="form-control" name="d_career" value="${m[1][status.index+2]}">
 														</div> 
 													</div>
 												</c:forEach>
@@ -330,7 +331,7 @@
 										</div>
 									</div>
 									<div class="add-more">
-										<a href="javascript:void(0);" class="add-experience"><i class="fa fa-plus-circle"></i> Add More</a>
+										<a href="javascript:void(0);" class="add-experience"><i class="fa fa-plus-circle"></i>추가하기</a>
 									</div>
 								</div>
 							</div>
@@ -346,13 +347,13 @@
 											<div class="col-12 col-md-6 col-lg-4">
 												<div class="form-group">
 													<label>면허이름</label>
-													<input type="text" class="form-control" value="${doctorinfo.d_licence}">
+													<input type="text" class="form-control" name="d_licence" value="${doctorinfo.d_licence}">
 												</div> 
 											</div>
 											<div class="col-12 col-md-6 col-lg-4">
 												<div class="form-group">
 													<label>면허번호</label>
-													<input type="text" class="form-control" value="${doctorinfo.d_licence_num}">
+													<input type="text" class="form-control" name="d_licence_num" value="${doctorinfo.d_licence_num}">
 												</div> 
 											</div>
 											<div class="col-12 col-md-6 col-lg-4">
@@ -379,13 +380,13 @@
 											<div class="col-12 col-md-5">
 												<div class="form-group">
 													<label>현재비밀번호</label>
-													<input type="password" class="form-control">
+													<input type="password" name="old_pwd" class="form-control">
 												</div> 
 											</div>
 											<div class="col-12 col-md-5">
 												<div class="form-group">
 													<label>변경비밀번호</label>
-													<input type="password" class="form-control">
+													<input type="password" name="chg_pwd" class="form-control">
 												</div> 
 											</div>
 										</div>
@@ -439,12 +440,26 @@
 		
 		
 		<script>
+		var chg_pwd = $("#chg_pwd").val(); 
+		var old_pwd = $("#old_pwd").val(); 
+		
 		$(function(){
 			$(".submit-btn").click(function(){
+				if(chg_pwd!="" && old_pwd===chg_pwd){
+					alert("이전과 같은 비밀번호 입니다.")
+					return false
+				}else if(old_pwd==""){
+					alert("현재 비밀번호를 입력해주세요")
+					return false
+				}else if(chg_pwd==""){
+					alert("수정할 비밀번호를 입력해주세요")
+					return false
+				}
 				$('#doctor-profile-settings').attr("action","setting_ok");
 				$("#doctor-profile-settings").attr("enctype", "application/x-www-form-urlencoded");
 				$('#doctor-profile-settings').submit();
 			})
+			
 		})
 		</script>
 		

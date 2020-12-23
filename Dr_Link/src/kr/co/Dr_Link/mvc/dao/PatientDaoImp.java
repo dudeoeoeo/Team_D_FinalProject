@@ -19,7 +19,7 @@ public class PatientDaoImp implements PatientDaoInter{
 
 	/* 김다유 처방기록 select */
 	@Override
-	public List<PrescriptionDTO> prescriptionRecord(PrescriptionDTO vo) {
+	public List<PrescriptionDTO> prescriptionRecord(int patient_num) {
 		System.out.println("===> Mybatis prescriptionRecord() 실행");
 		return ss.selectList("prescription.prescriptionRecord");
 	}

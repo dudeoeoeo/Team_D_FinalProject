@@ -150,8 +150,12 @@ public class PrescriptionDTO {
 	}
 	public void setPrescription_date(String prescription_date) {
 		//2020-12-21,06:01 오후
-		this.prescription_time = prescription_date.split(",")[1];
-		this.prescription_date = prescription_date.split(",")[0];
+		if(prescription_date.contains(",")) {
+			this.prescription_time = prescription_date.split(",")[1];
+			this.prescription_date = prescription_date.split(",")[0];
+		}else {
+			this.prescription_date = prescription_date;
+		}
 	}
 	public String getPrescription_time() {
 		return prescription_time;

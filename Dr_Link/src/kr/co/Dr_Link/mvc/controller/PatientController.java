@@ -42,8 +42,8 @@ public class PatientController {
 	@RequestMapping(value = "patient_dashboard")
 	public String treatmentRecord(PrescriptionDTO pre_vo, Model model) {
 		try {
-		List<PrescriptionDTO> prescriptionRecord = patient_dao.prescriptionRecord(pre_vo);
-		
+		List<PrescriptionDTO> prescriptionRecord = patient_dao.prescriptionRecord(2);
+		System.out.println(prescriptionRecord.size());
 		model.addAttribute("prescriptionRecord", prescriptionRecord);
 		} catch (NullPointerException e) {
 				  

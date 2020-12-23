@@ -25,9 +25,11 @@ public class DoctorDaoImp implements DoctorDaoInter {
 
 	@Override
 	public void doctor_profile_update(DoctorDTO vo) {
-		System.out.println("===> Mybatis addPrescription() 실행");
-		ss.insert("prescription.addPrescription",vo);
+		System.out.println("===> Mybatis doctor_profile_settings() 실행");
+		ss.insert("doctor.doctor_profile_settings",vo);
 	}
+	
+	
 	
 	@Override
 	public List<SearchDTO> getSearch() {
