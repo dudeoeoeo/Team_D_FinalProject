@@ -61,7 +61,7 @@ public class PatientServiceImpl implements PatientServiceInter{
 
 		// 보내는 사람 EMail, 제목, 내용
 		String fromEmail = "ksungmin10@naver.com";
-		String fromName = "Spring Homepage";
+		String fromName = "닥터링크";
 		String subject = "";
 		String msg = "";
 		System.out.println("send_mail 서비스 임플까지옴");
@@ -76,7 +76,7 @@ public class PatientServiceImpl implements PatientServiceInter{
 			msg += "하단의 인증 버튼 클릭 시 정상적으로 회원가입이 완료됩니다.</div><br/>";
 			msg += "<form method='post' action='http://localhost:8081/homepage/member/approval_member.do'>";
 			msg += "<input type='hidden' name='email' value='" + dto.getP_email() + "'>";
-//			msg += "<input type='hidden' name='approval_key' value='" + dto.getApproval_key() + "'>";
+//이게 필요한건지 모르겟음...			msg += "<input type='hidden' name='approval_key' value='" + dto.getApproval_key() + "'>";
 			msg += "<input type='submit' value='인증'></form><br/></div>";
 		}else if(div.equals("find_pw")) {
 			subject = "Spring Homepage 임시 비밀번호 입니다.";
@@ -107,7 +107,7 @@ public class PatientServiceImpl implements PatientServiceInter{
 			System.out.println("메일발송 실패 : " + e);
 		}
 	}
-
+	
 	
 	// 비밀번호 찾기
 	@Override
@@ -127,6 +127,7 @@ public class PatientServiceImpl implements PatientServiceInter{
 			out.close();
 			System.out.println("find_pw 서비스 임플까지옴 3/4");
 		}else {
+		//if(true) {
 			System.out.println("find_pw 서비스 임플까지옴 4/4");
 			// 임시 비밀번호 생성
 			String pw = "";
@@ -138,7 +139,8 @@ public class PatientServiceImpl implements PatientServiceInter{
 			patientDaoImpl.update_pw(dto);
 			// 비밀번호 변경 메일 발송
 			send_mail(dto, "find_pw");
-			
+
+			System.out.println("임시 비밀번호 까지옴 4/4"+pw);
 			out.print("이메일로 임시 비밀번호를 발송하였습니다.");
 			out.close();
 		}
