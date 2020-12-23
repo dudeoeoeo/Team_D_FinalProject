@@ -71,26 +71,24 @@ body {
 										<div class="login-header">
 											<h3>Dr.Link <span>로그인</span></h3>
 										</div>
-									<div class="form-group form-focus">
-										<ul class="nav header-navbar-rht">
-											<li class="nav-item">
-												<a class="nav-link header-login" href="patient_login">일반회원 로그인</a>
-											</li>
-											<li class="nav-item">
-												<a class="nav-link header-login" href="doctor_login">당사직원 로그인</a>
-											</li>
-										</ul>
-									</div>		
-									<div class="form-group form-focus">		 
-										<ul class="nav header-navbar-rht">
-											<li class="nav-item">
-												<a class="nav-link header-login" href="patient_register">일반회원 회원가입</a>
-											</li>
-											<li class="nav-item">
-												<a class="nav-link header-login" href="doctor_register">당사직원 회원가입</a>
-											</li>
-										</ul>
-									</div>	
+										<form action="drloginCheck" name="drloginCheck" id="drloginCheck" class="drloginCheck" method="post">
+											<div class="form-group form-focus">
+												<input type="text" class="form-control floating" name="d_id" >
+												<label class="focus-label">아이디를 입력해주세요.</label>
+											</div>
+											<div class="form-group form-focus">
+												<input type="password" class="form-control floating" name="d_pwd">
+												<label class="focus-label">비밀번호를 입력해주세요.</label>
+											</div>
+											<button class="btn btn-primary btn-block btn-lg login-btn" type="submit">로그인</button>
+											<div class="login-or">
+												<span class="or-line"></span>
+												<span class="span-or">or</span>
+											</div>
+											<div class="text-center dont-have"> 잊으셨습니까? <a href="doctor_forgot_id">  아이디 찾기</a> <a href="doctor_forgot_password">  비밀번호 찾기</a></div>
+											<div class="text-center dont-have"> 아직 회원이 아니십니까?  <a href="doctor_register">  회원가입</a></div>
+										</form>
+									</div>
 								</div>
 							</div>
 							<!-- /Login Tab Content -->
@@ -99,7 +97,7 @@ body {
 					</div>
 
 				</div>
-			</div>		
+
 			</div>		
 			<!-- /Page Content -->
    

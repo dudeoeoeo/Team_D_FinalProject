@@ -6,7 +6,7 @@
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-<title>Dr.Link에 오신 것을 환영합니다</title>
+<title>의사! Dr.Link에 오신 것을 환영합니다</title>
 
 <!-- Favicons -->
 <link type="image/x-icon" href="${pageContext.request.contextPath}/resources/img/favicon.png" rel="icon">
@@ -79,7 +79,7 @@ width:auto !important;
 					</span>
 				</a>
 				<!-- <h1><a id="drlink" href="#" >Dr.Link</a></h1> -->
-				<a href="main" class="menu-logo">
+				<a href="#" class="menu-logo">
 						<img src="${pageContext.request.contextPath}/resources/img/logo.jpg" class="img-fluid" alt="Logo">
 					</a>
 					
@@ -111,24 +111,18 @@ width:auto !important;
 						<a href="question">FAQ</a>
 					</li>
 					<li class="has-submenu">
-						<a href="login">온라인예약</a>
+						<a href="search">온라인예약</a>
 					</li>
 					<li class="has-submenu">
 						<a>온라인 간편 진단<i class="fas fa-chevron-down"></i></a>
 						<ul class="submenu">
-							<li><a href="login">안과진단</a></li>
-							<li><a href="login">피부과진단</a></li>
+							<li><a href="AI_medical_eye">안과진단</a></li>
+							<li><a href="AI_medical_skin">피부과진단</a></li>
 							<!--  <li><a href="pharmacy-index">AI진단</a></li> -->
 						</ul>
 					</li>
 					<li class="has-submenu">
-						<a href="login">마이페이지<!-- <i class="fas fa-chevron-down"></i> --></a>
-						<!-- <ul class="submenu">
-							<li><a href="invoices">결제내역</a></li>
-						</ul> -->
-					</li>
-					<li class="has-submenu">
-						<a href="patientPay">결제하기<!-- <i class="fas fa-chevron-down"></i> --></a>
+						<a href="dashboard">마이페이지<!-- <i class="fas fa-chevron-down"></i> --></a>
 						<!-- <ul class="submenu">
 							<li><a href="invoices">결제내역</a></li>
 						</ul> -->
@@ -138,7 +132,7 @@ width:auto !important;
 			<ul class="nav header-navbar-rht">
 				
 				<li class="nav-item">
-					<a class="nav-link header-login" href="login">로그인 / 회원가입</a>
+					<a class="nav-link header-login" href="patients/logOut">로그아웃</a>
 				</li>
 			</ul>
 		</nav>
