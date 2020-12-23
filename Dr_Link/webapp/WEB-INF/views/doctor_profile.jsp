@@ -281,14 +281,14 @@ body {
 									<!-- Review Listing -->
 								<div class="widget review-listing">
 									<ul class="comments-list">
-										<c:if test="${null eq reviewList }">
+										<c:if test="${empty reviewList }">
 											댓글이 없습니다.
 										</c:if>
 										<c:forEach var="review" items="${reviewList}">
 										<!-- Comment List -->
 										<li>
 											<div class="comment">
-												<img class="avatar avatar-sm rounded-circle" alt="User Image" src="${path}/resources/assets/img/patients/${review.patientDTO.p_photo}">
+												<img class="avatar avatar-sm rounded-circle" alt="User Image" src="${path}/resources/assets/img/patients/${review.patientDTO.p_imgfile}">
 												<div class="comment-body">
 													<div class="meta-data">
 														<span class="comment-author">${review.patientDTO.p_name }</span>

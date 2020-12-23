@@ -59,17 +59,19 @@ public class MainController {
 	public String doctor_profile(DoctorDTO vo, Model model) {
 		
 	  try {
+		
+	 //의사번호(2)를 던져서 가져온 값을 doctor_profile에 저장 후 model 에 담아 jsp 전송
 	  DoctorDTO doctor_profile = doctor_dao.doctor_info(2);
 	  model.addAttribute("doctor_profile",doctor_profile);
+	  
+	  //db에서 가져온 값이 "a,b,c,"로 되어 있어서 split 후 배열에 담아 model 로 보내는 처리
 	  List<String[]> m = new ArrayList<String[]>();
 	  String [] d_graduation = doctor_profile.getD_graduation().split(",");
 	  String [] d_career = doctor_profile.getD_career().split(",");
 	  String [] d_content = null;
 	  String [] d_field = null;
-
 	  m.add(d_graduation);
-	  m.add(d_career);
-	  
+	  m.add(d_career);	  
 	  if(doctor_profile.getD_content()!=null) {
 		d_content = doctor_profile.getD_content().split(",");
 		m.add(d_content);
@@ -77,11 +79,11 @@ public class MainController {
 	  if(doctor_profile.getD_field()!=null) {
 	  	d_field = doctor_profile.getD_field().split(",");
 		m.add(d_field);
-	  }
-	 
-	  
+	  }	 
 	  model.addAttribute("m",m);
-	  //model.addAttribute("reviewList",re_dao.getReviewList(2));
+	  
+	  //리뷰리스트에 의사번호 (2)를 던져 값을 model에 담아 jsp로 전달
+	  model.addAttribute("reviewList",re_dao.getReviewList(2));
 	  
 	  System.out.println("의사상세프로필 이동");
 	  

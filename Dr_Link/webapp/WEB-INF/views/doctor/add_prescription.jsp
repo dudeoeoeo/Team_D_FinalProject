@@ -98,7 +98,7 @@ body {
 																<tr>
 																	<td><%= date.format(nowTime) %>
 																	<span class="d-block text-info"><%= time.format(nowTime) %></span></td>
-																	<td>제 <span> 15489 </span> 호</td>
+																	<td>제 <span> *insert후 update?*</span> 호</td>
 																	<td>${patientinfo.p_name}</td>
 																	<td class="text-left">
 																		<h2 class="table-avatar">
@@ -106,7 +106,7 @@ body {
 																		</h2>
 																	</td>
 																	<td>${doctorinfo.d_licence}</td>
-																	<td>3415-4</td>
+																	<td>${doctorinfo.d_licence_num}</td>
 																</tr>
 															</tbody>
 														</table>
