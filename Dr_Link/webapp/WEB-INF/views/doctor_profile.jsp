@@ -235,7 +235,7 @@ body {
 															<div class="experience-content">
 																<div class="timeline-content">
 																<c:set var="len" value="${fn:length(m[1])}"/> 
-																<c:forEach begin="0" end="${len-1}" varStatus="status" step="2">
+																<c:forEach begin="0" end="${len-1}" varStatus="status" step="3">
 																	<a href="javascript:void(0)" class="name">${m[1][status.index]}</a>
 																	<div>${m[1][status.index+1]}</div>
 																	<br/>

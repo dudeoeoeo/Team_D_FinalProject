@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <!DOCTYPE html> 
 <html lang="en">
@@ -248,7 +249,7 @@
 									</div> 
 									<div class="form-group mb-0">
 										<label>전문진료분야 </label>
-										<input class="input-tags form-control" type="text" data-role="tagsinput" placeholder="진료분야를 입력하세요." name="specialist" value="성인 심리,불안 장애" id="specialist">
+										<input class="input-tags form-control" type="text" data-role="tagsinput" placeholder="진료분야를 입력하세요." name="specialist" value="${doctorinfo.d_field}" id="specialist">
 										<small class="form-text text-muted">알림 : 새로운 진료과목을 추가하시려면 엔터를 누르세요.</small>
 									</div> 
 								</div>              
@@ -263,24 +264,27 @@
 										<div class="row form-row education-cont">
 											<div class="col-12 col-md-10 col-lg-11">
 												<div class="row form-row">
+												<c:set var="len" value="${fn:length(m[0])}"/> 
+												<c:forEach begin="0" end="${len-1}" varStatus="status" step="3">
 													<div class="col-12 col-md-6 col-lg-4">
 														<div class="form-group">
 															<label>출신대학</label>
-															<input type="text" class="form-control" name="d_graduation" value="${doctorinfo.d_graduation[0]}">
+															<input type="text" class="form-control" name="d_graduation" value="${m[0][status.index]}">
 														</div> 
 													</div>
 													<div class="col-12 col-md-6 col-lg-4">
 														<div class="form-group">
 															<label>학과</label>
-															<input type="text" class="form-control" name="d_graduation" value="${doctorinfo.d_graduation[1]}">
+															<input type="text" class="form-control" name="d_graduation" value="${m[0][status.index+1]}">
 														</div> 
 													</div>
 													<div class="col-12 col-md-6 col-lg-4">
 														<div class="form-group">
 															<label>졸업년도</label>
-															<input type="text" class="form-control" name="d_graduation" value="${doctorinfo.d_graduation[2]}">
+															<input type="text" class="form-control" name="d_graduation" value="${m[0][status.index+2]}">
 														</div> 
 													</div>
+													</c:forEach>
 												</div>
 											</div>
 										</div>
@@ -300,24 +304,27 @@
 										<div class="row form-row experience-cont">
 											<div class="col-12 col-md-10 col-lg-11">
 												<div class="row form-row">
+												<c:set var="len" value="${fn:length(m[1])}"/> 
+												<c:forEach begin="0" end="${len-1}" varStatus="status" step="3">
 													<div class="col-12 col-md-6 col-lg-4">
 														<div class="form-group">
 															<label>병원이름</label>
-															<input type="text" class="form-control">
-														</div> 
-													</div>
-													<div class="col-12 col-md-6 col-lg-4">
-														<div class="form-group">
-															<label>활동년도</label>
-															<input type="text" class="form-control">
+															<input type="text" class="form-control" value="${m[1][status.index]}">
 														</div> 
 													</div>
 													<div class="col-12 col-md-6 col-lg-4">
 														<div class="form-group">
 															<label>직함</label>
-															<input type="text" class="form-control">
+															<input type="text" class="form-control" value="${m[1][status.index+1]}">
 														</div> 
 													</div>
+													<div class="col-12 col-md-6 col-lg-4">
+														<div class="form-group">
+															<label>활동년도</label>
+															<input type="text" class="form-control" value="${m[1][status.index+2]}">
+														</div> 
+													</div>
+												</c:forEach>
 												</div>
 											</div>
 										</div>

@@ -1,5 +1,6 @@
 package kr.co.Dr_Link.mvc.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -109,9 +110,26 @@ public class DoctorController {
 	@RequestMapping(value = "/doctor-profile-settings")
 	public String profile_settings(DoctorDTO vo, Model model) {
 		DoctorDTO doctorinfo = pre_dao.doctor_info(2);
+		 List<String[]> m = new ArrayList<String[]>();
+		  String [] d_graduation = doctorinfo.getD_graduation().split(",");
+		  String [] d_career = doctorinfo.getD_career().split(",");
+		  String [] d_content = null;
+		  String [] d_field = null;
+		  m.add(d_graduation);
+		  m.add(d_career);	  
+		  if(doctorinfo.getD_content()!=null) {
+			d_content = doctorinfo.getD_content().split(",");
+			m.add(d_content);
+		  }
+		  if(doctorinfo.getD_field()!=null) {
+		  	d_field = doctorinfo.getD_field().split(",");
+			m.add(d_field);
+		  }	 
+		  model.addAttribute("m",m);
 		model.addAttribute("doctorinfo",doctorinfo);
 		return "/doctor/doctor-profile-settings";
 	}
+	
 	
 	/* 김다유 : 의사 프로필세팅 완료 후 페이지 이동 */
 	@RequestMapping(value = "/setting_ok" )
