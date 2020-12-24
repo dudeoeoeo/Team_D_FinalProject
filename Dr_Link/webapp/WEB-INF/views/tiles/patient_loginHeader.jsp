@@ -79,7 +79,7 @@ width:auto !important;
 					</span>
 				</a>
 				<!-- <h1><a id="drlink" href="#" >Dr.Link</a></h1> -->
-				<a href="#" class="menu-logo">
+				<a href="main" class="menu-logo">
 						<img src="${pageContext.request.contextPath}/resources/img/logo.jpg" class="img-fluid" alt="Logo">
 					</a>
 					
@@ -122,7 +122,7 @@ width:auto !important;
 						</ul>
 					</li>
 					<li class="has-submenu">
-						<a href="dashboard">마이페이지<!-- <i class="fas fa-chevron-down"></i> --></a>
+						<a href="patients/patient_dashboard">마이페이지<!-- <i class="fas fa-chevron-down"></i> --></a>
 						<!-- <ul class="submenu">
 							<li><a href="invoices">결제내역</a></li>
 						</ul> -->

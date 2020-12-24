@@ -53,7 +53,7 @@ body {
 					</span>
 				</a>
 				<!-- <h1><a id="drlink" href="#" >Dr.Link</a></h1> -->
-				<a href="#" class="menu-logo">
+				<a href="main" class="menu-logo">
 						<img src="${pageContext.request.contextPath}/resources/img/logo.jpg" class="img-fluid" alt="Logo">
 					</a>
 					
