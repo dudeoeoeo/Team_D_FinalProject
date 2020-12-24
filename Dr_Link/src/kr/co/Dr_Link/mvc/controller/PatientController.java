@@ -1,5 +1,6 @@
 package kr.co.Dr_Link.mvc.controller;
 
+import java.lang.ProcessBuilder.Redirect;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -30,7 +31,12 @@ public class PatientController {
 	private PrescriptionDaoInter pre_dao;
 	@Autowired
 	private PatientDaoInter patient_dao;
-	
+
+	@RequestMapping(value = "main")
+	public String main() {
+		System.out.println("patients 컨트롤러");
+		return "redirect:main";
+	}
 	
 	@RequestMapping(value = "{step}")
 	public String accessAnyFiles(@PathVariable String step) {
