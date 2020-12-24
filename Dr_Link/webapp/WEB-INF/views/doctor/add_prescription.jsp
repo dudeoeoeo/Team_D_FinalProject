@@ -182,12 +182,12 @@ body {
 									<table class="table table-hover table-center mb-0 text-center">
 										<thead>
 											<tr>
-												<th style="width: 40%;float: right;">금액</th>
+												<th style="width: 30%;float: right;">금액</th>
 											</tr>
 										</thead>
 										<tbody>
 											<tr>
-												<td style="width: 40%;float: right;" ><input class="form-control" value="" type="text" name="price" style="width:50%;float: right;"></td>
+												<td style="width: 30%;float: right;" ><input class="form-control" value="" type="text" name="price" placeholder="금액을 입력해주세요" style="width:70%;float: right;"></td>
 											</tr>
 										</tbody>
 									</table>
