@@ -14,7 +14,7 @@
 	</resultMap>
 	
    	<resultMap type="medicineDTO" id="medicineMap">
-		<result column="medicine_num" property="medicine_num"/>
+   	<id property="medicine_num" column="medicine_num" javaType="int" />
 		<result column="medicine_name" property="medicine_name"/>
 		<result column="medicine_detail" property="medicine_detail"/>
 		<result column="medicine_taking" property="medicine_taking"/>
@@ -22,7 +22,7 @@
 	</resultMap>
 	
    	<resultMap type="treatmentRecordDTO" id="treatmentRecordMap">
-		<result column="treatment_num" property="treatment_num"/>
+   	<id property="treatment_num" column="treatment_num" javaType="int" />
 		<result column="patient_num" property="patient_num"/>
 		<result column="doctor_num" property="doctor_num"/>
 		<result column="dep_num" property="dep_num"/>
@@ -32,7 +32,7 @@
 	
 	<!-- 에러나서 이미지 전부 지움 imgfile/photo -->
 	<resultMap type="doctorDTO" id="doctorMap">
-		<result column="doctor_num" property="doctor_num" />
+	<id property="doctor_num" column="doctor_num" javaType="int" />
 		<result column="d_id" property="d_id" />
 		<result column="d_pwd" property="d_pwd" />
 		<result column="d_name" property="d_name" />
@@ -55,7 +55,7 @@
 	</resultMap>
 
 	<resultMap type="patientDTO" id="patientMap">
-		<result column="patient_num" property="patient_num" />
+	<id property="patient_num" column="patient_num" javaType="int" />
 		<result column="p_id" property="p_id" />
 		<result column="p_pwd" property="p_pwd" />
 		<result column="p_name" property="p_name" />
@@ -77,7 +77,7 @@
 	
 	
 	<resultMap type="prescriptionDTO" id="prescriptionMap">
-		<result column="prescription_num" property="prescription_num" />
+		<id property="prescription_num" column="prescription_num" javaType="int" />
 		<result column="payment_check" property="payment_check" />
 		<result column="dosage" property="dosage" />
 		<result column="quantity" property="quantity" />

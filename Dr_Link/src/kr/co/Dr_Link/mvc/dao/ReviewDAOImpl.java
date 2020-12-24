@@ -39,7 +39,7 @@ public class ReviewDAOImpl implements ReviewDAO {
 
 	@Override
 	public List<Doc_ReviewDTO> getReviewList(int doctor_num) {
-		// TODO Auto-generated method stub
+		System.out.println("dao입니다 :"+ss.selectList("doc_review.reviewList", doctor_num));
 		return ss.selectList("doc_review.reviewList", doctor_num);
 	}
 

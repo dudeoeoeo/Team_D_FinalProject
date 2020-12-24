@@ -27,6 +27,7 @@ import kr.co.Dr_Link.mvc.dto.DoctorDTO;
 import kr.co.Dr_Link.mvc.dto.PatientDTO;
 import kr.co.Dr_Link.mvc.service.DoctorServiceImpl;
 import kr.co.Dr_Link.mvc.service.PatientServiceImpl;
+import kr.co.Dr_Link.mvc.service.ReviewService;
 
 @Controller
 public class MainController {
@@ -39,7 +40,7 @@ public class MainController {
 	@Autowired
 	private PatientServiceImpl service;
 	@Autowired
-	private ReviewDAO re_dao;
+	private ReviewService re_service;
 	
 	@RequestMapping(value = "/Dr_LinkMainPage")
 	public String login() {
@@ -79,7 +80,8 @@ public class MainController {
 	  model.addAttribute("m",m);
 	  
 	  //리뷰리스트에 의사번호 (2)를 던져 값을 model에 담아 jsp로 전달
-	  model.addAttribute("reviewList",re_dao.getReviewList(2));
+	  model.addAttribute("reviewList",re_service.getReviewList(2));
+	  System.out.println("아아아 "+ re_service.getReviewList(2));
 	  
 	  System.out.println("의사상세프로필 이동");
 	  

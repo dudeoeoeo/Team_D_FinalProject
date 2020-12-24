@@ -109,26 +109,13 @@ body {
 										</c:choose>
 										</div>
 										<div class="clini-infos">
-										<!-- <ul>
-											<li><i class="far fa-thumbs-up"></i> 99%</li>
-											<li><i class="far fa-comment"></i> 35 개의 후기</li>
-										</ul> -->
 									</div>
 									</div>
 								</div>
 								<div class="doc-info-right">
 									
 									<div class="doctor-action">
-										<!--<a href="javascript:void(0)" class="btn btn-white call-btn"data-toggle="modal" data-target="#video_call">
-											<i class="far fa-bookmark"></i>
-										</a>
-										 <a href="chat" class="btn btn-white msg-btn">
-											<i class="far fa-comment-alt"></i>
-										</a>
-										<a href="javascript:void(0)" class="btn btn-white call-btn" data-toggle="modal" data-target="#voice_call">
-											<i class="fas fa-phone"></i>
-										</a>-->
-										<a href="javascript:void(0)" class="btn btn-white fav-btn" >
+										<a href="javascript:void(0)" class="btn btn-white fav-btn" style="margin-left: 80% !important; margin-bottom: 30% !important;">
 											<i class="far fa-bookmark"></i>
 										</a> 
 									</div>

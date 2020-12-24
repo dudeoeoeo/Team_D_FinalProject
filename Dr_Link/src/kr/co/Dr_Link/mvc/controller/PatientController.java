@@ -41,6 +41,7 @@ public class PatientController {
 	/* patient_dashboard에서 진료기록, 결제기록, 예약기록 담당하시는 분들 여기서 값 세팅해주세요 */
 	@RequestMapping(value = "patient_dashboard")
 	public String treatmentRecord(PrescriptionDTO pre_vo, Model model) {
+		System.out.println("대시보드 매핑");
 		try {
 		List<PrescriptionDTO> prescriptionRecord = patient_dao.prescriptionRecord(2);
 		System.out.println(prescriptionRecord.size());

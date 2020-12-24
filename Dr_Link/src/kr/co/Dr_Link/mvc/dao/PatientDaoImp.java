@@ -21,7 +21,7 @@ public class PatientDaoImp implements PatientDaoInter{
 	@Override
 	public List<PrescriptionDTO> prescriptionRecord(int patient_num) {
 		System.out.println("===> Mybatis prescriptionRecord() 실행");
-		return ss.selectList("prescription.prescriptionRecord");
+		return ss.selectList("prescription.prescriptionRecord", patient_num);
 	}
 	
 	/* 김성민 */

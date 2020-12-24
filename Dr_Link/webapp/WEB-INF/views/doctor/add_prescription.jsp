@@ -177,6 +177,28 @@ body {
 										</div>
 									</div>
 									<!-- /Prescription Item -->
+									
+									<!-- 금액입력 -->
+									<table class="table table-hover table-center mb-0 text-center">
+										<thead>
+											<tr>
+												<th></th>
+												<th></th>
+												<th></th>
+												<th style="width:100px;float: right;">금액</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td></td>
+												<td></td>
+												<td></td>
+												<td><input class="form-control" value="" type="text" name="price" style="width:100px;float: right;"></td>
+											</tr>
+										</tbody>
+									</table>
+									
+									<!-- /금액입력 -->
 													
 											<div class="text-center" style="margin:10px !important;">		
 												<button type="submit" class="btn btn-info submit-btn send_btn" >입력 완료</button>
