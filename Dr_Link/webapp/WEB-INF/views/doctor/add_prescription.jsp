@@ -182,18 +182,12 @@ body {
 									<table class="table table-hover table-center mb-0 text-center">
 										<thead>
 											<tr>
-												<th></th>
-												<th></th>
-												<th></th>
-												<th style="width:100px;float: right;">금액</th>
+												<th style="width: 40%;float: right;">금액</th>
 											</tr>
 										</thead>
 										<tbody>
 											<tr>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td><input class="form-control" value="" type="text" name="price" style="width:100px;float: right;"></td>
+												<td style="width: 40%;float: right;" ><input class="form-control" value="" type="text" name="price" style="width:50%;float: right;"></td>
 											</tr>
 										</tbody>
 									</table>
