@@ -206,11 +206,11 @@ public class MainController {
 		System.out.println("img_path :"+img_path);
 		StringBuffer path = new StringBuffer();
 		path.append(r_path).append(img_path);
-		MultipartFile d_photo =dto.getD_photo();
-		String oriFn = dto.getD_id() + d_photo.getOriginalFilename(); // 여기에 회원 아이디와 동일 파일 이름으로 저장하자
+		MultipartFile file =dto.getFile();
+		String oriFn = dto.getD_id() + file.getOriginalFilename(); // 여기에 회원 아이디와 동일 파일 이름으로 저장하자
 		
 		path.append(oriFn);
-		dto.setD_imgfile(oriFn);
+		dto.setD_photo(oriFn);
 		System.out.println("path = r_path + img_path:"+path);
 		
 		//위에 3줄 이상해서 내가 추가해본다.
@@ -221,7 +221,7 @@ public class MainController {
 		
 		File f = new File(newpath.toString()); 
 		try {
-			d_photo.transferTo(f); 
+			file.transferTo(f); 
 		} catch (IllegalStateException | IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
