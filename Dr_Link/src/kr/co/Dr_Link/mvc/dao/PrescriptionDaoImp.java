@@ -31,8 +31,6 @@ public class PrescriptionDaoImp implements PrescriptionDaoInter {
 		return ss.selectOne("prescription.detail_prescription",vo);
 	}
 
-
-
 	@Override
 	public PatientDTO patient_info(int patient_num) {
 		System.out.println("===> Mybatis prescription_info(환자정보) 실행");
