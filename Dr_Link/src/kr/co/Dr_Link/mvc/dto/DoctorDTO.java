@@ -21,7 +21,7 @@ public class DoctorDTO {
     d_career varchar2(200),
     d_licence varchar2(100),
     d_licence_num varchar2(20),
-    d_photo varchar2(50),
+    file varchar2(50),
     d_regdate date default sysdate, 
     d_content varchar2(500),
     d_field varchar2(100)
@@ -30,9 +30,9 @@ public class DoctorDTO {
     
     private int doctor_num, dep_num;
 	private String d_id, d_pwd, d_name, d_jumin_num, d_phone_num, d_zipcode, d_address1, d_address2, d_email;
-	private String d_licence, d_licence_num, d_regdate, d_gender,d_content, d_imgfile;
+	private String d_licence, d_licence_num, d_regdate, d_gender,d_content, d_photo;
 	private String d_graduation,d_career,d_field;
-	private MultipartFile d_photo;
+	private MultipartFile file;
 	private DepartmentDTO departmentDTO;
 	
 	public DepartmentDTO getDepartmentDTO() {
@@ -132,17 +132,17 @@ public class DoctorDTO {
 	public void setD_licence(String d_licence) {
 		this.d_licence = d_licence;
 	}
-	public String getD_imgfile() {
-		return d_imgfile;
-	}
-	public void setD_imgfile(String d_imgfile) {
-		this.d_imgfile = d_imgfile;
-	}
-	public MultipartFile getD_photo() {
+	public String getD_photo() {
 		return d_photo;
 	}
-	public void setD_photo(MultipartFile d_photo) {
+	public void setD_photo(String d_photo) {
 		this.d_photo = d_photo;
+	}
+	public MultipartFile getFile() {
+		return file;
+	}
+	public void setFile(MultipartFile file) {
+		this.file = file;
 	}
 	public String getD_regdate() {
 		return d_regdate;
